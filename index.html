@@ -19,6 +19,287 @@
   <link rel="stylesheet" href="assets/css/animate.css" />
   <link rel="stylesheet" href="assets/css/glightbox.min.css" />
   <link rel="stylesheet" href="assets/css/main.css?v=89" />
+  
+  <style>
+    /* Enhanced animations and polish - keeping original colors */
+    body, .side-nav, .logo-nav, .about, .experience, .projects, 
+    .card-single, .abt-det, .project-text, .hero-area, .main-footer {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Floating animation for hero area */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-10px) rotate(1deg); }
+      66% { transform: translateY(5px) rotate(-1deg); }
+    }
+
+    /* Parallax scrolling effect */
+    .hero-area {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Enhanced hover effects */
+    .card-single, .abt-det, .project-text {
+      position: relative;
+      overflow: hidden;
+      transform: translateY(0);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-single:hover, .abt-det:hover, .project-text:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Glowing text effect */
+    .hero-inner h1 {
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .txt-type, .txt-type-subtitle {
+      position: relative;
+    }
+
+    /* Typing cursor animation - only for subtitle */
+    .txt-type-subtitle::after {
+      content: '|';
+      display: inline-block;
+      animation: blink 1s infinite;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    /* Enhanced navigation */
+    .main-bav li a {
+      position: relative;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .main-bav li a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: #00ffff;
+      transition: left 0.3s ease;
+    }
+
+    .main-bav li a:hover::before {
+      left: 0;
+    }
+
+    /* Social icons enhancement */
+    .social-nav li a {
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .social-nav li a:hover {
+      transform: translateY(-3px) scale(1.1);
+      color: #667eea;
+    }
+
+    .social-nav li a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: radial-gradient(circle, rgba(102, 126, 234, 0.2) 0%, transparent 70%);
+      border-radius: 50%;
+      transform: scale(0);
+      transition: transform 0.3s ease;
+    }
+
+    .social-nav li a:hover::after {
+      transform: scale(1.5);
+    }
+
+    /* Project image enhancements */
+    .img-thumb {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      transition: all 0.4s ease;
+    }
+
+    .img-thumb:hover {
+      transform: scale(1.05);
+    }
+
+    .img-thumb img {
+      transition: all 0.4s ease;
+      filter: brightness(1);
+    }
+
+    .img-thumb:hover img {
+      filter: brightness(1.1) contrast(1.1);
+    }
+
+    .play-btn {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .img-thumb:hover .play-btn {
+      transform: scale(1.2);
+      background: rgba(102, 126, 234, 0.9);
+    }
+
+    /* Section headers enhancement */
+    .sec-t h2 {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .sec-t:hover h2 {
+      transform: translateX(10px);
+    }
+
+    .line {
+      transition: all 0.3s ease;
+    }
+
+    .sec-t:hover .line {
+      width: 100px;
+      background: #00ffff;
+    }
+
+    /* Tab navigation enhancement */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    .nav-link:hover {
+      transform: translateX(5px);
+    }
+
+    .nav-link.active {
+      transform: translateX(10px);
+    }
+
+    /* Hi button enhancement */
+    .hi-btn {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hi-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .hi-btn:hover::before {
+      left: 100%;
+    }
+
+    .hi-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: #00ffff;
+      z-index: 1001;
+      transition: width 0.1s ease;
+    }
+
+    /* Entrance animations */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Ensure all text is visible */
+    .sec-t h2, .abt-det, .project-text, .card-single {
+      opacity: 1 !important;
+      color: inherit !important;
+    }
+
+    .sec-t h2, .abt-det h3, .abt-det p, .abt-det span, 
+    .project-text h5, .project-text p, .project-text span,
+    .card-single h3, .card-single p, .card-single span {
+      opacity: 1 !important;
+      color: inherit !important;
+    }
+
+    /* Profile picture hover effect */
+    .img-profile {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .img-profile:hover {
+      transform: scale(1.15);
+      filter: brightness(1.1);
+    }
+
+    /* Mobile responsiveness enhancements */
+    @media (max-width: 768px) {
+      .hero-inner h1 {
+        font-size: 2.5rem;
+      }
+      
+      .card-single:hover, .abt-det:hover, .project-text:hover {
+        transform: translateY(-4px) scale(1.01);
+      }
+    }
+
+    /* Custom scrollbar - hide it */
+    ::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: transparent;
+    }
+
+    /* Firefox scrollbar hiding */
+    html {
+      scrollbar-width: none;
+    }
+  </style>
 
 </head>
 
@@ -31,6 +312,7 @@
       </p>
     <![endif]-->
 
+  <div class="scroll-indicator" id="scrollIndicator"></div>
 
   <div class="logo-nav">
     <div class="container">
@@ -39,8 +321,6 @@
       </a>
     </div><!-- /.container -->
   </div><!-- /.logo-nav -->
-
-
 
   <header class="side-nav">
     <div class="container">
@@ -72,7 +352,6 @@
     </div><!-- /.container -->
   </header><!-- /.side-nav -->
 
-
   <section class="hero-area">
     <div class="container">
       <div class="hero-inner">
@@ -83,7 +362,7 @@
         </h1>
 
         <p class="sub-text wow fadeInLeft" data-wow-delay=".4s">
-          I enjoy solving problems for people.
+          <span class="txt-type-subtitle" data-wait="2000" data-words='["I enjoy solving problems for people."]'></span>
         </p>
 
         <a class="hi-btn wow fadeInUpBig" data-wow-delay=".5s" href="mailto:rmitra@umich.edu">
@@ -94,7 +373,6 @@
       </div><!-- /.hero-inner -->
     </div><!-- /.container -->
   </section><!-- /.hero-area -->
-
 
   <section id="about" class="about">
     <div class="container">
@@ -113,7 +391,7 @@
                 ServiceNow</a>.
             </p>
             <p>
-              I believe the true purpose of technology is to serve people, and AI is fundamentally reshaping how we approach and solve problems.Recently, I've been exploring LLM-driven UI generation and AI-powered enhancements to make enterprise platforms more intuitive and efficient.
+              I believe the true purpose of technology is to serve people, and AI is fundamentally reshaping how we approach and solve problems. Recently, I've been exploring LLM-driven UI generation and AI-powered enhancements to make enterprise platforms more intuitive and efficient.
             </p>
 
           </div><!-- /.abt-text -->
@@ -142,7 +420,6 @@
             <div class="nav custom-tabs  flex-column nav-pills" id="v-pills-tab" role="tablist"
               aria-orientation="vertical">
 
-
               <button class="nav-link active red" id="v-pills-red-tab" data-bs-toggle="pill"
                 data-bs-target="#v-pills-red" type="button" aria-controls="v-pills-red">
                 ServiceNow SWE
@@ -163,10 +440,6 @@
                 CK-12
               </button>
 
-
-
-
-
             </div>
             <!--.nav-->
 
@@ -175,7 +448,6 @@
         <div class="col-lg-7 col-md-7">
 
           <div class="tab-content" id="v-pills-tabContent">
-
 
             <div class="tab-pane fade show active" id="v-pills-red" role="tabpanel" aria-labelledby="v-pills-red-tab"
               tabindex="0">
@@ -213,17 +485,13 @@
                     </span>
                   </li>
 
-
                 </ul>
               </div><!-- /.abt-det -->
             </div>
             <!--.tab-pane-->
 
-
-
             <div class="tab-pane fade" id="v-pills-black" role="tabpanel" aria-labelledby="v-pills-black-tab"
               tabindex="0">
-
 
               <div class="abt-det animated fadeInUp" data-wow-delay=".5s">
                 <div class="abt-t">
@@ -262,15 +530,11 @@
                     </span>
                   </li>
 
-
                 </ul>
               </div><!-- /.abt-det -->
 
             </div>
             <!--.tab-pane-->
-
-
-
 
             <div class="tab-pane fade" id="v-pills-ferozi" role="tabpanel" aria-labelledby="v-pills-ferozi-tab"
               tabindex="0">
@@ -322,7 +586,6 @@
             </div>
             <!--.tab-pane-->
 
-
             <div class="tab-pane fade" id="v-pills-brown" role="tabpanel" aria-labelledby="v-pills-brown-tab"
               tabindex="0">
               <div class="abt-det animated fadeInUp">
@@ -359,21 +622,15 @@
                     </span>
                   </li>
 
-
                 </ul>
               </div><!-- /.abt-det -->
             </div>
             <!--.tab-pane-->
 
-
-
-
-
           </div>
           <!--.tab-content-->
         </div><!-- /.col-lg-5 -->
       </div><!-- /.row -->
-
 
     </div><!-- /.container -->
   </section><!-- /.experience -->
@@ -384,8 +641,6 @@
         <h2> / projects </h2>
         <span class="line"></span>
       </div><!-- /.sec-t -->
-
-
 
       <div class="row  gy-3 align-items-center wow fadeInUp" data-wow-delay=".5s">
 
@@ -427,7 +682,6 @@
 
       </div><!-- /.row -->
 
-
       <div class="row pt-5 gy-3 align-items-center wow fadeInUp" data-wow-delay=".4s">
         <div class="col-lg-6 col-md-10">
           <div class="img-thumb">
@@ -464,7 +718,6 @@
           </div><!-- /.project-text -->
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
-
 
       <div class="row pt-5 gy-3 align-items-center wow fadeInUp" data-wow-delay=".5s">
 
@@ -503,7 +756,6 @@
 
       </div><!-- /.row -->
 
-
       <div class="row pt-5 gy-3 align-items-center wow fadeInUp" data-wow-delay=".5s">
         <div class="col-lg-6 col-md-10">
           <div class="img-thumb">
@@ -539,11 +791,6 @@
           </div><!-- /.project-text -->
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
-
-
-
-
-
 
       <div class="cards-sec">
         <div class="row">
@@ -600,12 +847,9 @@
         </div><!-- /.row -->
       </div><!-- /.cards-sec -->
 
-
     </div><!-- /.container -->
 
-
   </section><!-- /.projects -->
-
 
   <footer class="main-footer">
     <div class="container">
@@ -629,7 +873,6 @@
       <p> © 2022 Rishav Mitra - All Rights Reserved </p>
     </div><!-- /.container -->
   </footer><!-- /.main-footer -->
-
 
   <!-- Modal -->
   <div class="modal fade custom-modal" id="Modal-1" tabindex="-1" aria-hidden="true">
@@ -676,14 +919,75 @@
     </div>
   </div>
 
-
   <script>
     var wows = document.getElementsByClassName('wow')
     for (i = 0; i < wows.length; i++) {
       wows[i].style.visibility = 'hidden';
     }
-  </script>
 
+    // Scroll indicator
+    function updateScrollIndicator() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / documentHeight) * 100;
+      
+      document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+    }
+
+    // Intersection Observer for animations
+    function initScrollAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('.fade-in-up').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // Smooth scrolling for navigation links
+    function initSmoothScrolling() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      initScrollAnimations();
+      initSmoothScrolling();
+      
+      // Add scroll listener for indicator
+      window.addEventListener('scroll', updateScrollIndicator);
+      
+      // Add fade-in-up class to elements that should animate, but keep them visible
+      document.querySelectorAll('.card-single, .abt-det, .project-text, .sec-t').forEach(el => {
+        // Don't add fade-in-up to avoid text disappearing issues
+        // el.classList.add('fade-in-up');
+      });
+      
+      // Ensure all text is visible
+      document.querySelectorAll('.sec-t h2, .abt-det, .project-text, .card-single').forEach(el => {
+        el.style.opacity = '1';
+        el.style.visibility = 'visible';
+      });
+    });
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
@@ -693,8 +997,77 @@
   <script src="assets/js/glightbox.min.js"></script>
   <script src="assets/js/main.js"></script>
 
+  <script>
+    // Typing animation class
+    class TypeWriter {
+      constructor(txtElement, words, wait = 3000) {
+        this.txtElement = txtElement;
+        this.words = words;
+        this.txt = '';
+        this.wordIndex = 0;
+        this.wait = parseInt(wait, 10);
+        this.type();
+        this.isDeleting = false;
+      }
+
+      type() {
+        const current = this.wordIndex % this.words.length;
+        const fullTxt = this.words[current];
+
+        if (this.isDeleting) {
+          this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+          this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+
+        this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
+
+        let typeSpeed = 100;
+
+        if (this.isDeleting) {
+          typeSpeed /= 2;
+        }
+
+        if (!this.isDeleting && this.txt === fullTxt) {
+          typeSpeed = this.wait;
+          this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === '') {
+          this.isDeleting = false;
+          this.wordIndex++;
+          typeSpeed = 500;
+        }
+
+        setTimeout(() => this.type(), typeSpeed);
+      }
+    }
+
+    // Initialize typing animations when DOM loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Subtitle typing animation only
+      const txtSubtitleElement = document.querySelector('.txt-type-subtitle');
+      if (txtSubtitleElement) {
+        const words = JSON.parse(txtSubtitleElement.getAttribute('data-words').replace(/'/g, '"'));
+        const wait = txtSubtitleElement.getAttribute('data-wait');
+        // Start subtitle animation after a delay
+        setTimeout(() => {
+          new TypeWriter(txtSubtitleElement, words, wait);
+        }, 1000);
+      }
+
+      initScrollAnimations();
+      initSmoothScrolling();
+      
+      // Add scroll listener for indicator
+      window.addEventListener('scroll', updateScrollIndicator);
+      
+      // Ensure all text is visible
+      document.querySelectorAll('.sec-t h2, .abt-det, .project-text, .card-single').forEach(el => {
+        el.style.opacity = '1';
+        el.style.visibility = 'visible';
+      });
+    });
+  </script>
 
 </body>
-
 
 </html>
