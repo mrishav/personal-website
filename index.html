@@ -90,7 +90,7 @@
       left: -100%;
       width: 100%;
       height: 2px;
-      background: #00ffff;
+      background: #64ffda;
       transition: left 0.3s ease;
     }
 
@@ -106,7 +106,7 @@
 
     .social-nav li a:hover {
       transform: translateY(-3px) scale(1.1);
-      color: #667eea;
+      color: #64ffda;
     }
 
     .social-nav li a::after {
@@ -116,7 +116,7 @@
       height: 100%;
       top: 0;
       left: 0;
-      background: radial-gradient(circle, rgba(102, 126, 234, 0.2) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(100, 255, 218, 0.2) 0%, transparent 70%);
       border-radius: 50%;
       transform: scale(0);
       transition: transform 0.3s ease;
@@ -153,7 +153,7 @@
 
     .img-thumb:hover .play-btn {
       transform: scale(1.2);
-      background: rgba(102, 126, 234, 0.9);
+      background: rgba(100, 255, 218, 0.9);
     }
 
     /* Section headers enhancement */
@@ -172,7 +172,7 @@
 
     .sec-t:hover .line {
       width: 100px;
-      background: #00ffff;
+      background: #64ffda;
     }
 
     /* Tab navigation enhancement */
@@ -196,6 +196,7 @@
       position: relative;
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-block;
     }
 
     .hi-btn::before {
@@ -215,7 +216,28 @@
 
     .hi-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+    }
+
+    /* Company name styling */
+    .company-name {
+      font-size: 1.2rem;
+      color: #64ffda;
+      margin: 0.5rem 0;
+      font-weight: 500;
+    }
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Reduce motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
 
     /* Scroll indicator */
@@ -225,7 +247,7 @@
       left: 0;
       width: 0%;
       height: 3px;
-      background: #00ffff;
+      background: #64ffda;
       z-index: 1001;
       transition: width 0.1s ease;
     }
@@ -409,6 +431,7 @@
     <div class="container">
       <div class="sec-t wow fadeInLeft" data-wow-delay=".4s">
         <h2> / experience </h2>
+        <h3 class="company-name">ServiceNow</h3>
         <span class="line"></span>
       </div><!-- /.sec-t -->
 
@@ -422,22 +445,22 @@
 
               <button class="nav-link active red" id="v-pills-red-tab" data-bs-toggle="pill"
                 data-bs-target="#v-pills-red" type="button" aria-controls="v-pills-red">
-                ServiceNow SWE
+                2024 - Present
               </button>
 
               <button class="nav-link  black" id="v-pills-black-tab" data-bs-toggle="pill"
                 data-bs-target="#v-pills-black" type="button" aria-controls="v-pills-black">
-                ServiceNow SWE
+                2023
               </button>
 
               <button class="nav-link ferozi" id="v-pills-ferozi-tab" data-bs-toggle="pill"
                 data-bs-target="#v-pills-ferozi" type="button" aria-controls="v-pills-ferozi">
-                ServiceNow QE
+                2022
               </button>
 
               <button class="nav-link brown" id="v-pills-brown-tab" data-bs-toggle="pill"
                 data-bs-target="#v-pills-brown" type="button" aria-controls="v-pills-brown">
-                CK-12
+                2021
               </button>
 
             </div>
@@ -453,38 +476,35 @@
               tabindex="0">
               <div class="abt-det wow fadeInUp">
                 <div class="abt-t">
-                  <h3>Software Engineer Intern @ <a href="https://www.servicenow.com/products/mobile-app-builder.html"
-                      target="_blank"> <span> ServiceNow</span> </a> </h3>
-                  </h3>
-                  <p> May 2023 – August 2023 </p>
+                  <h3>Software Engineer</h3>
+                  <p> August 2024 – Present </p>
                 </div><!-- /.abt-t -->
 
                 <ul class="abt-list">
-
                   <li>
                     <i> ▹ </i>
                     <span>
-                      Implemented 8 new product features in the Mobile App Builder platform,
-                      enhancing the experience for 500 active customers.
+                      Develop key features for Mobile App Builder and Mobile Card Builder, focusing on theming, accessibility, and platform integration across 800+ customer instances
                     </span>
                   </li>
                   <li>
                     <i> ▹ </i>
                     <span>
-                      Won company-wide hackathon by creating an intelligent code editor; integrated
-                      project into the ServiceNow platform benefiting over 7,000 enterprise
-                      customers.
+                      Own end-to-end development of complex features including custom sorting behavior, shared component architecture, and API design while collaborating with product, quality engineering, and platform teams
                     </span>
                   </li>
-
                   <li>
                     <i> ▹ </i>
                     <span>
-                      Collaborated with Product Marketing for packaging & design of Mobile App
-                      Builder and Mobile Card Builder products.
+                      Participate in case task rotations and partner with internal teams to triage complex defects, ensuring consistent platform behavior across products
                     </span>
                   </li>
-
+                  <li>
+                    <i> ▹ </i>
+                    <span>
+                      Architect scalable solutions supporting 60% year-over-year adoption growth with over 1,400 monthly active users
+                    </span>
+                  </li>
                 </ul>
               </div><!-- /.abt-det -->
             </div>
@@ -495,41 +515,35 @@
 
               <div class="abt-det animated fadeInUp" data-wow-delay=".5s">
                 <div class="abt-t">
-                  <h3>Software Engineer Intern @ <a href="https://www.servicenow.com/products/mobile-app-builder.html"
-                      target="_blank"> <span> ServiceNow</span> </a> </h3>
-
-                  <p> MAY 2022 - AUG 2022 </p>
+                  <h3>Software Engineer</h3>
+                  <p> May 2023 – August 2023 </p>
                 </div><!-- /.abt-t -->
 
                 <ul class="abt-list">
-
                   <li>
                     <i> ▹ </i>
-
                     <span>
-                      Investigated and resolved 16 defects in the <a href="#Modal-1" data-bs-toggle="modal">Mobile App
-                        Builder</a> product,
-                      effectively addressing critical customer concerns.
-
+                      Implemented 8 features for Mobile App Builder including intelligent theming, UX framework integration, and automated platform APIs
                     </span>
                   </li>
                   <li>
                     <i> ▹ </i>
                     <span>
-                      Showcased ServiceNow's mobile products to over 2,000 employees at UTG
-                      Connect, an internal event.
+                      Contributed to component architecture discussions with focus on reusability and maintainability across mobile platform
                     </span>
                   </li>
                   <li>
                     <i> ▹ </i>
                     <span>
-                      Collaborated with Product team to strategize and implement new employee
-                      workflow tools, dramatically increasing
-                      developer productivity.
-
+                      Won 1st place out of 500+ participants at ServiceNow Engineering Hackathon for creating an AI-powered background scripts code editor that was later integrated into production platform
                     </span>
                   </li>
-
+                  <li>
+                    <i> ▹ </i>
+                    <span>
+                      Created comprehensive onboarding documentation, SharePoint curriculum, and video walkthrough tutorials used by 100+ new ServiceNow engineers, contributing to 40% improvement in onboarding efficiency
+                    </span>
+                  </li>
                 </ul>
               </div><!-- /.abt-det -->
 
@@ -540,47 +554,29 @@
               tabindex="0">
               <div class="abt-det animated fadeInUp">
                 <div class="abt-t">
-                  <h3> Quality Engineer Intern @ <a
-                      href="https://www.servicenow.com/products/field-service-management.html" target="_blank"> <span>
-                        ServiceNow</span> </a> </h3>
-
-                  <p> MAY 2021 - AUG 2021 </p>
+                  <h3>Software Engineer</h3>
+                  <p> May 2022 – August 2022 </p>
                 </div><!-- /.abt-t -->
 
                 <ul class="abt-list">
-
                   <li>
                     <i> ▹ </i>
                     <span>
-                      Designed 15 new classes & utils to test the interface of the <a href="#Modal-2"
-                        data-bs-toggle="modal">Field
-                        Service Management Platform</a>.
+                      Explored search and recommendation solutions for mobile workflows to enhance user experience
                     </span>
                   </li>
                   <li>
                     <i> ▹ </i>
                     <span>
-                      Considered user interaction with DOM elements (using xPaths) and asserted
-                      results to check for error conditions.
+                      Resolved 16 bugs in Mobile App Builder related to developer workflows and platform compatibility
                     </span>
                   </li>
                   <li>
                     <i> ▹ </i>
                     <span>
-                      Developed 4 automation scripts for different actions within the Field Service
-                      Mobile Agent App (iOS/Android) and Field Service Dispatcher Workspace
-                      (Shadow DOM-based)
+                      Presented mobile product demos at UTG Connect showcase event to audience of 2,000+ ServiceNow employees
                     </span>
                   </li>
-
-                  <li>
-                    <i> ▹ </i>
-                    <span>
-                      Investigated different techniques to fix unstable and flapping automated tests;
-                      increased test reliability by 25%.
-                    </span>
-                  </li>
-
                 </ul>
               </div><!-- /.abt-det -->
             </div>
@@ -590,38 +586,23 @@
               tabindex="0">
               <div class="abt-det animated fadeInUp">
                 <div class="abt-t">
-                  <h3> Data Science Intern @ <a href="https://www.ck12.org/student/" target="_blank"> <span> CK-12
-                      </span> </a>
-                  </h3>
-                  <p> JUN 2018 - AUG 2018 </p>
+                  <h3>Quality Engineer</h3>
+                  <p> May 2021 – August 2021 </p>
                 </div><!-- /.abt-t -->
 
                 <ul class="abt-list">
-
                   <li>
                     <i> ▹ </i>
                     <span>
-                      Extracted and analyzed data to understand and deduce a wide range of information about CK-12
-                      students and
-                      teachers; recommended concrete actions based on insights
+                      Built automation scripts to test Field Service Management mobile and web applications using Shadow DOM and mobile simulators
                     </span>
                   </li>
                   <li>
                     <i> ▹ </i>
                     <span>
-                      Collaborated on an AI algorithm to customize educational content to the learning level of
-                      students;
-                      increased student understanding of course materials by 40%
+                      Designed DOM interaction tests and utilities, improving UI test reliability by 25%
                     </span>
                   </li>
-
-                  <li>
-                    <i> ▹ </i>
-                    <span>
-                      Validated performance results from AI learning model to evaluate and confirm expected behavior
-                    </span>
-                  </li>
-
                 </ul>
               </div><!-- /.abt-det -->
             </div>
@@ -870,7 +851,7 @@
           </a>
         </li>
       </ul>
-      <p> © 2022 Rishav Mitra - All Rights Reserved </p>
+      <p> © 2025 Rishav Mitra - All Rights Reserved </p>
     </div><!-- /.container -->
   </footer><!-- /.main-footer -->
 
