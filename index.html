@@ -329,7 +329,7 @@
         scroll-behavior: smooth;
       }
 
-      /* Section headers */
+      /* Section headers - prevent re-animation */
       .sec-t {
         transform: translateY(-10px);
         opacity: 0;
@@ -338,8 +338,16 @@
       }
 
       .sec-t.visible {
-        transform: translateY(0);
-        opacity: 1;
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+      }
+
+      /* Ensure section titles stay visible after animation */
+      .sec-t.visible h2,
+      .sec-t.visible .company-name,
+      .sec-t.visible .line {
+        opacity: 1 !important;
+        visibility: visible !important;
       }
 
       /* Profile image */
@@ -1033,13 +1041,13 @@
 
     // Intersection Observer for animations
     function initScrollAnimations() {
-      // Prevent double observation
-      const observedElements = new WeakSet();
+      // Track elements that have already been animated
+      const animatedElements = new WeakSet();
       
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting && !observedElements.has(entry.target)) {
-            observedElements.add(entry.target);
+          if (entry.isIntersecting && !animatedElements.has(entry.target)) {
+            animatedElements.add(entry.target);
             entry.target.classList.add('visible');
             
             // Special handling for lists on mobile
@@ -1052,19 +1060,34 @@
               }
             }
             
+            // Keep section titles visible permanently after animation
+            if (entry.target.classList.contains('sec-t')) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+            
             // Stop observing this element to prevent re-triggering
             observer.unobserve(entry.target);
           }
         });
       }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -30px 0px'
+        threshold: 0.2,
+        rootMargin: '0px 0px -20px 0px'
       });
 
       // Observe elements for mobile animations
       if (window.innerWidth <= 768) {
-        document.querySelectorAll('.sec-t, .card-single, .abt-det, .project-text, .img-profile').forEach(el => {
-          if (!observedElements.has(el)) {
+        // Separate handling for section titles to prevent re-animation
+        document.querySelectorAll('.sec-t').forEach(el => {
+          if (!animatedElements.has(el)) {
+            el.classList.add('mobile-reveal');
+            observer.observe(el);
+          }
+        });
+        
+        // Other elements
+        document.querySelectorAll('.card-single, .abt-det, .project-text, .img-profile').forEach(el => {
+          if (!animatedElements.has(el)) {
             el.classList.add('mobile-reveal');
             observer.observe(el);
           }
@@ -1154,10 +1177,18 @@
         // el.classList.add('fade-in-up');
       });
       
-      // Ensure all text is visible
+      // Ensure all text is visible and section titles are properly set
       document.querySelectorAll('.sec-t h2, .abt-det, .project-text, .card-single').forEach(el => {
         el.style.opacity = '1';
         el.style.visibility = 'visible';
+      });
+
+      // Specifically ensure section titles don't re-animate
+      document.querySelectorAll('.sec-t').forEach(el => {
+        if (el.classList.contains('visible')) {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }
       });
     });
   </script>
