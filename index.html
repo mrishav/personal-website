@@ -240,6 +240,128 @@
       }
     }
 
+    /* Mobile-specific animations */
+    @media (max-width: 768px) {
+      /* Tap ripple effect */
+      .ripple {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ripple::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(100, 255, 218, 0.4);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+        pointer-events: none;
+      }
+
+      .ripple.active::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      /* Enhanced mobile scroll animations */
+      .mobile-reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .mobile-reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Staggered animations for lists */
+      .abt-list li {
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .abt-list.animate li {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .abt-list.animate li:nth-child(1) { transition-delay: 0.1s; }
+      .abt-list.animate li:nth-child(2) { transition-delay: 0.2s; }
+      .abt-list.animate li:nth-child(3) { transition-delay: 0.3s; }
+      .abt-list.animate li:nth-child(4) { transition-delay: 0.4s; }
+
+      /* Mobile card animations */
+      .card-single, .abt-det, .project-text {
+        transform: translateY(30px);
+        opacity: 0;
+        transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .card-single.visible, .abt-det.visible, .project-text.visible {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* Mobile touch feedback */
+      .nav-link, .hi-btn, .social-nav a {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav-link:active, .hi-btn:active, .social-nav a:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+      }
+
+      /* Smooth momentum scrolling */
+      html {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+      }
+
+      /* Enhanced section transitions */
+      .section-slide {
+        transform: translateX(-30px);
+        opacity: 0;
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .section-slide.visible {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      /* Progressive header reveal */
+      .sec-t {
+        transform: translateY(-20px);
+        opacity: 0;
+        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .sec-t.visible {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* Mobile profile image */
+      .img-profile {
+        transform: scale(0.9);
+        opacity: 0;
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .img-profile.visible {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
     /* Scroll indicator */
     .scroll-indicator {
       position: fixed;
@@ -921,15 +1043,81 @@
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+            
+            // Special handling for lists on mobile
+            if (window.innerWidth <= 768 && entry.target.querySelector('.abt-list')) {
+              setTimeout(() => {
+                entry.target.querySelector('.abt-list').classList.add('animate');
+              }, 200);
+            }
           }
         });
       }, {
-        threshold: 0.1
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
       });
 
-      document.querySelectorAll('.fade-in-up').forEach(el => {
-        observer.observe(el);
-      });
+      // Observe elements for mobile animations
+      if (window.innerWidth <= 768) {
+        document.querySelectorAll('.sec-t, .card-single, .abt-det, .project-text, .img-profile').forEach(el => {
+          el.classList.add('mobile-reveal');
+          observer.observe(el);
+        });
+      } else {
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+          observer.observe(el);
+        });
+      }
+    }
+
+    // Add ripple effect on touch
+    function addRippleEffect() {
+      if (window.innerWidth <= 768) {
+        document.querySelectorAll('.nav-link, .hi-btn, .social-nav a, .card-single, .project-text').forEach(el => {
+          el.classList.add('ripple');
+          
+          el.addEventListener('touchstart', function(e) {
+            this.classList.remove('active');
+            setTimeout(() => {
+              this.classList.add('active');
+            }, 10);
+          });
+
+          el.addEventListener('touchend', function(e) {
+            setTimeout(() => {
+              this.classList.remove('active');
+            }, 600);
+          });
+        });
+      }
+    }
+
+    // Enhanced mobile scroll performance
+    function optimizeMobileScroll() {
+      if (window.innerWidth <= 768) {
+        let ticking = false;
+        
+        function updateScrollIndicator() {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const scrollPercent = (scrollTop / documentHeight) * 100;
+          
+          document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+          ticking = false;
+        }
+
+        function requestTick() {
+          if (!ticking) {
+            requestAnimationFrame(updateScrollIndicator);
+            ticking = true;
+          }
+        }
+
+        window.addEventListener('scroll', requestTick, { passive: true });
+        return requestTick;
+      } else {
+        return updateScrollIndicator;
+      }
     }
 
     // Smooth scrolling for navigation links
