@@ -242,12 +242,62 @@
 
     /* Mobile-specific animations */
     @media (max-width: 768px) {
-      /* Tap ripple effect */
-      .ripple {
-        position: relative;
-        overflow: hidden;
+      /* Fix tab ordering on mobile */
+      .nav.custom-tabs.flex-column {
+        flex-direction: column !important;
+        display: flex !important;
       }
 
+      .nav.custom-tabs.flex-column .nav-link:nth-child(1) { order: 1; }
+      .nav.custom-tabs.flex-column .nav-link:nth-child(2) { order: 2; }
+      .nav.custom-tabs.flex-column .nav-link:nth-child(3) { order: 3; }
+      .nav.custom-tabs.flex-column .nav-link:nth-child(4) { order: 4; }
+
+      /* Simplified animations to prevent glitches */
+      .mobile-reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease-out;
+        will-change: transform, opacity;
+      }
+
+      .mobile-reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Simpler list animations */
+      .abt-list li {
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: all 0.4s ease-out;
+        will-change: transform, opacity;
+      }
+
+      .abt-list.animate li {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .abt-list.animate li:nth-child(1) { transition-delay: 0.05s; }
+      .abt-list.animate li:nth-child(2) { transition-delay: 0.1s; }
+      .abt-list.animate li:nth-child(3) { transition-delay: 0.15s; }
+      .abt-list.animate li:nth-child(4) { transition-delay: 0.2s; }
+
+      /* Prevent double animations */
+      .card-single, .abt-det, .project-text {
+        transform: translateY(15px);
+        opacity: 0;
+        transition: all 0.5s ease-out;
+        will-change: transform, opacity;
+      }
+
+      .card-single.visible, .abt-det.visible, .project-text.visible {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* Simplified ripple effect */
       .ripple::before {
         content: '';
         position: absolute;
@@ -256,64 +306,18 @@
         width: 0;
         height: 0;
         border-radius: 50%;
-        background: rgba(100, 255, 218, 0.4);
+        background: rgba(100, 255, 218, 0.3);
         transform: translate(-50%, -50%);
-        transition: width 0.6s, height 0.6s;
+        transition: width 0.4s ease, height 0.4s ease;
         pointer-events: none;
       }
 
       .ripple.active::before {
-        width: 300px;
-        height: 300px;
+        width: 200px;
+        height: 200px;
       }
 
-      /* Enhanced mobile scroll animations */
-      .mobile-reveal {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      }
-
-      .mobile-reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* Staggered animations for lists */
-      .abt-list li {
-        opacity: 0;
-        transform: translateX(-20px);
-        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      }
-
-      .abt-list.animate li {
-        opacity: 1;
-        transform: translateX(0);
-      }
-
-      .abt-list.animate li:nth-child(1) { transition-delay: 0.1s; }
-      .abt-list.animate li:nth-child(2) { transition-delay: 0.2s; }
-      .abt-list.animate li:nth-child(3) { transition-delay: 0.3s; }
-      .abt-list.animate li:nth-child(4) { transition-delay: 0.4s; }
-
-      /* Mobile card animations */
-      .card-single, .abt-det, .project-text {
-        transform: translateY(30px);
-        opacity: 0;
-        transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      }
-
-      .card-single.visible, .abt-det.visible, .project-text.visible {
-        transform: translateY(0);
-        opacity: 1;
-      }
-
-      /* Mobile touch feedback */
-      .nav-link, .hi-btn, .social-nav a {
-        position: relative;
-        overflow: hidden;
-      }
-
+      /* Touch feedback */
       .nav-link:active, .hi-btn:active, .social-nav a:active {
         transform: scale(0.98);
         transition: transform 0.1s ease;
@@ -325,23 +329,12 @@
         scroll-behavior: smooth;
       }
 
-      /* Enhanced section transitions */
-      .section-slide {
-        transform: translateX(-30px);
-        opacity: 0;
-        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      }
-
-      .section-slide.visible {
-        transform: translateX(0);
-        opacity: 1;
-      }
-
-      /* Progressive header reveal */
+      /* Section headers */
       .sec-t {
-        transform: translateY(-20px);
+        transform: translateY(-10px);
         opacity: 0;
-        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition: all 0.5s ease-out;
+        will-change: transform, opacity;
       }
 
       .sec-t.visible {
@@ -349,11 +342,12 @@
         opacity: 1;
       }
 
-      /* Mobile profile image */
+      /* Profile image */
       .img-profile {
-        transform: scale(0.9);
+        transform: scale(0.95);
         opacity: 0;
-        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition: all 0.6s ease-out;
+        will-change: transform, opacity;
       }
 
       .img-profile.visible {
@@ -1039,55 +1033,65 @@
 
     // Intersection Observer for animations
     function initScrollAnimations() {
+      // Prevent double observation
+      const observedElements = new WeakSet();
+      
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !observedElements.has(entry.target)) {
+            observedElements.add(entry.target);
             entry.target.classList.add('visible');
             
             // Special handling for lists on mobile
             if (window.innerWidth <= 768 && entry.target.querySelector('.abt-list')) {
-              setTimeout(() => {
-                entry.target.querySelector('.abt-list').classList.add('animate');
-              }, 200);
+              const list = entry.target.querySelector('.abt-list');
+              if (!list.classList.contains('animate')) {
+                setTimeout(() => {
+                  list.classList.add('animate');
+                }, 150);
+              }
             }
+            
+            // Stop observing this element to prevent re-triggering
+            observer.unobserve(entry.target);
           }
         });
       }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.15,
+        rootMargin: '0px 0px -30px 0px'
       });
 
       // Observe elements for mobile animations
       if (window.innerWidth <= 768) {
         document.querySelectorAll('.sec-t, .card-single, .abt-det, .project-text, .img-profile').forEach(el => {
-          el.classList.add('mobile-reveal');
-          observer.observe(el);
-        });
-      } else {
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-          observer.observe(el);
+          if (!observedElements.has(el)) {
+            el.classList.add('mobile-reveal');
+            observer.observe(el);
+          }
         });
       }
     }
 
-    // Add ripple effect on touch
+    // Simplified ripple effect
     function addRippleEffect() {
       if (window.innerWidth <= 768) {
         document.querySelectorAll('.nav-link, .hi-btn, .social-nav a, .card-single, .project-text').forEach(el => {
-          el.classList.add('ripple');
-          
-          el.addEventListener('touchstart', function(e) {
-            this.classList.remove('active');
-            setTimeout(() => {
-              this.classList.add('active');
-            }, 10);
-          });
-
-          el.addEventListener('touchend', function(e) {
-            setTimeout(() => {
+          if (!el.classList.contains('ripple')) {
+            el.classList.add('ripple');
+            
+            el.addEventListener('touchstart', function(e) {
               this.classList.remove('active');
-            }, 600);
-          });
+              requestAnimationFrame(() => {
+                this.classList.add('active');
+              });
+            }, { passive: true });
+
+            el.addEventListener('touchend', function(e) {
+              setTimeout(() => {
+                this.classList.remove('active');
+              }, 400);
+            }, { passive: true });
+          }
         });
       }
     }
