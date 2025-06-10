@@ -1,0 +1,102 @@
+/*--------------------------------------------------------------
+# hero-area
+--------------------------------------------------------------*/
+.hero-area{
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  @media only screen and (max-width: 767px) {
+   min-height: auto;
+   padding-top: 70px;
+   padding-bottom: 80px;
+  }
+  @media only screen and (max-width: 482px) {
+   padding-top: 50px;
+   padding-bottom: 80px;
+   text-align: center;
+   justify-content: center;
+  }
+
+  .hero-inner{
+    h1{
+      font-size: 74px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      span{
+        color: var(--primary-color);
+      }
+      @media only screen and (max-width: 1199px) {
+       font-size: 64px;
+      }
+      @media only screen and (max-width: 991px) {
+       font-size: 54px;
+      }
+      @media only screen and (max-width: 767px) {
+       font-size: 42px;
+      }
+    }
+    .sub-text{
+      font-size: 30px;
+      margin-bottom: 36px;
+      @media only screen and (max-width: 1199px) {
+       font-size: 27px;
+      }
+      @media only screen and (max-width: 991px) {
+       font-size: 23px;
+      }
+      @media only screen and (max-width: 767px) {
+       font-size: 20px;
+       margin-bottom: 30px;
+      }
+    }
+  }
+  .hi-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px 30px;
+    border: 1.5px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 19px;
+    border-radius: 6px;
+    i{
+      margin-right: 6px;
+    }
+    transition: all .2s ease-in;
+    &:hover{
+      background-color: var(--primary-color);
+      color: #111;
+
+    }
+    @media only screen and (max-width: 767px) {
+     font-size: 17px;
+    }
+  }
+}
+
+.blinking-cursor {
+  -webkit-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
+  font-weight: 500;
+}
+
+@-webkit-keyframes blink {
+  from, to {
+    color: var(--primary-color);
+  }
+  50% {
+    color: transparent;
+  }
+}
+
+@keyframes blink {
+  from, to {
+    color: var(--primary-color);
+  }
+  50% {
+    color: transparent;
+  }
+}

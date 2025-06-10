@@ -1,0 +1,41 @@
+/*--------------------------------------------------------------
+# main-footer
+--------------------------------------------------------------*/
+.main-footer{
+  padding: 30px 0px;
+  text-align: center;
+  p{
+    font-size: 14px;
+  }
+  .social-nav{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    margin-bottom: 5px;
+
+    /** Medium devices (tablets, 768px and up) **/
+    @media (min-width: 768px) {
+      display: none;
+    }
+
+
+
+    li{
+      display: inline-block;
+      &:not(:last-child) {
+      margin-right: 4px;
+      }
+      a{
+        text-decoration: none;
+        display: inline-block;
+        color: var(--primary-color);
+        font-size: 18px;
+        transition: all .2s ease-in;
+        &:hover{
+          opacity: .6;
+        }
+      }
+    }
+  }
+}
