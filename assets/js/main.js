@@ -85,10 +85,32 @@ document.addEventListener('DOMContentLoaded', init);
 // Init App
 function init() {
   const txtElement = document.querySelector('.txt-type');
-  const words = JSON.parse(txtElement.getAttribute('data-words'));
-  const wait = txtElement.getAttribute('data-wait');
-  // Init TypeWritter
-  new TypeWritter(txtElement, words, wait);
+  if (txtElement) {
+    try {
+      const wordsAttr = txtElement.getAttribute('data-words');
+      const words = JSON.parse(wordsAttr.replace(/'/g, '"'));
+      const wait = txtElement.getAttribute('data-wait');
+      new TypeWritter(txtElement, words, wait);
+    } catch (e) {
+      console.error('Error parsing main title words:', e);
+    }
+  }
+  
+  // Initialize subtitle typing animation with delay
+  setTimeout(() => {
+    const txtSubtitleElement = document.querySelector('.txt-type-subtitle');
+    if (txtSubtitleElement) {
+      try {
+        const wordsAttr = txtSubtitleElement.getAttribute('data-words');
+        const words = JSON.parse(wordsAttr.replace(/'/g, '"'));
+        const wait = txtSubtitleElement.getAttribute('data-wait');
+        new TypeWritter(txtSubtitleElement, words, wait);
+      } catch (e) {
+        console.error('Error parsing subtitle words:', e);
+        new TypeWritter(txtSubtitleElement, ["I enjoy solving problems for people."], 2000);
+      }
+    }
+  }, 2000);
 }
 
    // WOW active
@@ -99,5 +121,43 @@ function init() {
 const glightbox = GLightbox({
   selector: ".glightbox",
 });
+
+// Project details toggle functionality
+function toggleProjectDetails(projectId) {
+  const detailsElement = document.getElementById(`${projectId}-details`);
+  const button = document.querySelector(`button[onclick="toggleProjectDetails('${projectId}')"]`);
+  const expandText = button.querySelector('.expand-text');
+  const expandIcon = button.querySelector('.expand-icon');
+  
+  if (detailsElement.classList.contains('expanded')) {
+    // Collapse
+    detailsElement.classList.remove('expanded');
+    expandText.textContent = 'Show Details';
+    expandIcon.style.transform = 'rotate(0deg)';
+  } else {
+    // Expand
+    detailsElement.classList.add('expanded');
+    expandText.textContent = 'Hide Details';
+    expandIcon.style.transform = 'rotate(180deg)';
+  }
+}
+
+// Make function globally available
+window.toggleProjectDetails = toggleProjectDetails;
+
+// Flip card functionality
+function flipCard(cardId) {
+  console.log('Flip card called with:', cardId);
+  const card = document.getElementById(cardId + '-card');
+  console.log('Found card:', card);
+  
+  if (card) {
+    console.log('Toggling flipped class on:', card.parentElement);
+    card.parentElement.classList.toggle('flipped');
+  }
+}
+
+// Make function globally available
+window.flipCard = flipCard;
 
 })();

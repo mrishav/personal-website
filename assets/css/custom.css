@@ -955,6 +955,408 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
   }
 }
 
+/* Project Cards - Glass Theme */
+.project-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 3rem;
+  transition: all 0.3s ease;
+  max-width: calc(100% - 200px);
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.project-video-section {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  margin: 0;
+  border-radius: 20px 20px 0 0;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.video-link {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.video-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.video-link:hover img {
+  transform: scale(1.05);
+}
+
+.play-btn-large {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.play-btn-large i {
+  color: #fff;
+  font-size: 2rem;
+  margin-left: 4px;
+}
+
+.video-link:hover .play-btn-large {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, var(--glass-bg));
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--glass-border);
+  padding: 1.5rem 1rem 1rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.video-link:hover .video-overlay {
+  transform: translateY(0);
+}
+
+.watch-demo {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.project-info-section {
+  padding: 1rem 2rem;
+}
+
+.project-header {
+  margin-bottom: 1.5rem;
+}
+
+.project-header h4 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.project-company {
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+.project-award-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 0;
+  margin-left: auto;
+}
+
+.project-award {
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.project-summary {
+  margin-bottom: 1rem;
+}
+
+.project-summary p {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.expand-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  padding: 0.75rem 1.25rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.expand-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.expand-btn:hover::before {
+  left: 100%;
+}
+
+.expand-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.expand-icon {
+  transition: transform 0.3s ease;
+  font-size: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.expand-text {
+  position: relative;
+  z-index: 1;
+}
+
+.expand-btn.expanded .expand-icon {
+  transform: rotate(180deg);
+}
+
+.project-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  margin-top: 1rem;
+}
+
+.project-details.expanded {
+  max-height: 500px;
+}
+
+.project-details p {
+  color: var(--text-primary);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-tags span {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Flip Card Animation */
+.flip-card {
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  height: 300px;
+  margin-bottom: 2rem;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  text-align: left;
+  display: flex;
+  align-items: stretch;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+.flip-card.flipped {
+  z-index: 20;
+}
+
+.flip-card .card-single {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Project Flip Card Styles */
+.project-flip-card {
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  height: 220px;
+}
+
+.project-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.project-flip-card.flipped .project-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.project-flip-front, .project-flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  text-align: left;
+  overflow: hidden;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.project-flip-back {
+  transform: rotateY(180deg);
+}
+
+.project-flip-card.flipped {
+  z-index: 20;
+}
+
+.project-flip-back .project-details {
+  max-height: none;
+  overflow: hidden;
+}
+
+.project-flip-back .project-details p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.project-flip-front .project-header h4,
+.project-flip-front .project-summary p {
+  text-align: left;
+}
+
+.project-flip-front .project-company {
+  font-size: 1rem;
+}
+
+.project-flip-front .project-subtitle {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  margin-top: 0.2rem;
+  text-align: left;
+}
+
+.experience-subtitle {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+.project-flip-back .project-details {
+  text-align: left;
+}
+
+.project-info-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-flip-front .project-header h4 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  font-weight: 700;
+}
+
+.project-flip-front .project-summary p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+  text-align: left;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .logo-text {
@@ -967,6 +1369,28 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
   
   .loading-text {
     font-size: 1rem;
+  }
+  
+  .project-video-section {
+    height: 180px;
+    max-width: 100%;
+  }
+  
+  .play-btn-large {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .play-btn-large i {
+    font-size: 1.5rem;
+  }
+  
+  .project-info-section {
+    padding: 1.5rem;
+  }
+  
+  .project-header h4 {
+    font-size: 1.5rem;
   }
 }
 

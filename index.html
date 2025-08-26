@@ -176,15 +176,9 @@
         <div class="col-lg-6">
           <div class="abt-text wow fadeInUp" data-wow-delay=".4s">
             <p>
-              I'm a <strong>Software Engineer at ServiceNow</strong> and Computer Science graduate from the <a href="https://cse.engin.umich.edu/"
-                target="_blank">University of
-                Michigan</a>. I work full-time as a full-stack developer on the Mobile Builders team, building enterprise software solutions that serve millions of users worldwide.
-            </p>
-            <p>
-              Unlike academic researchers, I focus on <strong>practical software engineering</strong> - developing production-ready applications, mobile platforms, and AI-powered tools for enterprise environments. I specialize in LLM-driven UI generation, mobile app development, and creating scalable software architectures at ServiceNow.
-            </p>
-            <p>
-              My work involves building the Mobile App Builder platform, implementing AI-enhanced developer tools, and architecting solutions that support 60% year-over-year adoption growth with 1,400+ monthly active users.
+              I'm a Computer Science graduate from the <a href="https://cse.engin.umich.edu/"
+                target="_blank">University of Michigan</a>, now working full-time as a full-stack developer on the Mobile Builders team at <strong>ServiceNow</strong>.
+              I believe the true purpose of technology is to serve people, and AI is fundamentally reshaping how we approach and solve problems. Recently, I've been exploring LLM-driven UI generation and AI-powered enhancements to make enterprise platforms more intuitive and efficient.
             </p>
 
           </div><!-- /.abt-text -->
@@ -247,8 +241,9 @@
               tabindex="0">
               <div class="abt-det wow fadeInUp">
                 <div class="abt-t">
-                  <h3>Software Engineer</h3>
-                  <p> August 2024 – Present </p>
+                  <h5>Software Engineer</h5>
+                  <p class="experience-subtitle">ServiceNow</p>
+                  <span>Jan 2024 - Present</span>
                 </div><!-- /.abt-t -->
 
                 <ul class="abt-list">
@@ -374,6 +369,12 @@
                       Designed DOM interaction tests and utilities, improving UI test reliability by 25%
                     </span>
                   </li>
+                  <li>
+                    <i> ▹ </i>
+                    <span>
+                      Stabilized flaky tests to improve confidence and consistency in continuous integration runs
+                    </span>
+                  </li>
                 </ul>
               </div><!-- /.abt-det -->
             </div>
@@ -394,155 +395,257 @@
         <span class="line"></span>
       </div><!-- /.sec-t -->
 
-      <div class="row  gy-3 align-items-center wow fadeInUp" data-wow-delay=".5s">
+      <div class="row gy-4 wow fadeInUp" data-wow-delay=".5s">
+        <div class="col-12">
+          <div class="project-card">
+            <!-- Video Section - Prominent -->
+            <div class="project-video-section">
+              <div class="video-container">
+                <a href="https://www.youtube.com/watch?v=FR8M_6-_ie0&feature=youtu.be&ab_chann"
+                  class="d-block img-link glightbox video-link">
+                  <img src="assets/img/projects/scribe.jpg" class="w-100" alt="Scribe Demo Video">
+                  <div class="play-btn">
+                    <i class="fa fa-play" aria-hidden="true"></i>
+                  </div>
+                  <div class="video-overlay">
+                    <span class="watch-demo">Watch Demo</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+            
+            <!-- Project Info - Flip Card -->
+            <div class="project-flip-card" onclick="flipCard('scribe-info')">
+              <div class="project-flip-inner" id="scribe-info-card">
+                <!-- Front Side -->
+                <div class="project-flip-front">
+                  <div class="project-info-section">
+              <div class="project-header">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between;">
+                  <div>
+                    <h4>Scribe</h4>
+                    <p class="project-subtitle">ServiceNow Hackathon Project</p>
+                  </div>
+                  <div class="project-award-container">
+                    <span class="project-award"><i class="fa fa-trophy"></i> 1st Place Winner</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Summary -->
+              <div class="project-summary">
+                <p>Revolutionary code editor update for ServiceNow platform after 18 years</p>
+              </div>
+                  </div>
+                </div>
+                <!-- Back Side -->
+                <div class="project-flip-back">
+                  <div class="project-info-section">
+                    <div class="project-details">
+                      <p>
+                        Scribe transformed the longstanding ServiceNow platform's background script
+                        code editor with an innovative update after 18 years! By integrating a custom
+                        version of the Monaco code editor, Scribe introduced a host of new
+                        functionalities, including real-time error detection, automatic formatting, code
+                        caching, and intelligent auto-completion. Scribe ranked 1st place in the
+                        company-wide engineering hackathon, endorsed by ServiceNow executives.
+                      </p>
+                      <div class="project-tags">
+                        <span>Conceptualized Idea</span>
+                        <span>Developed App</span>
+                        <span>Created Video</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <div class="col-lg-4 col-md-10 order-2 order-lg-1">
-          <div class="project-text">
-            <div class="p-t">
-              <h5> Scribe </h5>
-              <span> ServiceNow Hackathon Project </span>
-            </div><!-- /.p-t -->
-            <div class="pro-single">
-              <p>
-                Scribe transformed the longstanding ServiceNow platform's background script
-                code editor with an innovative update after 18 years! By integrating a custom
-                version of the Monaco code editor, Scribe introduced a host of new
-                functionalities, including real-time error detection, automatic formatting, code
-                caching, and intelligent auto-completion. Scribe ranked 1st place in the
-                company-wide engineering hackathon, endorsed by ServiceNow executives.
-              </p>
-            </div><!-- /.pro-single -->
-            <div class="pro-tags d-none mt-2">
-              <span> conceptualized idea </span>
-              <span> developed app </span>
-              <span> created video </span>
-            </div><!-- /.pro-tags -->
-          </div><!-- /.project-text -->
-        </div><!-- /.col-lg-4 -->
+      <div class="row gy-4 wow fadeInUp" data-wow-delay=".4s">
+        <div class="col-12">
+          <div class="project-card">
+            <!-- Video Section - Prominent -->
+            <div class="project-video-section">
+              <div class="video-container">
+                <a href="https://www.youtube.com/watch?v=FSmLCsy-nnw&ab_channel=RishavMitra"
+                  class="d-block img-link glightbox video-link">
+                  <img src="assets/img/projects/fluid.jpg" class="w-100" alt="Fluid Demo Video">
+                  <div class="play-btn">
+                    <i class="fa fa-play" aria-hidden="true"></i>
+                  </div>
+                  <div class="video-overlay">
+                    <span class="watch-demo">Watch Demo</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+            
+            <!-- Project Info - Flip Card -->
+            <div class="project-flip-card" onclick="flipCard('fluid-info')">
+              <div class="project-flip-inner" id="fluid-info-card">
+                <!-- Front Side -->
+                <div class="project-flip-front">
+                  <div class="project-info-section">
+                    <div class="project-header">
+                      <h4>Fluid</h4>
+                      <p class="project-subtitle">ServiceNow Hackathon Project</p>
+                    </div>
+                    
+                    <!-- Summary -->
+                    <div class="project-summary">
+                      <p>Mobile app for developers to monitor stories, defects, and pull requests</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Back Side -->
+                <div class="project-flip-back">
+                  <div class="project-info-section">
+                    <div class="project-details">
+                      <p>
+                        Fluid is a mobile application designed to streamline developer workflows by
+                        providing real-time access to critical project information. The app enables
+                        developers to monitor user stories, track defects, and review pull requests
+                        directly from their mobile devices, ensuring they stay connected to their
+                        projects even when away from their workstations.
+                      </p>
+                      <div class="project-tags">
+                        <span>Mobile Development</span>
+                        <span>API Integration</span>
+                        <span>Real-time Updates</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <div class="col-lg-6 col-md-10 order-1 order-lg-2">
-          <div class="img-thumb">
-            <a href="https://www.youtube.com/watch?v=FR8M_6-_ie0&feature=youtu.be&ab_chann"
-              class="d-block img-link glightbox">
-              <img src="assets/img/projects/scribe.jpg" class="w-100" alt="">
-              <div class="play-btn">
-                <i class="fa fa-play" aria-hidden="true"></i>
-              </div><!-- /.play-btn -->
-            </a>
-          </div><!-- /.img-thumb -->
-        </div><!-- /.col-lg-5 -->
+      <div class="row gy-4 wow fadeInUp" data-wow-delay=".6s">
+        <div class="col-12">
+          <div class="project-card">
+            <!-- Video Section - Prominent -->
+            <div class="project-video-section">
+              <div class="video-container">
+                <a href="https://www.youtube.com/watch?v=-i4bMGHcNr4&feature=youtu.be"
+                  class="d-block img-link glightbox video-link">
+                  <img src="assets/img/projects/stub.jpg" class="w-100" alt="Stub Demo Video">
+                  <div class="play-btn">
+                    <i class="fa fa-play" aria-hidden="true"></i>
+                  </div>
+                  <div class="video-overlay">
+                    <span class="watch-demo">Watch Demo</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+            
+            <!-- Project Info - Flip Card -->
+            <div class="project-flip-card" onclick="flipCard('stub-info')">
+              <div class="project-flip-inner" id="stub-info-card">
+                <!-- Front Side -->
+                <div class="project-flip-front">
+                  <div class="project-info-section">
+                    <div class="project-header">
+                      <h4>Stub</h4>
+                      <p class="project-subtitle">ServiceNow Hackathon Project</p>
+                    </div>
+                    
+                    <!-- Summary -->
+                    <div class="project-summary">
+                      <p>Integrated task management bot for Microsoft Teams</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Back Side -->
+                <div class="project-flip-back">
+                  <div class="project-info-section">
+                    <div class="project-details">
+                      <p>
+                        Stub is an innovative Microsoft Teams bot that revolutionizes task management
+                        within collaborative workspaces. By seamlessly integrating with Teams channels,
+                        Stub enables users to create, assign, and track tasks directly within their
+                        communication platform, eliminating the need to switch between multiple
+                        applications and significantly improving team productivity.
+                      </p>
+                      <div class="project-tags">
+                        <span>Bot Development</span>
+                        <span>Microsoft Teams</span>
+                        <span>Task Management</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      </div><!-- /.row -->
-
-      <div class="row pt-5 gy-3 align-items-center wow fadeInUp" data-wow-delay=".4s">
-        <div class="col-lg-6 col-md-10">
-          <div class="img-thumb">
-            <a href="https://www.youtube.com/watch?v=FSmLCsy-nnw&ab_channel=RishavMitra"
-              class="d-block img-link glightbox">
-              <img src="assets/img/projects/fluid.jpg" class="w-100" alt="">
-              <div class="play-btn">
-                <i class="fa fa-play" aria-hidden="true"></i>
-              </div><!-- /.play-btn -->
-            </a>
-          </div><!-- /.img-thumb -->
-        </div><!-- /.col-lg-5 -->
-        <div class="col-lg-4 col-md-10">
-          <div class="project-text">
-            <div class="p-t text-lg-end">
-              <h5> Fluid </h5>
-              <span> ServiceNow Hackathon Project </span>
-            </div><!-- /.p-t -->
-            <div class="pro-single text-lg-end">
-              <p>
-                Fluid is a mobile application designed to provide developers with convenient
-                access to stories, defects, and pull requests, facilitating seamless monitoring
-                from any location. Fluid ranked 4th place in the company-wide engineering
-                hackathon, earning recognition from ServiceNow executives during the
-                evaluation process.
-
-              </p>
-            </div><!-- /.pro-single -->
-            <div class="pro-tags d-none text-lg-end mt-2">
-              <span> conceptualized idea </span>
-              <span> developed app </span>
-              <span> created video </span>
-            </div><!-- /.pro-tags -->
-          </div><!-- /.project-text -->
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
-
-      <div class="row pt-5 gy-3 align-items-center wow fadeInUp" data-wow-delay=".5s">
-
-        <div class="col-lg-4 col-md-10 order-2 order-lg-1">
-          <div class="project-text">
-            <div class="p-t">
-              <h5> Stub </h5>
-              <span> ServiceNow Hackathon Project </span>
-            </div><!-- /.p-t -->
-            <div class="pro-single">
-              <p>
-                Standup Buddy is an integrated task management bot designed to elevate
-                communication and team productivity. By seamlessly integrating with Microsoft
-                Teams, Standup Buddy empowers streamlined task organization, fostering
-                enhanced collaboration and goal-oriented teamwork.
-              </p>
-            </div><!-- /.pro-single -->
-            <div class="pro-tags d-none mt-2">
-              <span> conceptualized idea </span>
-              <span> developed app </span>
-              <span> created video </span>
-            </div><!-- /.pro-tags -->
-          </div><!-- /.project-text -->
-        </div><!-- /.col-lg-4 -->
-
-        <div class="col-lg-6 col-md-10 order-1 order-lg-2">
-          <div class="img-thumb">
-            <a href="https://www.youtube.com/watch?v=-i4bMGHcNr4&feature=youtu.be" class="d-block img-link glightbox">
-              <img src="assets/img/projects/stub.jpg" class="w-100" alt="">
-              <div class="play-btn">
-                <i class="fa fa-play" aria-hidden="true"></i>
-              </div><!-- /.play-btn -->
-            </a>
-          </div><!-- /.img-thumb -->
-        </div><!-- /.col-lg-5 -->
-
-      </div><!-- /.row -->
-
-      <div class="row pt-5 gy-3 align-items-center wow fadeInUp" data-wow-delay=".5s">
-        <div class="col-lg-6 col-md-10">
-          <div class="img-thumb">
-            <a href="https://www.youtube.com/watch?v=9BuPCvDvuCw&ab_channel=RishavMitra"
-              class="d-block img-link glightbox">
-              <img src="assets/img/projects/motivatekids.jpg" class="w-100" alt="">
-              <div class="play-btn">
-                <i class="fa fa-play" aria-hidden="true"></i>
-              </div><!-- /.play-btn -->
-            </a>
-          </div><!-- /.img-thumb -->
-        </div><!-- /.col-lg-5 -->
-        <div class="col-lg-4 col-md-10">
-          <div class="project-text">
-            <div class="p-t text-lg-end">
-              <h5> MotivateKids </h5>
-              <span> Founder of Nonprofit Organization </span>
-            </div><!-- /.p-t -->
-            <div class="pro-single text-lg-end">
-              <p>
-                MotivateKids is a nonprofit dedicated to making learning fun and interactive for
-                underprivileged elementary school students. I organized and managed a group
-                of 35 student tutors who volunteered their time to teach over 1,200 students
-                across multiple schools in Santa Clara, California.
-
-              </p>
-            </div><!-- /.pro-single -->
-            <div class="pro-tags d-none text-lg-end mt-2">
-
-
-              <span> none </span>
-            </div><!-- /.pro-tags -->
-          </div><!-- /.project-text -->
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
+      <div class="row gy-4 wow fadeInUp" data-wow-delay=".7s">
+        <div class="col-12">
+          <div class="project-card">
+            <!-- Video Section - Prominent -->
+            <div class="project-video-section">
+              <div class="video-container">
+                <a href="https://www.youtube.com/watch?v=9BuPCvDvuCw&ab_channel=RishavMitra"
+                  class="d-block img-link glightbox video-link">
+                  <img src="assets/img/projects/motivatekids.jpg" class="w-100" alt="MotivateKids Demo Video">
+                  <div class="play-btn">
+                    <i class="fa fa-play" aria-hidden="true"></i>
+                  </div>
+                  <div class="video-overlay">
+                    <span class="watch-demo">Watch Demo</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+            
+            <!-- Project Info - Flip Card -->
+            <div class="project-flip-card" onclick="flipCard('motivatekids-info')">
+              <div class="project-flip-inner" id="motivatekids-info-card">
+                <!-- Front Side -->
+                <div class="project-flip-front">
+                  <div class="project-info-section">
+                    <div class="project-header">
+                      <h4>MotivateKids</h4>
+                      <p class="project-subtitle">Founder of Nonprofit Organization</p>
+                    </div>
+                    
+                    <!-- Summary -->
+                    <div class="project-summary">
+                      <p>Nonprofit dedicated to making learning fun for underprivileged students</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Back Side -->
+                <div class="project-flip-back">
+                  <div class="project-info-section">
+                    <div class="project-details">
+                      <p>
+                        MotivateKids is a nonprofit organization I founded with the mission of making
+                        education engaging and accessible for underprivileged students. Through
+                        innovative teaching methods, interactive workshops, and mentorship programs,
+                        we work to bridge the educational gap and inspire a love for learning in
+                        children who might otherwise lack educational opportunities.
+                      </p>
+                      <div class="project-tags">
+                        <span>Nonprofit Leadership</span>
+                        <span>Education</span>
+                        <span>Community Impact</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="cards-sec">
         <div class="row">
@@ -554,47 +657,73 @@
         </div><!-- /.row -->
         <div class="row  gy-4">
           <div class="col-lg-5 col-md-5">
-            <div class="card-single wow fadeInLeft" data-wow-delay=".4s">
-              <h3> Log Manager </h3>
-              <p>
-                <i> ▹ </i>
-                <span>
-                  Developed a log file management tool utilizing advanced algorithms to enable
-                  rapid search and analysis of extensive log files, leveraging filters based on log
-                  timestamp, category, and keywords.
-                </span>
-              </p>
-              <p class="mt-2">
-                <i> ▹ </i>
-                <span>
-                  Streamlined log analysis by organizing essential logs into a dedicated excerpt
-                  list for instant reference, enhancing productivity during troubleshooting and
-                  development processes.
-                </span>
-              </p>
-
-            </div><!-- /.card-single -->
+            <div class="flip-card" onclick="flipCard('logmanager')">
+              <div class="flip-card-inner" id="logmanager-card">
+                <!-- Front Side -->
+                <div class="flip-card-front">
+                  <div class="card-single">
+                    <h3> Log Manager </h3>
+                    <p>Advanced log file management tool with rapid search capabilities</p>
+                  </div>
+                </div>
+                <!-- Back Side -->
+                <div class="flip-card-back">
+                  <div class="card-single">
+                    <h3> Log Manager </h3>
+                    <p>
+                      <i> ▹ </i>
+                      <span>
+                        Developed a log file management tool utilizing advanced algorithms to enable
+                        rapid search and analysis of extensive log files, leveraging filters based on log
+                        timestamp, category, and keywords.
+                      </span>
+                    </p>
+                    <p class="mt-2">
+                      <i> ▹ </i>
+                      <span>
+                        Streamlined log analysis by organizing essential logs into a dedicated excerpt
+                        list for instant reference, enhancing productivity during troubleshooting and
+                        development processes.
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div><!-- /.flip-card -->
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-5 col-md-5">
-            <div class="card-single wow fadeInRight" data-wow-delay=".5s">
-              <h3> Euchre </h3>
-              <p>
-                <i> ▹ </i>
-                <span>
-                  Programmed a trick-taking card game in C++ that allows teams to accumulate
-                  points by winning tricks.
-                </span>
-              </p>
-              <p class="mt-2">
-                <i> ▹ </i>
-                <span>
-                  Developed an AI bot that exhibits strategic decision-making, responding to both
-                  human input and dynamic game conditions, creating a challenging and engaging
-                  experience for players
-                </span>
-              </p>
-
-            </div><!-- /.card-single -->
+            <div class="flip-card" onclick="flipCard('euchre')">
+              <div class="flip-card-inner" id="euchre-card">
+                <!-- Front Side -->
+                <div class="flip-card-front">
+                  <div class="card-single">
+                    <h3> Euchre </h3>
+                    <p>C++ trick-taking card game with strategic AI bot</p>
+                  </div>
+                </div>
+                <!-- Back Side -->
+                <div class="flip-card-back">
+                  <div class="card-single">
+                    <h3> Euchre </h3>
+                    <p>
+                      <i> ▹ </i>
+                      <span>
+                        Programmed a trick-taking card game in C++ that allows teams to accumulate
+                        points by winning tricks.
+                      </span>
+                    </p>
+                    <p class="mt-2">
+                      <i> ▹ </i>
+                      <span>
+                        Developed an AI bot that exhibits strategic decision-making, responding to both
+                        human input and dynamic game conditions, creating a challenging and engaging
+                        experience for players
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div><!-- /.flip-card -->
           </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
       </div><!-- /.cards-sec -->
