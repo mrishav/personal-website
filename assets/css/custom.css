@@ -767,3 +767,223 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
     opacity: 1;
   }
 }
+
+/* ========================================
+   CINEMATIC INTRO ANIMATION
+   ======================================== */
+
+.cinematic-intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeOut 1s ease-in-out 1.5s forwards;
+}
+
+.intro-content {
+  position: relative;
+  text-align: center;
+  color: #fff;
+}
+
+/* Studio Logo */
+.studio-logo {
+  margin-bottom: 3rem;
+  animation: logoReveal 2s ease-out;
+}
+
+.logo-text {
+  font-size: 4rem;
+  font-weight: 900;
+  font-family: 'JetBrains Mono', monospace;
+  background: linear-gradient(45deg, #2563eb, #7c3aed, #2563eb);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmerLogo 3s ease-in-out infinite;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+}
+
+.logo-subtitle {
+  font-size: 0.875rem;
+  letter-spacing: 0.5rem;
+  color: #8892b0;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+
+
+
+/* Film Effects */
+.film-grain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  background-image: 
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 3px 3px;
+  animation: filmGrain 0.2s infinite;
+  pointer-events: none;
+}
+
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    transparent 50%, 
+    rgba(0, 255, 0, 0.02) 50%
+  );
+  background-size: 100% 4px;
+  animation: scanlines 0.1s linear infinite;
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes logoReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotateY(90deg);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1) rotateY(45deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
+@keyframes shimmerLogo {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+
+
+@keyframes filmGrain {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-1px, -1px);
+  }
+  20% {
+    transform: translate(1px, 1px);
+  }
+  30% {
+    transform: translate(-1px, 1px);
+  }
+  40% {
+    transform: translate(1px, -1px);
+  }
+  50% {
+    transform: translate(-1px, -1px);
+  }
+  60% {
+    transform: translate(1px, 1px);
+  }
+  70% {
+    transform: translate(-1px, 1px);
+  }
+  80% {
+    transform: translate(1px, -1px);
+  }
+  90% {
+    transform: translate(-1px, -1px);
+  }
+}
+
+@keyframes scanlines {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(4px);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+
+/* Content Reveal Animation */
+.main-content {
+  opacity: 0;
+  animation: contentReveal 1.5s ease-out 2s forwards;
+}
+
+@keyframes contentReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .logo-text {
+    font-size: 3rem;
+  }
+  
+  .progress-container {
+    width: 250px;
+  }
+  
+  .loading-text {
+    font-size: 1rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-intro {
+    animation-duration: 0.1s;
+  }
+  
+  .studio-logo,
+  .loading-sequence,
+  .film-grain,
+  .scanlines {
+    animation: none;
+  }
+  
+  .progress-bar::after {
+    animation: none;
+  }
+}

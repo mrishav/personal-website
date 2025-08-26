@@ -15,6 +15,83 @@ for (let i = 0; i < wowElements.length; i++) {
 }
 
 // ========================================
+// CINEMATIC INTRO SYSTEM
+// ========================================
+
+class CinematicIntro {
+  constructor() {
+    this.introElement = null;
+  }
+
+  init() {
+    this.introElement = document.getElementById('cinematic-intro');
+    
+    // Hide main content initially
+    this.hideMainContent();
+  }
+
+  hideMainContent() {
+    const mainSections = document.querySelectorAll('.side-nav, .hero-area, .about, .experience, .projects');
+    mainSections.forEach(section => {
+      section.classList.add('main-content');
+    });
+  }
+
+  showMainContent() {
+    const mainSections = document.querySelectorAll('.main-content');
+    mainSections.forEach((section, index) => {
+      setTimeout(() => {
+        section.style.animation = `contentReveal 1s ease-out forwards`;
+      }, index * 100);
+    });
+    
+    // Start typing animations after content is revealed
+    setTimeout(() => {
+      this.startTypingAnimations();
+    }, 1000);
+  }
+  
+  startTypingAnimations() {
+    // Start main title typing animation
+    const txtElement = document.querySelector('.txt-type');
+    if (txtElement) {
+      try {
+        const wordsAttr = txtElement.getAttribute('data-words');
+        const words = JSON.parse(wordsAttr.replace(/'/g, '"'));
+        const wait = txtElement.getAttribute('data-wait');
+        new TypeWriter(txtElement, words, wait);
+      } catch (e) {
+        console.error('Error parsing main title words:', e);
+      }
+    }
+    
+    // Start subtitle typing animation with delay
+    setTimeout(() => {
+      const txtSubtitleElement = document.querySelector('.txt-type-subtitle');
+      if (txtSubtitleElement) {
+        try {
+          const wordsAttr = txtSubtitleElement.getAttribute('data-words');
+          console.log('Subtitle words attribute:', wordsAttr); // Debug log
+          const words = JSON.parse(wordsAttr.replace(/'/g, '"'));
+          const wait = txtSubtitleElement.getAttribute('data-wait');
+          console.log('Starting subtitle typing with words:', words); // Debug log
+          new TypeWriter(txtSubtitleElement, words, wait);
+        } catch (e) {
+          console.error('Error parsing subtitle words:', e);
+          // Fallback - create TypeWriter with hardcoded text
+          new TypeWriter(txtSubtitleElement, ["I enjoy solving problems for people."], 2000);
+        }
+      } else {
+        console.error('Subtitle element not found');
+      }
+    }, 2000);
+  }
+}
+
+// Initialize cinematic intro
+const cinematicIntro = new CinematicIntro();
+
+// ========================================
 // SCROLL INDICATOR FUNCTIONALITY
 // ========================================
 
@@ -309,28 +386,23 @@ function ensureTextVisibility() {
 
 /**
  * Initializes typing animations for subtitle text
+ * Note: This is now handled by the cinematic intro system
  */
 function initTypingAnimations() {
-  const txtSubtitleElement = document.querySelector('.txt-type-subtitle');
-  if (txtSubtitleElement) {
-    const words = JSON.parse(txtSubtitleElement.getAttribute('data-words').replace(/'/g, '"'));
-    const wait = txtSubtitleElement.getAttribute('data-wait');
-    
-    // Start subtitle animation after a delay
-    setTimeout(() => {
-      new TypeWriter(txtSubtitleElement, words, wait);
-    }, 1000);
-  }
+  // Typing animations are now controlled by the cinematic intro
+  // They will start after the intro completes
 }
 
 /**
  * Main initialization function called when DOM is loaded
  */
 function initializeWebsite() {
-  // Initialize core functionality
+  // Initialize cinematic intro first
+  cinematicIntro.init();
+  
+  // Initialize core functionality (but not typing animations yet)
   initScrollAnimations();
   initSmoothScrolling();
-  initTypingAnimations();
   initAccessibilityFeatures();
   
   // Set up scroll listener
