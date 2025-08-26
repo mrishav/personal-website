@@ -801,6 +801,29 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
     height: auto;
     width: 100%;
   }
+
+  /* Mobile experience section fixes */
+  #experience .nav-pills {
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 0.25rem;
+    overflow-x: auto;
+  }
+
+  #experience .nav-pills .nav-link {
+    flex: 1;
+    min-width: auto;
+    text-align: center;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+  }
+
+  #experience .tab-content {
+    margin-top: 1rem;
+  }
 }
 
 /* ========================================

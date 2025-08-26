@@ -160,4 +160,38 @@ function flipCard(cardId) {
 // Make function globally available
 window.flipCard = flipCard;
 
+// Fix mobile tab functionality
+function initMobileTabs() {
+  if (window.innerWidth <= 768) {
+    const tabButtons = document.querySelectorAll('#experience .nav-link');
+    const tabPanes = document.querySelectorAll('#experience .tab-pane');
+    
+    tabButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Remove active class from all buttons and panes
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabPanes.forEach(pane => {
+          pane.classList.remove('show', 'active');
+        });
+        
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        // Show corresponding tab pane
+        const targetId = this.getAttribute('data-bs-target');
+        const targetPane = document.querySelector(targetId);
+        if (targetPane) {
+          targetPane.classList.add('show', 'active');
+        }
+      });
+    });
+  }
+}
+
+// Initialize on load and resize
+document.addEventListener('DOMContentLoaded', initMobileTabs);
+window.addEventListener('resize', initMobileTabs);
+
 })();
