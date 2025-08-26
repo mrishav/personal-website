@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://rishavmitra.com/sitemap.xml
+
+# Allow all search engines to crawl the site
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Block access to assets that don't need indexing
+User-agent: *
+Disallow: /assets/css/
+Disallow: /assets/js/
+Allow: /assets/img/
