@@ -1,0 +1,769 @@
+/*
+ * Personal Website Custom Styles
+ * Author: Rishav Mitra
+ * Description: Custom CSS for modern portfolio website with glass morphism design
+ */
+
+/* ========================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   ======================================== */
+:root {
+  /* Color Palette */
+  --primary-dark: #0f0f23;
+  --secondary-dark: #1a1a2e;
+  --accent-blue: #2563eb;
+  --accent-purple: #8b5cf6;
+  --text-primary: #ffffff;
+  --text-secondary: #8892b0;
+  --text-muted: #64748b;
+  --border-color: #334155;
+  
+  /* Glass Morphism Effects */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --gradient-secondary: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Legacy Support */
+  --primary-color: #ffffff !important;
+}
+
+/* ========================================
+   GLOBAL STYLES & RESET
+   ======================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--primary-dark);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: smooth;
+}
+
+/* ========================================
+   ANIMATED BACKGROUND
+   ======================================== */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+  z-index: -2;
+  animation: backgroundShift 1800s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes backgroundShift {
+  0%, 100% { 
+    opacity: 0.8;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+  25% { 
+    opacity: 0.6;
+    transform: translateX(5px) translateY(-3px) scale(1.02);
+  }
+  50% { 
+    opacity: 0.4;
+    transform: translateX(-3px) translateY(5px) scale(0.98);
+  }
+  75% { 
+    opacity: 0.6;
+    transform: translateX(-5px) translateY(-2px) scale(1.01);
+  }
+}
+
+/* ========================================
+   SCROLL INDICATOR
+   ======================================== */
+.scroll-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--gradient-primary);
+  z-index: 1001;
+  transition: width 0.1s ease;
+  will-change: width;
+  contain: layout;
+}
+
+/* ========================================
+   LOADING SKELETON ANIMATIONS
+   ======================================== */
+.skeleton {
+  background: linear-gradient(90deg, var(--glass-bg) 25%, rgba(255,255,255,0.1) 50%, var(--glass-bg) 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-text {
+  height: 1rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-title {
+  height: 2rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.skeleton-avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.skeleton-card {
+  height: 200px;
+  border-radius: 12px;
+}
+
+/* ========================================
+   HERO SECTION ANIMATIONS
+   ======================================== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(1deg); }
+  66% { transform: translateY(5px) rotate(-1deg); }
+}
+
+.hero-area {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-inner h1 {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  line-height: 1.2;
+  position: relative;
+  animation: float 6s ease-in-out infinite;
+}
+
+.sub-text {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+}
+
+/* ========================================
+   TYPING ANIMATION
+   ======================================== */
+.txt-type, .txt-type-subtitle {
+  position: relative;
+}
+
+.txt-type-subtitle::after {
+  content: '|';
+  display: inline-block;
+  animation: blink 1s infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* ========================================
+   GLASS MORPHISM COMPONENTS
+   ======================================== */
+.card-single, .abt-det, .project-text {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-single:hover, .abt-det:hover, .project-text:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Match glass effect for more projects cards */
+.cards-sec .card-single {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+/* Remove blue background from project descriptions */
+.pro-single {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* ========================================
+   NAVIGATION STYLES
+   ======================================== */
+.side-nav {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  position: fixed;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+}
+
+.main-bav li a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-bav li a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-primary);
+  transition: left 0.3s ease;
+  z-index: -1;
+  border-radius: 8px;
+}
+
+.main-bav li a:hover {
+  color: var(--text-primary);
+  transform: translateX(4px);
+}
+
+.main-bav li a:hover::before {
+  left: 0;
+}
+
+/* ========================================
+   SOCIAL ICONS
+   ======================================== */
+.social-nav li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-nav li a:hover {
+  color: var(--text-primary);
+  background: var(--accent-blue);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ========================================
+   PROJECT IMAGES & MEDIA
+   ======================================== */
+.img-thumb {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  transition: all 0.4s ease;
+}
+
+.img-thumb:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-xl);
+}
+
+.img-thumb img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: all 0.3s ease;
+  will-change: auto;
+  transform: translateZ(0);
+}
+
+.img-thumb:hover img {
+  transform: scale(1.1);
+}
+
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.play-btn::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.3; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.img-thumb:hover .play-btn {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* ========================================
+   SECTION HEADERS
+   ======================================== */
+.sec-t h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  position: relative;
+}
+
+.sec-t h2::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 2rem;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+}
+
+.line {
+  width: 60px;
+  height: 2px;
+  background: var(--gradient-primary);
+  border: none;
+  margin: 0;
+  transition: width 0.3s ease;
+}
+
+.sec-t:hover .line {
+  width: 100px;
+}
+
+/* ========================================
+   TAB NAVIGATION
+   ======================================== */
+.nav.custom-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.nav-link {
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  padding: 1rem 1.5rem;
+  transition: all 0.3s ease;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.nav-link:hover {
+  background: rgba(37, 99, 235, 0.1);
+  border-color: var(--accent-blue);
+  color: var(--text-primary);
+  transform: translateX(4px);
+}
+
+.nav-link.active {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: var(--text-primary);
+  transform: translateX(8px);
+}
+
+/* Experience selector tabs with gradient */
+.nav.custom-tabs .nav-link {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav.custom-tabs .nav-link.active,
+.nav.custom-tabs .nav-link:hover {
+  background: var(--gradient-primary);
+  color: #ffffff !important;
+  border-color: var(--accent-blue);
+}
+
+.nav.custom-tabs .nav-link.active::before,
+.nav.custom-tabs .nav-link:hover::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+}
+
+/* ========================================
+   BUTTONS & INTERACTIVE ELEMENTS
+   ======================================== */
+.hi-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.hi-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.hi-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+  color: var(--text-primary);
+}
+
+.hi-btn:hover::before {
+  left: 100%;
+}
+
+/* ========================================
+   TYPOGRAPHY & TEXT STYLES
+   ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600&display=swap');
+
+/* Override external CSS with stronger selectors */
+body p, .about p, .abt-text p, .abt-det p, .project-text p, 
+.card-single p, .experience-item p, body li, body span:not(.sec-t span) {
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* Specifically target the about section paragraphs */
+.about .abt-text p {
+  font-family: 'Nunito', sans-serif !important;
+  font-weight: 400 !important;
+}
+
+.company-name {
+  font-size: 1.125rem;
+  color: var(--accent-blue);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Purple gradient bullets */
+.abt-list li i, .card-single p i {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+}
+
+/* ========================================
+   PROFILE IMAGE
+   ======================================== */
+.img-profile {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+}
+
+/* ========================================
+   SCROLL BEHAVIOR
+   ======================================== */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Custom scrollbar - hide it */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+/* ========================================
+   ANIMATIONS & TRANSITIONS
+   ======================================== */
+body, .side-nav, .logo-nav, .about, .experience, .projects, 
+.card-single, .abt-det, .project-text, .hero-area, .main-footer {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ensure all text is visible */
+.sec-t h2, .abt-det, .project-text, .card-single {
+  opacity: 1 !important;
+  color: inherit !important;
+}
+
+.sec-t h2, .abt-det h3, .abt-det p, .abt-det span, 
+.project-text h5, .project-text p, .project-text span,
+.card-single h3, .card-single p, .card-single span {
+  opacity: 1 !important;
+  color: inherit !important;
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+/* Focus visibility for accessibility */
+.main-bav li a:focus-visible,
+.hi-btn:focus-visible,
+.social-nav li a:focus-visible,
+.nav-link:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========================================
+   MOBILE RESPONSIVE STYLES
+   ======================================== */
+@media (max-width: 768px) {
+  .hero-inner h1 {
+    font-size: 2.5rem;
+  }
+  
+  .card-single:hover, .abt-det:hover, .project-text:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  /* Fix tab ordering on mobile */
+  .nav.custom-tabs.flex-column {
+    flex-direction: column !important;
+    display: flex !important;
+  }
+
+  .nav.custom-tabs.flex-column .nav-link:nth-child(1) { order: 1; }
+  .nav.custom-tabs.flex-column .nav-link:nth-child(2) { order: 2; }
+  .nav.custom-tabs.flex-column .nav-link:nth-child(3) { order: 3; }
+  .nav.custom-tabs.flex-column .nav-link:nth-child(4) { order: 4; }
+
+  /* Simplified animations to prevent glitches */
+  .mobile-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+    will-change: transform, opacity;
+  }
+
+  .mobile-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Simpler list animations */
+  .abt-list li {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.4s ease-out;
+    will-change: transform, opacity;
+  }
+
+  .abt-list.animate li {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .abt-list.animate li:nth-child(1) { transition-delay: 0.05s; }
+  .abt-list.animate li:nth-child(2) { transition-delay: 0.1s; }
+  .abt-list.animate li:nth-child(3) { transition-delay: 0.15s; }
+  .abt-list.animate li:nth-child(4) { transition-delay: 0.2s; }
+
+  /* Prevent double animations */
+  .card-single, .abt-det, .project-text {
+    transform: translateY(15px);
+    opacity: 0;
+    transition: all 0.5s ease-out;
+    will-change: transform, opacity;
+  }
+
+  .card-single.visible, .abt-det.visible, .project-text.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Simplified ripple effect */
+  .ripple::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(100, 255, 218, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    pointer-events: none;
+  }
+
+  .ripple.active::before {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* Touch feedback */
+  .nav-link:active, .hi-btn:active, .social-nav a:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+
+  /* Section headers */
+  .sec-t {
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.5s ease-out;
+    will-change: transform, opacity;
+  }
+
+  .sec-t.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Profile image */
+  .img-profile {
+    transform: scale(0.95);
+    opacity: 0;
+    transition: all 0.6s ease-out;
+    will-change: transform, opacity;
+  }
+
+  .img-profile.visible {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
