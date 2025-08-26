@@ -331,23 +331,28 @@
 
       /* Section headers */
       .sec-t {
-        opacity: 1 !important;
-        visibility: visible !important;
-        transform: none !important;
+        transform: translateY(-10px);
+        opacity: 0;
+        transition: all 0.5s ease-out;
+        will-change: transform, opacity;
       }
 
-      .sec-t h2,
-      .sec-t .company-name,
-      .sec-t .line {
-        opacity: 1 !important;
-        visibility: visible !important;
+      .sec-t.visible {
+        transform: translateY(0);
+        opacity: 1;
       }
 
       /* Profile image */
       .img-profile {
-        opacity: 1 !important;
-        visibility: visible !important;
-        transform: scale(1) !important;
+        transform: scale(0.95);
+        opacity: 0;
+        transition: all 0.6s ease-out;
+        will-change: transform, opacity;
+      }
+
+      .img-profile.visible {
+        transform: scale(1);
+        opacity: 1;
       }
     }
 
@@ -375,19 +380,7 @@
       transform: translateY(0);
     }
 
-    /* Ensure section titles are always visible - no animations */
-    .sec-t {
-      opacity: 1 !important;
-      visibility: visible !important;
-      transform: none !important;
-    }
-
-    .sec-t h2,
-    .sec-t .company-name,
-    .sec-t .line {
-      opacity: 1 !important;
-      visibility: visible !important;
-    }
+    /* Ensure all text is visible */
     .sec-t h2, .abt-det, .project-text, .card-single {
       opacity: 1 !important;
       color: inherit !important;
@@ -404,9 +397,6 @@
     .img-profile {
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
-      opacity: 1 !important;
-      visibility: visible !important;
-      transform: scale(1) !important;
     }
 
     .img-profile:hover {
@@ -1043,13 +1033,13 @@
 
     // Intersection Observer for animations
     function initScrollAnimations() {
-      // Track elements that have already been animated
-      const animatedElements = new WeakSet();
+      // Prevent double observation
+      const observedElements = new WeakSet();
       
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting && !animatedElements.has(entry.target)) {
-            animatedElements.add(entry.target);
+          if (entry.isIntersecting && !observedElements.has(entry.target)) {
+            observedElements.add(entry.target);
             entry.target.classList.add('visible');
             
             // Special handling for lists on mobile
@@ -1062,34 +1052,19 @@
               }
             }
             
-            // Keep section titles visible permanently after animation
-            if (entry.target.classList.contains('sec-t')) {
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateY(0)';
-            }
-            
             // Stop observing this element to prevent re-triggering
             observer.unobserve(entry.target);
           }
         });
       }, {
-        threshold: 0.2,
-        rootMargin: '0px 0px -20px 0px'
+        threshold: 0.15,
+        rootMargin: '0px 0px -30px 0px'
       });
 
       // Observe elements for mobile animations
       if (window.innerWidth <= 768) {
-        // Separate handling for section titles to prevent re-animation
-        document.querySelectorAll('.sec-t').forEach(el => {
-          if (!animatedElements.has(el)) {
-            el.classList.add('mobile-reveal');
-            observer.observe(el);
-          }
-        });
-        
-        // Other elements
-        document.querySelectorAll('.card-single, .abt-det, .project-text, .img-profile').forEach(el => {
-          if (!animatedElements.has(el)) {
+        document.querySelectorAll('.sec-t, .card-single, .abt-det, .project-text, .img-profile').forEach(el => {
+          if (!observedElements.has(el)) {
             el.classList.add('mobile-reveal');
             observer.observe(el);
           }
@@ -1179,17 +1154,10 @@
         // el.classList.add('fade-in-up');
       });
       
-      // Ensure all text is visible - exclude section titles from animations
-      document.querySelectorAll('.abt-det, .project-text, .card-single').forEach(el => {
+      // Ensure all text is visible
+      document.querySelectorAll('.sec-t h2, .abt-det, .project-text, .card-single').forEach(el => {
         el.style.opacity = '1';
         el.style.visibility = 'visible';
-      });
-
-      // Force section titles and profile pic to be always visible
-      document.querySelectorAll('.sec-t, .sec-t h2, .sec-t .company-name, .sec-t .line, .img-profile').forEach(el => {
-        el.style.opacity = '1';
-        el.style.visibility = 'visible';
-        el.style.transform = 'none';
       });
     });
   </script>
