@@ -408,11 +408,20 @@ section .sec-t h2::before {
   display: none !important;
 }
 
-/* Copyright bar full width */
-.text-center.mt-5.pt-4 {
-  max-width: 100%;
-  margin-left: auto;
+/* Copyright section styling handled by .copyright-section class */
+
+.copyright-section {
+  max-width: calc(100% - 200px);
+  margin-left: 0;
   margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .copyright-section {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .line {
