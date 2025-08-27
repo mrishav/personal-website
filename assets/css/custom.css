@@ -1660,3 +1660,79 @@ body:not(.intro-active) .main-content {
   visibility: visible;
   transition: opacity 1s ease;
 }
+
+/* Flip flicker fix */
+.project-flip-inner,
+.flip-card-inner {
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+
+/* remove display toggles during flip to avoid flash */
+.project-flip-card.flipped .project-flip-front,
+.flip-card.flipped .flip-card-front {
+  display: flex !important;      /* was none on mobile */
+  pointer-events: none;          /* still ignore clicks while flipped */
+}
+
+.project-flip-card.flipped .project-flip-back,
+.flip-card.flipped .flip-card-back {
+  display: flex !important;
+  pointer-events: auto;
+}
+
+/* stacking and paint containment to stop reflow flashes */
+.project-flip-card,
+.flip-card {
+  contain: paint;
+  isolation: isolate;
+}
+
+/* smoother rotation on mobile webkit */
+@supports (-webkit-overflow-scrolling: touch) {
+  .project-flip-inner,
+  .flip-card-inner {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+}
+
+
+/* Flip flicker fix v2: only promote the INNER, not the faces */
+.project-flip-inner,
+.flip-card-inner {
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+/* Faces: keep backface hiding, do NOT set transform here */
+.project-flip-front,
+.project-flip-back,
+.flip-card-front,
+.flip-card-back {
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+  /* no transform here, so .project-flip-back keeps its rotateY(180deg) */
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Let your original rules control display during flip.
+   If you previously forced both faces to display, undo that: */
+.project-flip-card.flipped .project-flip-front,
+.flip-card.flipped .flip-card-front {
+  pointer-events: none; /* ok to ignore clicks */
+  /* remove any display:flex override we added earlier */
+}
+
+.project-flip-card,
+.flip-card {
+  contain: paint;
+  isolation: isolate;
+}
+
