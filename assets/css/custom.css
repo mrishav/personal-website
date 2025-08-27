@@ -809,7 +809,7 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
   }
 
   /* Fix flip cards in more projects section on mobile */
-  .flip-card-front, .flip-card-back {
+  .flip-card-front, .flip-card-back, .project-flip-front, .project-flip-back {
     -webkit-backface-visibility: hidden !important;
     backface-visibility: hidden !important;
   }
