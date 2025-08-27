@@ -408,10 +408,10 @@ section .sec-t h2::before {
   display: none !important;
 }
 
-/* Copyright bar width matching project section */
+/* Copyright bar full width */
 .text-center.mt-5.pt-4 {
-  max-width: calc(100% - 200px);
-  margin-left: 0;
+  max-width: 100%;
+  margin-left: auto;
   margin-right: auto;
 }
 
@@ -829,6 +829,16 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
 
   #experience .tab-content {
     margin-top: 1rem;
+  }
+
+  /* Mobile social links styling */
+  .mobile-social-links a {
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+
+  .mobile-social-links a:hover {
+    color: var(--accent-blue) !important;
+    transform: translateY(-2px);
   }
 }
 
