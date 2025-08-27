@@ -497,6 +497,24 @@ section .sec-t h2::before {
 }
 
 /* ========================================
+   NAVIGATION
+   ======================================== */
+.nav-logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.nav-logo img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo img:hover {
+  transform: scale(1.1);
+}
+
+/* ========================================
    BUTTONS & INTERACTIVE ELEMENTS
    ======================================== */
 .hi-btn {
