@@ -837,6 +837,12 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
     white-space: nowrap;
   }
 
+  #experience .nav-link:focus,
+  #experience .nav-link:active {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
   #experience .tab-content {
     margin-top: 1rem;
   }
@@ -1486,6 +1492,10 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
   
   .description-mobile {
     display: block;
+  }
+
+  .project-tags {
+    display: none;
   }
 }
 
