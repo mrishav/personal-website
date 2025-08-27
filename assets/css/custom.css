@@ -715,96 +715,6 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
     display: flex !important;
   }
 
-  .nav.custom-tabs.flex-column .nav-link:nth-child(1) { order: 1; }
-  .nav.custom-tabs.flex-column .nav-link:nth-child(2) { order: 2; }
-  .nav.custom-tabs.flex-column .nav-link:nth-child(3) { order: 3; }
-  .nav.custom-tabs.flex-column .nav-link:nth-child(4) { order: 4; }
-
-  /* Simplified animations to prevent glitches */
-  .mobile-reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease-out;
-    will-change: transform, opacity;
-  }
-
-  .mobile-reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Simpler list animations */
-  .abt-list li {
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: all 0.4s ease-out;
-    will-change: transform, opacity;
-  }
-
-  .abt-list.animate li {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .abt-list.animate li:nth-child(1) { transition-delay: 0.05s; }
-  .abt-list.animate li:nth-child(2) { transition-delay: 0.1s; }
-  .abt-list.animate li:nth-child(3) { transition-delay: 0.15s; }
-  .abt-list.animate li:nth-child(4) { transition-delay: 0.2s; }
-
-  /* Prevent double animations */
-  .card-single, .abt-det, .project-text {
-    transform: translateY(15px);
-    opacity: 0;
-    transition: all 0.5s ease-out;
-    will-change: transform, opacity;
-  }
-
-  .card-single.visible, .abt-det.visible, .project-text.visible {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  /* Disable ripple effect on mobile */
-  .ripple::before {
-    display: none;
-  }
-
-  .ripple.active::before {
-    display: none;
-  }
-
-  /* Touch feedback */
-  .nav-link:active, .hi-btn:active, .social-nav a:active {
-    transform: scale(0.98);
-    transition: transform 0.1s ease;
-  }
-
-  /* Section headers */
-  .sec-t {
-    transform: translateY(-10px);
-    opacity: 0;
-    transition: all 0.5s ease-out;
-    will-change: transform, opacity;
-  }
-
-  .sec-t.visible {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  /* Profile image */
-  .img-profile {
-    transform: scale(0.95);
-    opacity: 0;
-    transition: all 0.6s ease-out;
-    will-change: transform, opacity;
-  }
-
-  .img-profile.visible {
-    transform: scale(1);
-    opacity: 1;
-  }
-
   /* Mobile section title optimizations */
   .sec-t h2 {
     font-size: 2.2rem;
@@ -1677,11 +1587,10 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
 }
 
 /* ========================================
-   CLEAN FADE-IN ANIMATION FIX
-   Replace the conflicting sections in your custom.css
+   FADE-IN ANIMATIONS - MUST BE LAST
    ======================================== */
 
-/* Initial hidden state for ALL elements that should fade in */
+/* Initial hidden state - applies to ALL screen sizes */
 .sec-t,
 .abt-det,
 .project-text,
@@ -1691,11 +1600,11 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
 .flip-card,
 .project-flip-card {
   opacity: 0 !important;
-  transform: translateY(20px);
+  transform: translateY(20px) !important;
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-/* When visible class is added by JavaScript */
+/* When visible class is added */
 .sec-t.visible,
 .abt-det.visible,
 .project-text.visible,
@@ -1705,24 +1614,23 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
 .flip-card.visible,
 .project-flip-card.visible {
   opacity: 1 !important;
-  transform: translateY(0);
+  transform: translateY(0) !important;
 }
 
-/* Hero section special handling - starts hidden */
+/* Hero section handling */
 .hero-inner h1,
 .hero-inner .sub-text,
 .hero-inner .hi-btn {
-  opacity: 0;
-  transform: translateY(30px);
+  opacity: 0 !important;
+  transform: translateY(30px) !important;
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* Hero becomes visible after intro (2.5s delay handled by JS) */
 .hero-inner.visible h1,
 .hero-inner.visible .sub-text,
 .hero-inner.visible .hi-btn {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 /* Main content wrapper - ensure it's visible */
@@ -1740,18 +1648,4 @@ body.intro-active .main-content {
 body:not(.intro-active) .main-content {
   opacity: 1;
   transition: opacity 1s ease;
-}
-
-/* Mobile specific fixes */
-@media (max-width: 768px) {
-  /* Reset mobile animations that are conflicting */
-  .sec-t {
-    opacity: 0 !important;
-    transform: translateY(20px);
-  }
-  
-  .sec-t.visible {
-    opacity: 1 !important;
-    transform: translateY(0);
-  }
 }
