@@ -817,6 +817,15 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
   .flip-card.flipped {
     z-index: 30 !important;
   }
+  
+  .project-flip-card.flipped {
+    z-index: 30 !important;
+  }
+  
+  /* Ensure transform-style is preserved on mobile */
+  .flip-card-inner, .project-flip-inner {
+    transform-style: preserve-3d !important;
+  }
 
   /* Mobile experience section fixes */
   #experience .nav-pills {
