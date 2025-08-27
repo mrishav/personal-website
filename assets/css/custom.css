@@ -408,6 +408,13 @@ section .sec-t h2::before {
   display: none !important;
 }
 
+/* Copyright bar width matching project section */
+.text-center.mt-5.pt-4 {
+  max-width: calc(100% - 200px);
+  margin-left: 0;
+  margin-right: auto;
+}
+
 .line {
   width: 60px;
   height: 2px;
