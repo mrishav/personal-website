@@ -1592,6 +1592,7 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
 
 /* Initial hidden state - applies to ALL screen sizes */
 .sec-t,
+.sec-t h2,
 .abt-det,
 .project-text,
 .card-single,
@@ -1606,6 +1607,7 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
 
 /* When visible class is added */
 .sec-t.visible,
+.sec-t.visible h2,
 .abt-det.visible,
 .project-text.visible,
 .card-single.visible,
