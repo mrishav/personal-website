@@ -221,4 +221,54 @@ function initMobileTabs() {
 document.addEventListener('DOMContentLoaded', initMobileTabs);
 window.addEventListener('resize', initMobileTabs);
 
+// Fade-in animations observer
+document.addEventListener('DOMContentLoaded', function() {
+  // Simple Intersection Observer for fade-in animations
+  const observerOptions = {
+    threshold: 0.15,  // Trigger when 15% visible
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Add visible class with a small delay for smoothness
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 100);
+        
+        // Stop observing once animated
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all elements that should fade in
+  const elementsToObserve = document.querySelectorAll(
+    '.sec-t, .abt-det, .project-text, .card-single, ' +
+    '.img-profile, .project-card, .flip-card, .project-flip-card'
+  );
+  
+  elementsToObserve.forEach(el => {
+    observer.observe(el);
+  });
+
+  // Special handling for hero section - delay after page load
+  setTimeout(() => {
+    const heroSection = document.querySelector('.hero-inner');
+    if (heroSection) {
+      heroSection.classList.add('visible');
+    }
+  }, 500); // Reduced from 2500ms for better UX
+  
+  // Add intro-active class management
+  const intro = document.querySelector('.cinematic-intro');
+  if (intro) {
+    document.body.classList.add('intro-active');
+    setTimeout(() => {
+      document.body.classList.remove('intro-active');
+    }, 2000); // Match your intro duration
+  }
+});
+
 })();

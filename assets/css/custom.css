@@ -184,11 +184,18 @@ body::before {
   position: relative;
 }
 
-.txt-type-subtitle::after {
-  content: '|';
+/* ========================================
+   FIX FOR DOUBLE CURSOR IN TYPING ANIMATION
+   ======================================== */
+
+/* The JavaScript already adds a blinking cursor, so we don't need the CSS one */
+
+/* If you want to style the JavaScript-generated cursor, use this: */
+.blinking-cursor {
   display: inline-block;
   animation: blink 1s infinite;
   margin-left: 2px;
+  font-weight: normal;
 }
 
 @keyframes blink {
@@ -655,16 +662,14 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
   transform: translateY(0);
 }
 
-/* Ensure all text is visible */
+/* Ensure all text inherits proper styling */
 .sec-t h2, .abt-det, .project-text, .card-single {
-  opacity: 1 !important;
   color: inherit !important;
 }
 
 .sec-t h2, .abt-det h3, .abt-det p, .abt-det span, 
 .project-text h5, .project-text p, .project-text span,
 .card-single h3, .card-single p, .card-single span {
-  opacity: 1 !important;
   color: inherit !important;
 }
 
@@ -801,15 +806,9 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
   }
 
   /* Mobile section title optimizations */
-  .sec-t {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-  }
-  
   .sec-t h2 {
     font-size: 2.2rem;
     white-space: nowrap;
-    opacity: 1 !important;
     visibility: visible !important;
   }
 
@@ -1062,24 +1061,6 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
 }
 
 
-/* Content Reveal Animation */
-.main-content {
-  opacity: 0;
-  animation: contentReveal 1.5s ease-out 2s forwards;
-}
-
-@keyframes contentReveal {
-  0% {
-    opacity: 0;
-    transform: translateY(50px);
-    filter: blur(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
 
 /* Project Cards - Glass Theme */
 .project-card {
@@ -1692,5 +1673,85 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
   .project-flip-card.flipped .project-flip-back {
     display: flex;
     transform: none;
+  }
+}
+
+/* ========================================
+   CLEAN FADE-IN ANIMATION FIX
+   Replace the conflicting sections in your custom.css
+   ======================================== */
+
+/* Initial hidden state for ALL elements that should fade in */
+.sec-t,
+.abt-det,
+.project-text,
+.card-single,
+.img-profile,
+.project-card,
+.flip-card,
+.project-flip-card {
+  opacity: 0 !important;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* When visible class is added by JavaScript */
+.sec-t.visible,
+.abt-det.visible,
+.project-text.visible,
+.card-single.visible,
+.img-profile.visible,
+.project-card.visible,
+.flip-card.visible,
+.project-flip-card.visible {
+  opacity: 1 !important;
+  transform: translateY(0);
+}
+
+/* Hero section special handling - starts hidden */
+.hero-inner h1,
+.hero-inner .sub-text,
+.hero-inner .hi-btn {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Hero becomes visible after intro (2.5s delay handled by JS) */
+.hero-inner.visible h1,
+.hero-inner.visible .sub-text,
+.hero-inner.visible .hi-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Main content wrapper - ensure it's visible */
+.main-content {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+/* Cinematic intro handling */
+body.intro-active .main-content {
+  opacity: 0;
+}
+
+body:not(.intro-active) .main-content {
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+/* Mobile specific fixes */
+@media (max-width: 768px) {
+  /* Reset mobile animations that are conflicting */
+  .sec-t {
+    opacity: 0 !important;
+    transform: translateY(20px);
+  }
+  
+  .sec-t.visible {
+    opacity: 1 !important;
+    transform: translateY(0);
   }
 }
