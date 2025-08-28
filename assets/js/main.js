@@ -163,6 +163,9 @@ function flipCard(cardId) {
     return;
   }
 
+  // Add visual feedback class for animation
+  card.classList.add('flipping');
+  
   card.classList.toggle('flipped');
 
   // Handle flipped state
@@ -173,6 +176,11 @@ function flipCard(cardId) {
     card.removeAttribute('data-flipped');
     card.style.zIndex = '';
   }
+
+  // Remove visual feedback class after animation
+  setTimeout(() => {
+    card.classList.remove('flipping');
+  }, 600);
 
   // Adjust height for smooth transition
   setTimeout(() => {
@@ -198,6 +206,28 @@ function setInitialCardHeights() {
 
 document.addEventListener('DOMContentLoaded', setInitialCardHeights);
 window.addEventListener('resize', setInitialCardHeights);
+
+// Add touch feedback for flip cards on mobile
+document.addEventListener('DOMContentLoaded', () => {
+  const flipCards = document.querySelectorAll('.flip-card');
+  
+  flipCards.forEach(card => {
+    // Add touch start handler for immediate visual feedback
+    card.addEventListener('touchstart', function(e) {
+      // Add flipping class immediately on touch
+      this.classList.add('flipping');
+    }, { passive: true });
+    
+    // Remove class after touch ends (in case flip doesn't happen)
+    card.addEventListener('touchend', function(e) {
+      setTimeout(() => {
+        if (!this.classList.contains('flipped')) {
+          this.classList.remove('flipping');
+        }
+      }, 700);
+    }, { passive: true });
+  });
+});
 
 // Make function globally available
 window.flipCard = flipCard;
