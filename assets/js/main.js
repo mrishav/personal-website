@@ -151,9 +151,6 @@ function toggleProjectDetails(projectId) {
 // Make function globally available
 window.toggleProjectDetails = toggleProjectDetails;
 
-// Track protection intervals
-let protectionIntervals = new Map();
-
 function flipCard(cardId) {
   const cardInner = document.getElementById(cardId + '-card');
   if (!cardInner) return;
@@ -166,84 +163,25 @@ function flipCard(cardId) {
   if (card.classList.contains('flipped')) {
     card.setAttribute('data-flipped', 'true');
     
-    // Disable WOW.js completely for this card's container
-    const wowContainer = card.closest('.wow');
-    if (wowContainer) {
-      wowContainer.classList.remove('wow');
-      wowContainer.setAttribute('data-wow-disabled', 'true');
-    }
+    // Simple approach: just ensure visibility
+    card.style.opacity = '1';
+    card.style.visibility = 'visible';
+    card.style.position = 'relative';
+    card.style.zIndex = '100';
     
-    // Force the card and all its parents to be visible using setProperty with important
-    const forceVisible = (element) => {
-      element.style.setProperty('opacity', '1', 'important');
-      element.style.setProperty('visibility', 'visible', 'important');
-      element.style.setProperty('animation', 'none', 'important');
-      element.style.setProperty('transform', 'translateY(0)', 'important');
-      element.style.setProperty('display', 'block', 'important');
-    };
-    
-    forceVisible(card);
-    card.style.setProperty('position', 'relative', 'important');
-    card.style.setProperty('z-index', '100', 'important');
-    
-    // Force parent project-card to stay visible
+    // Ensure parent stays visible
     const projectCard = card.closest('.project-card');
     if (projectCard) {
-      forceVisible(projectCard);
+      projectCard.style.opacity = '1';
+      projectCard.style.visibility = 'visible';
     }
-    
-    // Force all parent elements to stay visible
-    let parent = card.parentElement;
-    while (parent && !parent.matches('section')) {
-      forceVisible(parent);
-      parent = parent.parentElement;
-    }
-    
-    // Start a protection interval for this specific card
-    if (protectionIntervals.has(cardId)) {
-      clearInterval(protectionIntervals.get(cardId));
-    }
-    
-    const intervalId = setInterval(() => {
-      if (card.getAttribute('data-flipped') === 'true') {
-        forceVisible(card);
-        if (projectCard) forceVisible(projectCard);
-        let p = card.parentElement;
-        while (p && !p.matches('section')) {
-          forceVisible(p);
-          p = p.parentElement;
-        }
-      } else {
-        clearInterval(intervalId);
-        protectionIntervals.delete(cardId);
-      }
-    }, 100); // Check every 100ms
-    
-    protectionIntervals.set(cardId, intervalId);
 
   } else {
     card.removeAttribute('data-flipped');
-    
-    // Clear protection interval
-    if (protectionIntervals.has(cardId)) {
-      clearInterval(protectionIntervals.get(cardId));
-      protectionIntervals.delete(cardId);
-    }
-    
-    // Re-enable WOW.js if it was disabled
-    const wowContainer = card.closest('[data-wow-disabled]');
-    if (wowContainer) {
-      wowContainer.classList.add('wow');
-      wowContainer.removeAttribute('data-wow-disabled');
-    }
-    
-    // Remove inline styles
-    card.style.removeProperty('opacity');
-    card.style.removeProperty('visibility');
-    card.style.removeProperty('animation');
-    card.style.removeProperty('transform');
-    card.style.removeProperty('position');
-    card.style.removeProperty('z-index');
+    card.style.opacity = '';
+    card.style.visibility = '';
+    card.style.position = '';
+    card.style.zIndex = '';
   }
 
   setTimeout(() => {
@@ -274,82 +212,25 @@ window.addEventListener('resize', setInitialCardHeights);
 // Make function globally available
 window.flipCard = flipCard;
 
-// Protect flipped cards from scroll animations
+// Simple protection for flipped cards
 function protectFlippedCards() {
   const flippedCards = document.querySelectorAll('[data-flipped="true"]');
   flippedCards.forEach(card => {
-    // Force the card itself to stay visible
-    card.style.setProperty('opacity', '1', 'important');
-    card.style.setProperty('visibility', 'visible', 'important');
-    card.style.setProperty('animation', 'none', 'important');
-    card.style.setProperty('transform', 'none', 'important');
-    card.style.setProperty('position', 'relative', 'important');
-    card.style.setProperty('z-index', '100', 'important');
+    card.style.opacity = '1';
+    card.style.visibility = 'visible';
+    card.style.position = 'relative';
+    card.style.zIndex = '100';
     
-    // Force parent project-card to stay visible
     const projectCard = card.closest('.project-card');
     if (projectCard) {
-      projectCard.style.setProperty('opacity', '1', 'important');
-      projectCard.style.setProperty('visibility', 'visible', 'important');
-      projectCard.style.setProperty('animation', 'none', 'important');
-      projectCard.style.setProperty('transform', 'translateY(0)', 'important');
-    }
-    
-    // Force the inner flip container to stay visible
-    const inner = card.querySelector('.project-flip-inner, .flip-card-inner');
-    if (inner) {
-      inner.style.setProperty('opacity', '1', 'important');
-      inner.style.setProperty('visibility', 'visible', 'important');
-    }
-    
-    // Also protect all parent elements up to the section
-    let parent = card.parentElement;
-    while (parent && !parent.matches('section')) {
-      parent.style.setProperty('opacity', '1', 'important');
-      parent.style.setProperty('visibility', 'visible', 'important');
-      parent = parent.parentElement;
+      projectCard.style.opacity = '1';
+      projectCard.style.visibility = 'visible';
     }
   });
 }
 
 // Add scroll protection
 window.addEventListener('scroll', protectFlippedCards, { passive: true });
-
-// Disable WOW.js animations on scroll for flipped cards
-if (typeof WOW !== 'undefined') {
-  const originalSync = WOW.prototype.sync;
-  WOW.prototype.sync = function(element) {
-    // Don't animate elements with flipped cards
-    if (element && element.querySelector && element.querySelector('[data-flipped="true"]')) {
-      return;
-    }
-    // Don't animate elements that are flipped
-    if (element && element.hasAttribute && element.hasAttribute('data-flipped')) {
-      return;
-    }
-    // Don't animate disabled wow containers
-    if (element && element.hasAttribute && element.hasAttribute('data-wow-disabled')) {
-      return;
-    }
-    return originalSync.call(this, element);
-  };
-}
-
-// Additional protection: Override WOW.js show method
-if (typeof WOW !== 'undefined') {
-  const originalShow = WOW.prototype.show;
-  WOW.prototype.show = function(box) {
-    // Don't show animation for flipped elements
-    if (box && (box.querySelector('[data-flipped="true"]') || 
-                box.hasAttribute('data-flipped') ||
-                box.hasAttribute('data-wow-disabled'))) {
-      box.style.visibility = 'visible';
-      box.style.opacity = '1';
-      return;
-    }
-    return originalShow.call(this, box);
-  };
-}
 
 // Fix mobile tab functionality
 function initMobileTabs() {

@@ -8,11 +8,23 @@
 // GLOBAL VARIABLES & INITIALIZATION
 // ========================================
 
-// WOW.js disabled - all elements visible by default
-// const wowElements = document.getElementsByClassName('wow');
-// for (let i = 0; i < wowElements.length; i++) {
-//   wowElements[i].style.visibility = 'hidden';
-// }
+// Completely disable WOW.js and remove all animation classes
+document.addEventListener('DOMContentLoaded', function() {
+  // Remove all WOW.js classes
+  const wowElements = document.querySelectorAll('.wow, .fadeInUp, .fadeInLeft, .fadeInRight, .fadeInDown');
+  wowElements.forEach(element => {
+    element.classList.remove('wow', 'fadeInUp', 'fadeInLeft', 'fadeInRight', 'fadeInDown', 'fadeInUpBig', 'fadeInRightBig');
+    element.style.visibility = 'visible';
+    element.style.opacity = '1';
+    element.style.animation = 'none';
+  });
+  
+  // Prevent WOW.js from initializing
+  if (typeof WOW !== 'undefined') {
+    WOW.prototype.init = function() { return; };
+    WOW.prototype.start = function() { return; };
+  }
+});
 
 // ========================================
 // CINEMATIC INTRO SYSTEM

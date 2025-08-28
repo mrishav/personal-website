@@ -390,6 +390,15 @@
     -webkit-animation-delay: 0s !important;
   }
   
+  /* Keep hero elements visible */
+  .hero-inner h1,
+  .hero-inner .sub-text,
+  .hero-inner .hi-btn {
+    opacity: 1 !important;
+    transform: translateY(0) translateX(0) !important;
+    visibility: visible !important;
+  }
+  
   /* Keep the visible class for compatibility */
   .visible {
     opacity: 1 !important;
@@ -397,14 +406,6 @@
     visibility: visible !important;
   }
   
-  /* Prevent any animation on scroll for flipped elements */
-  .flipped,
-  .flipped *,
-  [data-flipped="true"],
-  [data-flipped="true"] * {
-    animation-play-state: paused !important;
-    -webkit-animation-play-state: paused !important;
-  }
   
   .main-content {
     opacity: 1 !important;
@@ -1061,67 +1062,20 @@
     transform: rotateY(180deg);
   }
   
-  /* Ensure flipped cards always stay visible and override any animations */
-  .flip-card.flipped,
-  .project-flip-card.flipped {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) !important;
-    animation: none !important;
-    -webkit-animation: none !important;
-    transition: transform 0.6s ease !important;
-  }
-  
-  /* Override any WOW.js or scroll animations for flipped cards */
-  .flip-card.flipped.wow,
-  .project-flip-card.flipped.wow,
-  .flip-card.flipped.fadeInUp,
-  .project-flip-card.flipped.fadeInUp {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) !important;
-    animation: none !important;
-    -webkit-animation: none !important;
-  }
-
-  /* Aggressive override for the parent animation container of a flipped card */
-  .wow:has(.flipped) {
-    animation-name: none !important;
-    -webkit-animation-name: none !important;
-    animation-play-state: paused !important;
-    -webkit-animation-play-state: paused !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  
-  /* Force flipped cards and their containers to stay visible */
-  [data-flipped="true"],
-  [data-flipped="true"] * {
-    opacity: 1 !important;
-    visibility: visible !important;
-    animation: none !important;
-    -webkit-animation: none !important;
-  }
-  
-  /* Ensure project-card parent stays visible when child is flipped */
-  .project-card:has(.flipped) {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) !important;
-    animation: none !important;
-    -webkit-animation: none !important;
-  }
-  
-  /* Override any scroll-triggered hiding */
-  .flipped,
-  .flipped .project-flip-inner,
-  .flipped .flip-card-inner {
+  /* Ensure flipped cards always stay visible */
+  .project-flip-card.flipped,
+  .flip-card.flipped {
     opacity: 1 !important;
     visibility: visible !important;
     display: block !important;
-    animation: none !important;
-    -webkit-animation: none !important;
+    position: relative !important;
+    z-index: 100 !important;
+  }
+  
+  .project-flip-card.flipped .project-flip-inner,
+  .flip-card.flipped .flip-card-inner {
+    opacity: 1 !important;
+    visibility: visible !important;
     transform-style: preserve-3d !important;
   }
   
@@ -1448,34 +1402,11 @@
       backface-visibility: hidden !important;
     }
     
+    .project-flip-card.flipped,
     .flip-card.flipped {
       z-index: 30 !important;
       opacity: 1 !important;
       visibility: visible !important;
-      transform: none !important;
-      animation: none !important;
-      -webkit-animation: none !important;
-    }
-    
-    .project-flip-card.flipped {
-      z-index: 30 !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      transform: none !important;
-      animation: none !important;
-      -webkit-animation: none !important;
-    }
-    
-    /* Override any scroll animations for flipped cards on mobile */
-    .flip-card.flipped.wow,
-    .project-flip-card.flipped.wow,
-    .flip-card.flipped.fadeInUp,
-    .project-flip-card.flipped.fadeInUp {
-      opacity: 1 !important;
-      visibility: visible !important;
-      transform: none !important;
-      animation: none !important;
-      -webkit-animation: none !important;
     }
     
     .flip-card-inner, .project-flip-inner {
