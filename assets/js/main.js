@@ -230,45 +230,17 @@ function initMobileTabs() {
 document.addEventListener('DOMContentLoaded', initMobileTabs);
 window.addEventListener('resize', initMobileTabs);
 
-// Fade-in animations observer
+// Fade-in animations observer - DISABLED to prevent flickering
 document.addEventListener('DOMContentLoaded', function() {
-  // Simple Intersection Observer for fade-in animations
-  const observerOptions = {
-    threshold: 0.15,  // Trigger when 15% visible
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Add visible class with a small delay for smoothness
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, 100);
-        
-        // Stop observing once animated
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  // Observe all elements that should fade in
-  const elementsToObserve = document.querySelectorAll(
+  // Animations disabled - make all elements visible immediately
+  const elementsToShow = document.querySelectorAll(
     '.sec-t, .abt-det, .project-text, .card-single, ' +
-    '.img-profile, .project-card, .flip-card, .project-flip-card'
+    '.img-profile, .project-card, .flip-card, .project-flip-card, .hero-inner'
   );
   
-  elementsToObserve.forEach(el => {
-    observer.observe(el);
+  elementsToShow.forEach(el => {
+    el.classList.add('visible');
   });
-
-  // Special handling for hero section - delay after page load
-  setTimeout(() => {
-    const heroSection = document.querySelector('.hero-inner');
-    if (heroSection) {
-      heroSection.classList.add('visible');
-    }
-  }, 500); // Reduced from 2500ms for better UX
   
   // Add intro-active class management
   const intro = document.querySelector('.cinematic-intro');

@@ -149,55 +149,12 @@ function optimizeMobileScroll() {
 
 /**
  * Initializes scroll-based animations using Intersection Observer API
+ * DISABLED to prevent flickering and disappearing issues
  */
 function initScrollAnimations() {
-  // Track elements that have already been animated to prevent re-animation
-  const observedElements = new WeakSet();
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      // Skip if element is a flipped card
-      if (entry.target.classList.contains('flipped')) {
-        return;
-      }
-      
-      if (entry.isIntersecting && !observedElements.has(entry.target)) {
-        observedElements.add(entry.target);
-        entry.target.classList.add('visible');
-        
-        // Special handling for list animations on mobile
-        if (window.innerWidth <= 768 && entry.target.querySelector('.abt-list')) {
-          const list = entry.target.querySelector('.abt-list');
-          if (!list.classList.contains('animate')) {
-            setTimeout(() => {
-              list.classList.add('animate');
-            }, 150);
-          }
-        }
-        
-        // Stop observing this element to prevent re-triggering
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.15,
-    rootMargin: '0px 0px -30px 0px'
-  });
-
-  // Observe elements for mobile animations
-  if (window.innerWidth <= 768) {
-    document.querySelectorAll('.sec-t, .card-single, .abt-det, .project-text, .img-profile').forEach(el => {
-      // Skip flipped cards
-      if (el.classList.contains('flipped')) {
-        el.classList.add('visible');
-        return;
-      }
-      if (!observedElements.has(el)) {
-        el.classList.add('mobile-reveal');
-        observer.observe(el);
-      }
-    });
-  }
+  // Scroll animations disabled - all elements are visible by default
+  // This prevents flickering and disappearing issues on mobile
+  return;
 }
 
 // ========================================
@@ -411,7 +368,7 @@ function initializeWebsite() {
   cinematicIntro.init();
   
   // Initialize core functionality (but not typing animations yet)
-  initScrollAnimations();
+  // initScrollAnimations(); // Disabled to prevent flickering
   initSmoothScrolling();
   initAccessibilityFeatures();
   

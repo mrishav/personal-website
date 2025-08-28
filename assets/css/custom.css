@@ -358,70 +358,32 @@
   }
   
   /* ========================================
-     FADE-IN ANIMATIONS
+     FADE-IN ANIMATIONS - DISABLED
      ======================================== */
-  /* Start with elements hidden ONLY if JavaScript is enabled */
-  .js .sec-t,
-  .js .sec-t h2,
-  .js .abt-det,
-  .js .project-text,
-  .js .card-single,
-  .js .img-profile,
-  .js .project-card,
-  .js .flip-card,
-  .js .project-flip-card {
-    opacity: 0 !important;
-    transform: translateY(20px) !important;
-    visibility: hidden !important;
-    transition: opacity 0.6s ease, transform 0.6s ease, visibility 0s linear 0.6s;
-  }
-  
-  /* Fallback: Show elements if JS is disabled */
-  .no-js .sec-t,
-  .no-js .sec-t h2,
-  .no-js .abt-det,
-  .no-js .project-text,
-  .no-js .card-single,
-  .no-js .img-profile,
-  .no-js .project-card,
-  .no-js .flip-card,
-  .no-js .project-flip-card {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-    visibility: visible !important;
-  }
-  
-  .sec-t.visible,
-  .sec-t.visible h2,
-  .abt-det.visible,
-  .project-text.visible,
-  .card-single.visible,
-  .img-profile.visible,
-  .project-card.visible,
-  .flip-card.visible,
-  .project-flip-card.visible {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-    visibility: visible !important;
-    transition: opacity 0.6s ease, transform 0.6s ease, visibility 0s;
-  }
-  
+  /* All elements are visible by default to prevent flickering */
+  .sec-t,
+  .sec-t h2,
+  .abt-det,
+  .project-text,
+  .card-single,
+  .img-profile,
+  .project-card,
+  .flip-card,
+  .project-flip-card,
+  .hero-inner,
   .hero-inner h1,
   .hero-inner .sub-text,
   .hero-inner .hi-btn {
-    opacity: 0 !important;
-    transform: translateY(30px) !important;
-    visibility: hidden !important;
-    transition: opacity 0.8s ease, transform 0.8s ease, visibility 0s linear 0.8s;
-  }
-  
-  .hero-inner.visible h1,
-  .hero-inner.visible .sub-text,
-  .hero-inner.visible .hi-btn {
     opacity: 1 !important;
     transform: translateY(0) !important;
     visibility: visible !important;
-    transition: opacity 0.8s ease, transform 0.8s ease, visibility 0s;
+  }
+  
+  /* Keep the visible class for compatibility */
+  .visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    visibility: visible !important;
   }
   
   .main-content {
@@ -1344,6 +1306,14 @@
     
     .card-single:hover, .abt-det:hover, .project-text:hover {
       transform: translateY(-4px) scale(1.01);
+    }
+    
+    /* Ensure all elements are always visible on mobile */
+    .sec-t, .sec-t h2, .abt-det, .project-text, .card-single,
+    .img-profile, .project-card, .flip-card, .project-flip-card {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
     }
   
     .nav.custom-tabs.flex-column {
