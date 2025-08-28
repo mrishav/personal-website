@@ -1049,12 +1049,11 @@
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.6s;
+    transition: transform 0.4s ease-in-out;
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
-    will-change: transform;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
   }
   
   .flip-card.flipped .flip-card-inner,
@@ -1069,7 +1068,8 @@
     visibility: visible !important;
     display: block !important;
     position: relative !important;
-    z-index: 100 !important;
+    z-index: 1 !important;
+    isolation: isolate;
   }
   
   .project-flip-card.flipped .project-flip-inner,
@@ -1084,19 +1084,18 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden !important;
-    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    opacity: 1 !important;
-    visibility: visible !important;
-    background: rgba(15, 15, 35, 0.6) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border-radius: 20px !important;
-    overflow: hidden !important;
+    background: rgba(15, 15, 35, 0.6);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-radius: 20px;
+    overflow: hidden;
+    transform: rotateY(0deg);
   }
   
   /* Back faces - glass effect with blur */
@@ -1105,20 +1104,18 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden !important;
-    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    opacity: 1 !important;
-    visibility: visible !important;
-    background: var(--glass-bg) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     transform: rotateY(180deg);
-    border-radius: 20px !important;
-    overflow: hidden !important;
+    border-radius: 20px;
+    overflow: hidden;
   }
   
   .flip-card.flipped .flip-card-front,
@@ -1307,7 +1304,8 @@
       pointer-events: none !important;
     }
     
-    .project-flip-card .flip-button {
+    .project-flip-card .flip-button,
+    .project-flip-card .flip-icon {
       display: none !important;
     }
     
