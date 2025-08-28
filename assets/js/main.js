@@ -158,44 +158,29 @@ function flipCard(cardId) {
   const card = cardInner.closest('.flip-card, .project-flip-card');
   if (!card) return;
   
-  // Disable flip for project cards on mobile
+  // Prevent flip for project cards on mobile
   if (window.innerWidth <= 768 && card.classList.contains('project-flip-card')) {
     return;
   }
 
   card.classList.toggle('flipped');
 
+  // Handle flipped state
   if (card.classList.contains('flipped')) {
     card.setAttribute('data-flipped', 'true');
-    
-    // Simple approach: just ensure visibility
-    card.style.opacity = '1';
-    card.style.visibility = 'visible';
-    card.style.position = 'relative';
     card.style.zIndex = '100';
-    
-    // Ensure parent stays visible
-    const projectCard = card.closest('.project-card');
-    if (projectCard) {
-      projectCard.style.opacity = '1';
-      projectCard.style.visibility = 'visible';
-    }
-
   } else {
     card.removeAttribute('data-flipped');
-    card.style.opacity = '';
-    card.style.visibility = '';
-    card.style.position = '';
     card.style.zIndex = '';
   }
 
+  // Adjust height for smooth transition
   setTimeout(() => {
-    if (card.classList.contains('flipped')) {
-      const back = card.querySelector('.project-flip-back, .flip-card-back');
-      if (back) card.style.height = back.scrollHeight + 'px';
-    } else {
-      const front = card.querySelector('.project-flip-front, .flip-card-front');
-      if (front) card.style.height = front.scrollHeight + 'px';
+    const targetSide = card.classList.contains('flipped') 
+      ? card.querySelector('.project-flip-back, .flip-card-back')
+      : card.querySelector('.project-flip-front, .flip-card-front');
+    if (targetSide) {
+      card.style.height = targetSide.scrollHeight + 'px';
     }
   }, 50);
 }
@@ -217,25 +202,15 @@ window.addEventListener('resize', setInitialCardHeights);
 // Make function globally available
 window.flipCard = flipCard;
 
-// Simple protection for flipped cards
-function protectFlippedCards() {
-  const flippedCards = document.querySelectorAll('[data-flipped="true"]');
-  flippedCards.forEach(card => {
-    card.style.opacity = '1';
-    card.style.visibility = 'visible';
-    card.style.position = 'relative';
+// Maintain flipped card z-index on scroll
+function maintainFlippedCardState() {
+  document.querySelectorAll('[data-flipped="true"]').forEach(card => {
     card.style.zIndex = '100';
-    
-    const projectCard = card.closest('.project-card');
-    if (projectCard) {
-      projectCard.style.opacity = '1';
-      projectCard.style.visibility = 'visible';
-    }
   });
 }
 
-// Add scroll protection
-window.addEventListener('scroll', protectFlippedCards, { passive: true });
+// Add scroll listener for maintaining state
+window.addEventListener('scroll', maintainFlippedCardState, { passive: true });
 
 // Fix mobile tab functionality
 function initMobileTabs() {

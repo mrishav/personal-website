@@ -1298,18 +1298,21 @@
     margin-right: auto;
   }
   
-  /* Dark style for copyright on mobile */
+  /* Mobile styles for project flip cards */
   @media (max-width: 768px) {
+    /* Disable flip functionality for project cards on mobile */
     .project-flip-card {
       pointer-events: none !important;
+      cursor: default !important;
     }
     
-    .project-flip-card .flip-button,
-    .project-flip-card .flip-icon {
+    /* Hide flip indicator on project cards */
+    .project-flip-card .flip-indicator {
       display: none !important;
+      visibility: hidden !important;
     }
     
-    /* Show front face only on mobile */
+    /* Show only front face on mobile */
     .project-flip-card .project-flip-inner {
       transform: none !important;
     }
@@ -1416,7 +1419,7 @@
       backface-visibility: hidden !important;
     }
     
-    .project-flip-card.flipped,
+    /* Keep z-index only for regular flip cards */
     .flip-card.flipped {
       z-index: 30 !important;
       opacity: 1 !important;
@@ -1428,13 +1431,12 @@
       -webkit-transform-style: preserve-3d !important;
     }
   
-    .flip-card.flipped .flip-card-front,
-    .project-flip-card.flipped .project-flip-front {
+    /* Handle flipped state for regular flip cards only */
+    .flip-card.flipped .flip-card-front {
       display: none !important;
     }
     
-    .flip-card.flipped .flip-card-back,
-    .project-flip-card.flipped .project-flip-back {
+    .flip-card.flipped .flip-card-back {
       display: flex !important;
     }
   
@@ -1484,7 +1486,13 @@
       font-size: 1.5rem;
     }
   
-    .flip-indicator {
+    /* Hide flip indicator on project cards, keep on other flip cards */
+    .project-flip-card .flip-indicator {
+      display: none !important;
+    }
+    
+    /* Keep flip indicator for non-project flip cards */
+    .flip-card .flip-indicator {
       width: 24px;
       height: 24px;
       font-size: 10px;
@@ -1493,7 +1501,6 @@
       background: var(--gradient-primary) !important;
     }
     
-    .project-flip-card:hover .flip-indicator,
     .flip-card:hover .flip-indicator {
       background: var(--gradient-primary) !important;
     }
@@ -1536,13 +1543,11 @@
   }
   
   @supports not (transform-style: preserve-3d) {
-    .flip-card.flipped .flip-card-front,
-    .project-flip-card.flipped .project-flip-front {
+    .flip-card.flipped .flip-card-front {
       display: none;
     }
     
-    .flip-card.flipped .flip-card-back,
-    .project-flip-card.flipped .project-flip-back {
+    .flip-card.flipped .flip-card-back {
       display: flex;
       transform: none;
     }
