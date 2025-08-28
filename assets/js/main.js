@@ -149,25 +149,34 @@ function flipCard(cardId) {
   const cardInner = document.getElementById(cardId + '-card');
   if (!cardInner) return;
 
-  const cardContainer = cardInner.parentElement;
-  if (!cardContainer) return;
+  const card = cardInner.closest('.flip-card, .project-flip-card');
+  if (!card) return;
 
-  cardContainer.classList.toggle('flipped');
-
-  // Adjust height for smooth animation
-  const isFlipped = cardContainer.classList.contains('flipped');
-  const front = cardInner.querySelector('.project-flip-front, .flip-card-front');
-  const back = cardInner.querySelector('.project-flip-back, .flip-card-back');
-
-  if (front && back) {
-    if (isFlipped) {
-      // Set height to back's content height
-      cardContainer.style.height = back.scrollHeight + 'px';
-    } else {
-      // Set height to front's content height
-      cardContainer.style.height = front.scrollHeight + 'px';
-    }
+  // Toggle flipped state
+  card.classList.toggle('flipped');
+  
+  // Ensure visibility is maintained
+  if (card.classList.contains('flipped')) {
+    card.classList.add('visible');
+    card.style.opacity = '1';
+    card.style.visibility = 'visible';
+    card.style.transform = 'none';
   }
+
+  // Adjust height dynamically based on the content
+  setTimeout(() => {
+    if (card.classList.contains('flipped')) {
+      const back = card.querySelector('.project-flip-back, .flip-card-back');
+      if (back) {
+        card.style.height = back.scrollHeight + 'px';
+      }
+    } else {
+      const front = card.querySelector('.project-flip-front, .flip-card-front');
+      if (front) {
+        card.style.height = front.scrollHeight + 'px';
+      }
+    }
+  }, 50);
 }
 
 // Set initial height for all flip cards on load and resize

@@ -156,6 +156,11 @@ function initScrollAnimations() {
   
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+      // Skip if element is a flipped card
+      if (entry.target.classList.contains('flipped')) {
+        return;
+      }
+      
       if (entry.isIntersecting && !observedElements.has(entry.target)) {
         observedElements.add(entry.target);
         entry.target.classList.add('visible');
@@ -182,6 +187,11 @@ function initScrollAnimations() {
   // Observe elements for mobile animations
   if (window.innerWidth <= 768) {
     document.querySelectorAll('.sec-t, .card-single, .abt-det, .project-text, .img-profile').forEach(el => {
+      // Skip flipped cards
+      if (el.classList.contains('flipped')) {
+        el.classList.add('visible');
+        return;
+      }
       if (!observedElements.has(el)) {
         el.classList.add('mobile-reveal');
         observer.observe(el);

@@ -1079,6 +1079,14 @@
     transform: rotateY(180deg);
   }
   
+  /* Ensure flipped cards always stay visible */
+  .flip-card.flipped,
+  .project-flip-card.flipped {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+  }
+  
   /* Front faces - solid semi-transparent */
   .flip-card-front,
   .project-flip-front {
@@ -1126,12 +1134,16 @@
   .project-flip-card.flipped .project-flip-front {
     display: flex !important;
     pointer-events: none;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
   
   .flip-card.flipped .flip-card-back,
   .project-flip-card.flipped .project-flip-back {
     display: flex !important;
     pointer-events: auto;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
   
   .flip-card.flipped,
@@ -1392,10 +1404,16 @@
     
     .flip-card.flipped {
       z-index: 30 !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
     }
     
     .project-flip-card.flipped {
       z-index: 30 !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
     }
     
     .flip-card-inner, .project-flip-inner {
