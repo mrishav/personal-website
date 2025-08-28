@@ -208,7 +208,6 @@ body::before {
    ======================================== */
 .card-single, .abt-det, .project-text {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 2rem;
@@ -225,7 +224,6 @@ body::before {
 /* Match glass effect for more projects cards */
 .cards-sec .card-single {
   background: var(--glass-bg) !important;
-  backdrop-filter: blur(20px) !important;
   border: 1px solid var(--glass-border) !important;
   box-shadow: var(--shadow-lg) !important;
 }
@@ -242,7 +240,6 @@ body::before {
    ======================================== */
 .side-nav {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 1.5rem;
@@ -350,7 +347,6 @@ body::before {
   width: 60px;
   height: 60px;
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
   border-radius: 50%;
   display: flex;
@@ -452,7 +448,6 @@ section .sec-t h2::before {
   flex-direction: column;
   gap: 0.5rem;
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
   padding: 1.5rem;
@@ -539,7 +534,6 @@ section .sec-t h2::before {
   gap: 0.75rem;
   padding: 1rem 2rem;
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
   border-radius: 50px;
   color: var(--text-secondary);
@@ -975,7 +969,6 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
 /* Project Cards - Glass Theme */
 .project-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   overflow: hidden;
@@ -1040,7 +1033,6 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
 }
 
 .play-btn-large i {
@@ -1060,7 +1052,6 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
   left: 0;
   right: 0;
   background: linear-gradient(transparent, var(--glass-bg));
-  backdrop-filter: blur(20px);
   border-top: 1px solid var(--glass-border);
   padding: 1.5rem 1rem 1rem;
   transform: translateY(100%);
@@ -1115,7 +1106,6 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 255, 0.05);
 }
 
@@ -1143,7 +1133,6 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
   gap: 0.75rem;
   font-size: 0.875rem;
   font-weight: 500;
-  backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
 }
@@ -1211,7 +1200,6 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
 
 .project-tags span {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
   color: var(--text-primary);
   padding: 0.25rem 0.75rem;
@@ -1443,12 +1431,76 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
     font-size: 10px;
     top: 8px;
     right: 8px;
+    background: var(--gradient-primary) !important;
+  }
+  
+  .project-flip-card:hover .flip-indicator,
+  .flip-card:hover .flip-indicator {
+    background: var(--gradient-primary) !important;
   }
   
   .project-award-container {
     display: none;
   }
-  
+}
+
+/* Improved Glass Morphism with Pseudo-layer Blur */
+/* 1) Put the blur on a pseudo-layer behind the content */
+.card-single {
+  position: relative;
+  overflow: hidden;
+  background: transparent; /* blur layer will provide the glass look */
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+}
+
+.card-single::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: inherit;
+  z-index: 0;               /* sits under the content */
+}
+
+/* Ensure all real content is above the blur layer */
+.card-single > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 2) Faces should be semi-opaque, no blur */
+.flip-card-front,
+.flip-card-back,
+.project-flip-front,
+.project-flip-back {
+  background: rgba(15, 15, 35, 0.6);  /* or use var(--glass-bg) with higher alpha */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* 3) Keep backface hidden and visibility rules */
+.flip-card-front, .flip-card-back,
+.project-flip-front, .project-flip-back {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card.flipped .flip-card-front,
+.project-flip-card.flipped .project-flip-front {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.flip-card.flipped .flip-card-back,
+.project-flip-card.flipped .project-flip-back {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+@media (max-width: 768px) {
   .logo-text {
     font-size: 3rem;
   }
