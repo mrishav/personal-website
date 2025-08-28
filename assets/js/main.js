@@ -157,6 +157,11 @@ function flipCard(cardId) {
 
   const card = cardInner.closest('.flip-card, .project-flip-card');
   if (!card) return;
+  
+  // Disable flip for project cards on mobile
+  if (window.innerWidth <= 768 && card.classList.contains('project-flip-card')) {
+    return;
+  }
 
   card.classList.toggle('flipped');
 

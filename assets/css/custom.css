@@ -1303,6 +1303,23 @@
   
   /* Dark style for copyright on mobile */
   @media (max-width: 768px) {
+    .project-flip-card {
+      pointer-events: none !important;
+    }
+    
+    .project-flip-card .flip-button {
+      display: none !important;
+    }
+    
+    /* Show front face only on mobile */
+    .project-flip-card .project-flip-inner {
+      transform: none !important;
+    }
+    
+    .project-flip-card.flipped .project-flip-inner {
+      transform: none !important;
+    }
+    
     .copyright-section .card-single {
       background: rgba(15, 15, 35, 0.8) !important;
       border: 1px solid rgba(255, 255, 255, 0.1) !important;
