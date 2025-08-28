@@ -1059,7 +1059,7 @@
   
   .flip-card.flipped .flip-card-inner,
   .project-flip-card.flipped .project-flip-inner {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) !important;
   }
   
   /* Ensure flipped cards always stay visible */
@@ -1076,7 +1076,6 @@
   .flip-card.flipped .flip-card-inner {
     opacity: 1 !important;
     visibility: visible !important;
-    transform-style: preserve-3d !important;
   }
   
   /* Front faces - solid semi-transparent */
