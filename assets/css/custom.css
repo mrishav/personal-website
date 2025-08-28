@@ -879,8 +879,6 @@
     height: 250px;
     object-fit: cover;
     transition: all 0.3s ease;
-    will-change: auto;
-    transform: translateZ(0);
   }
   
   .img-thumb:hover img {
@@ -1027,13 +1025,18 @@
      FLIP CARDS
      ======================================== */
   .flip-card, .project-flip-card {
+    width: 100%;
+    height: 360px;
     perspective: 1000px;
     cursor: pointer;
     position: relative;
-    z-index: 10;
-    transform-style: preserve-3d;
-    contain: paint;
-    isolation: isolate;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    will-change: transform;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
   }
   
   .flip-card {
@@ -1049,16 +1052,19 @@
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.4s ease-in-out;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
-    perspective: 1000px;
-    -webkit-perspective: 1000px;
+    transform: translateZ(0);
+    will-change: transform;
+    -webkit-font-smoothing: antialiased;
+    backface-visibility: visible;
   }
   
   .flip-card.flipped .flip-card-inner,
   .project-flip-card.flipped .project-flip-inner {
-    transform: rotateY(180deg) !important;
+    transform: rotateY(180deg) translateZ(0) !important;
   }
   
   /* Ensure flipped cards always stay visible */
@@ -1090,12 +1096,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: rgba(15, 15, 35, 0.6);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    background: rgba(15, 15, 35, 0.85);
+    border: 1px solid var(--glass-border);
     border-radius: 20px;
     overflow: hidden;
-    transform: rotateY(0deg);
+    transform: rotateY(0deg) translateZ(1px);
+    will-change: transform;
   }
   
   /* Back faces - glass effect with blur */
@@ -1110,12 +1116,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    transform: rotateY(180deg);
+    background: rgba(15, 15, 35, 0.95);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid var(--glass-border);
     border-radius: 20px;
-    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transform: rotateY(180deg) translateZ(1px);
+    will-change: transform;
   }
   
   .flip-card.flipped .flip-card-front,
