@@ -373,10 +373,21 @@
   .hero-inner,
   .hero-inner h1,
   .hero-inner .sub-text,
-  .hero-inner .hi-btn {
+  .hero-inner .hi-btn,
+  .wow,
+  .fadeInUp,
+  .fadeInUpBig,
+  .fadeInLeft,
+  .fadeInRight,
+  .fadeInRightBig,
+  .fadeInDown {
     opacity: 1 !important;
-    transform: translateY(0) !important;
+    transform: translateY(0) translateX(0) !important;
     visibility: visible !important;
+    animation: none !important;
+    -webkit-animation: none !important;
+    animation-delay: 0s !important;
+    -webkit-animation-delay: 0s !important;
   }
   
   /* Keep the visible class for compatibility */

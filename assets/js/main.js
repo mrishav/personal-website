@@ -111,10 +111,16 @@ function init() {
       }
     }
   }, 2000);
+  
+  // Make all elements visible immediately
+  document.querySelectorAll('.wow').forEach(el => {
+    el.style.visibility = 'visible';
+    el.style.opacity = '1';
+  });
 }
 
-   // WOW active
-	new WOW().init();
+   // WOW disabled - no animations
+	// new WOW().init();
 
 
   //========= glightbox
@@ -235,11 +241,16 @@ document.addEventListener('DOMContentLoaded', function() {
   // Animations disabled - make all elements visible immediately
   const elementsToShow = document.querySelectorAll(
     '.sec-t, .abt-det, .project-text, .card-single, ' +
-    '.img-profile, .project-card, .flip-card, .project-flip-card, .hero-inner'
+    '.img-profile, .project-card, .flip-card, .project-flip-card, .hero-inner, ' +
+    '.wow, .fadeInUp, .fadeInUpBig, .fadeInLeft, .fadeInRight, .fadeInRightBig'
   );
   
   elementsToShow.forEach(el => {
     el.classList.add('visible');
+    el.style.opacity = '1';
+    el.style.visibility = 'visible';
+    el.style.transform = 'none';
+    el.style.animation = 'none';
   });
   
   // Add intro-active class management

@@ -8,11 +8,11 @@
 // GLOBAL VARIABLES & INITIALIZATION
 // ========================================
 
-// Hide WOW.js elements initially to prevent flash
-const wowElements = document.getElementsByClassName('wow');
-for (let i = 0; i < wowElements.length; i++) {
-  wowElements[i].style.visibility = 'hidden';
-}
+// WOW.js disabled - all elements visible by default
+// const wowElements = document.getElementsByClassName('wow');
+// for (let i = 0; i < wowElements.length; i++) {
+//   wowElements[i].style.visibility = 'hidden';
+// }
 
 // ========================================
 // CINEMATIC INTRO SYSTEM
