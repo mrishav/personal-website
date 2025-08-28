@@ -161,12 +161,19 @@ function flipCard(cardId) {
   // Toggle flipped state
   card.classList.toggle('flipped');
   
-  // Ensure visibility is maintained
+  // Ensure visibility is maintained and override any animations
   if (card.classList.contains('flipped')) {
     card.classList.add('visible');
     card.style.opacity = '1';
     card.style.visibility = 'visible';
-    card.style.transform = 'none';
+    card.style.animation = 'none';
+    card.style.webkitAnimation = 'none';
+    card.style.transform = 'translateY(0)';
+    
+    // Add scroll protection
+    card.setAttribute('data-flipped', 'true');
+  } else {
+    card.removeAttribute('data-flipped');
   }
 
   // Adjust height dynamically based on the content
@@ -201,6 +208,21 @@ window.addEventListener('resize', setInitialCardHeights);
 
 // Make function globally available
 window.flipCard = flipCard;
+
+// Protect flipped cards from scroll animations
+function protectFlippedCards() {
+  const flippedCards = document.querySelectorAll('[data-flipped="true"]');
+  flippedCards.forEach(card => {
+    card.style.opacity = '1';
+    card.style.visibility = 'visible';
+    card.style.animation = 'none';
+    card.style.webkitAnimation = 'none';
+    card.style.transform = 'translateY(0)';
+  });
+}
+
+// Add scroll protection
+window.addEventListener('scroll', protectFlippedCards, { passive: true });
 
 // Fix mobile tab functionality
 function initMobileTabs() {
