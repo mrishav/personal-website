@@ -1897,3 +1897,32 @@ body:not(.intro-active) .main-content {
   isolation: isolate;
 }
 
+/* ========================================
+   MORE PROJECTS CARDS - MATCHING DARKNESS
+   ======================================== */
+
+/* Override the lighter glass effect for flip cards in More Projects section */
+.flip-card .card-single {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Apply the same semi-opaque background as project flip cards */
+.flip-card-front,
+.flip-card-back {
+  background: rgba(15, 15, 35, 0.6) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Ensure the pseudo-element blur is removed for consistency */
+.flip-card .card-single::before {
+  display: none !important;
+}
+
+/* Keep the border styling consistent */
+.flip-card .card-single {
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+}
