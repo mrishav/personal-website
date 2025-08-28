@@ -158,36 +158,38 @@ function flipCard(cardId) {
   const card = cardInner.closest('.flip-card, .project-flip-card');
   if (!card) return;
 
-  // Toggle flipped state
+  const animationContainer = card.closest('.wow');
+
   card.classList.toggle('flipped');
-  
-  // Ensure visibility is maintained and override any animations
+
   if (card.classList.contains('flipped')) {
-    card.classList.add('visible');
-    card.style.opacity = '1';
-    card.style.visibility = 'visible';
-    card.style.animation = 'none';
-    card.style.webkitAnimation = 'none';
-    card.style.transform = 'translateY(0)';
-    
-    // Add scroll protection
     card.setAttribute('data-flipped', 'true');
+
+    if (animationContainer) {
+      animationContainer.classList.remove('wow', 'fadeInUp', 'fadeInLeft', 'fadeInRight', 'fadeInUpBig');
+      animationContainer.style.animation = 'none';
+      animationContainer.style.visibility = 'visible';
+      animationContainer.style.opacity = '1';
+    }
+    card.style.animation = 'none';
+    card.style.visibility = 'visible';
+    card.style.opacity = '1';
+
   } else {
     card.removeAttribute('data-flipped');
+    // Re-add 'wow' class so it can animate again if scrolled into view
+    if (animationContainer) {
+      animationContainer.classList.add('wow');
+    }
   }
 
-  // Adjust height dynamically based on the content
   setTimeout(() => {
     if (card.classList.contains('flipped')) {
       const back = card.querySelector('.project-flip-back, .flip-card-back');
-      if (back) {
-        card.style.height = back.scrollHeight + 'px';
-      }
+      if (back) card.style.height = back.scrollHeight + 'px';
     } else {
       const front = card.querySelector('.project-flip-front, .flip-card-front');
-      if (front) {
-        card.style.height = front.scrollHeight + 'px';
-      }
+      if (front) card.style.height = front.scrollHeight + 'px';
     }
   }, 50);
 }
@@ -213,11 +215,16 @@ window.flipCard = flipCard;
 function protectFlippedCards() {
   const flippedCards = document.querySelectorAll('[data-flipped="true"]');
   flippedCards.forEach(card => {
+    const animationContainer = card.closest('.wow');
+    if (animationContainer) {
+      animationContainer.classList.remove('wow', 'fadeInUp', 'fadeInLeft', 'fadeInRight', 'fadeInUpBig');
+      animationContainer.style.animationName = 'none';
+      animationContainer.style.visibility = 'visible';
+      animationContainer.style.opacity = '1';
+    }
     card.style.opacity = '1';
     card.style.visibility = 'visible';
     card.style.animation = 'none';
-    card.style.webkitAnimation = 'none';
-    card.style.transform = 'translateY(0)';
   });
 }
 

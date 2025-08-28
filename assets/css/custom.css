@@ -1074,6 +1074,17 @@
     animation: none !important;
     -webkit-animation: none !important;
   }
+
+  /* Aggressive override for the parent animation container of a flipped card */
+  .wow:has(.flipped) {
+    animation-name: none !important;
+    -webkit-animation-name: none !important;
+    animation-play-state: paused !important;
+    -webkit-animation-play-state: paused !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
   
   /* Front faces - solid semi-transparent */
   .flip-card-front,
