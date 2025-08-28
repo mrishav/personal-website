@@ -1338,8 +1338,117 @@ body, .side-nav, .logo-nav, .about, .experience, .projects,
   text-align: left;
 }
 
+/* Flip Indicators for Project Cards */
+.flip-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  background: var(--gradient-primary);
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  opacity: 1;
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+  animation: flipIntro 4s ease-out forwards;
+}
+
+.flip-indicator i {
+  animation: flipInitialSpin 1s ease-out;
+}
+
+.project-flip-card:hover .flip-indicator,
+.flip-card:hover .flip-indicator {
+  opacity: 1 !important;
+  transform: scale(1.2) !important;
+  background: var(--gradient-primary) !important;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.6) !important;
+}
+
+.project-flip-card:hover .flip-indicator i,
+.flip-card:hover .flip-indicator i {
+  animation: flipSpin 0.6s ease-in-out;
+}
+
+/* Initial intro animation - starts prominent then fades */
+@keyframes flipIntro {
+  0% {
+    opacity: 1;
+    transform: scale(1.2);
+    background: var(--gradient-primary);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.6);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.3);
+    background: var(--gradient-primary);
+    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.8);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.2);
+    background: var(--gradient-primary);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.6);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.8) 0%, rgba(124, 58, 237, 0.8) 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Initial spin animation */
+@keyframes flipInitialSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Spin animation on hover */
+@keyframes flipSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+/* Ensure parent containers have relative positioning */
+.project-flip-card,
+.flip-card {
+  position: relative;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
+  .flip-indicator {
+    width: 24px;
+    height: 24px;
+    font-size: 10px;
+    top: 8px;
+    right: 8px;
+  }
+  
+  .project-award-container {
+    display: none;
+  }
+  
   .logo-text {
     font-size: 3rem;
   }
