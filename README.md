@@ -1,6 +1,6 @@
-Personal Portfolio
+# Personal Portfolio
 
-A modern portfolio website showcasing my work, experience, and projects.
+The source code for my personal website showcasing my work, experience, and projects.
 
 **Live Site:** [rishavmitra.com](https://rishavmitra.com)
 
