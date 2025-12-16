@@ -2,13 +2,13 @@
 
 The source code for my personal website showcasing my work, experience, and projects.
 
-**Live Site:** [rishavmitra.com](https://rishavmitra.com)
+**Live Site:** https://rishavmitra.com
 
 ## Tech Stack
 
 **Frontend:** HTML5, CSS3, Vanilla JavaScript
 
-**Libraries:**
+**Libraries**
 - Bootstrap 5.2.3
 - Font Awesome 4.7.0
 - GLightbox
@@ -32,4 +32,5 @@ personal-website/
 Static site compatible with GitHub Pages, Netlify, Vercel, or any web server.
 
 ## Author
-**Rishav Mitra**
+
+Rishav Mitra
