@@ -76,10 +76,10 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   
   <!-- Favicons with Multiple Sizes for Better SEO -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%232563eb;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%237c3aed;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='50' fill='url(%23grad)'/%3E%3C/svg%3E">
-  <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%232563eb;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%237c3aed;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='50' fill='url(%23grad)'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23539bf5'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23539bf5'/%3E%3C/svg%3E">
   <link rel="manifest" href="/site.webmanifest" />
-  <meta name="theme-color" content="#2563eb" />
+  <meta name="theme-color" content="#539bf5" />
   
   <!-- Preconnect to External Domains for Faster Loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -87,15 +87,13 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="dns-prefetch" href="https://maxcdn.bootstrapcdn.com">
   
-  <!-- Stylesheets with Preload for Critical CSS -->
-  <link rel="preload" href="assets/css/custom.css" as="style">
+  <!-- Stylesheets -->
+  <link rel="preload" href="assets/css/output.css" as="style">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/css/animate.css" />
   <link rel="stylesheet" href="assets/css/glightbox.min.css" />
-  <link rel="stylesheet" href="assets/css/main.css?v=90" />
-  <link rel="stylesheet" href="assets/css/custom.css" />
+  <link rel="stylesheet" href="assets/css/output.css" />
 </head>
 
 <body>
@@ -125,33 +123,29 @@
 
 
   <header class="side-nav">
-    <div class="container">
-      <div class="nav-custom">
-        <ul class="main-bav">
-          <li> <a href="javascript:window.scrollTo({top: 0, behavior: 'smooth'})"> /home </a> </li>
-          <li> <a href="#about"> /about </a> </li>
-          <li> <a href="#experience"> /experience </a> </li>
-          <li> <a href="#projects"> /projects </a> </li>
-        </ul>
-      </div><!-- /.nav-custom -->
-      <ul class="social-nav">
-        <li>
-          <a href="mailto:rmitra@umich.edu">
-            <i class="fa fa-envelope" aria-hidden="true"></i>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/rishavmitra/" target="_blank">
-            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/mrishav" target="_blank">
-            <i class="fa fa-github" style="font-size: 20px;" aria-hidden="true"></i>
-          </a>
-        </li>
-      </ul>
-    </div><!-- /.container -->
+    <ul class="main-bav">
+      <li> <a href="javascript:window.scrollTo({top: 0, behavior: 'smooth'})" data-spy="hero"> /home </a> </li>
+      <li> <a href="#about" data-spy="about"> /about </a> </li>
+      <li> <a href="#experience" data-spy="experience"> /experience </a> </li>
+      <li> <a href="#projects" data-spy="projects"> /projects </a> </li>
+    </ul>
+    <ul class="social-nav">
+      <li>
+        <a href="mailto:rmitra@umich.edu">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/rishavmitra/" target="_blank">
+          <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/mrishav" target="_blank">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
   </header><!-- /.side-nav -->
 
   <section class="hero-area">
@@ -183,7 +177,7 @@
         <span class="line"></span>
       </div><!-- /.sec-t -->
       <div class="row gy-lg-0 gy-4 align-items-center">
-        <div class="col-lg-6">
+        <div class="col-lg-8">
           <div class="abt-text wow fadeInUp" data-wow-delay=".4s">
             <p>
               I'm a Computer Science graduate from the <strong>University of Michigan</strong>, now working full-time as a full-stack developer on the <strong>AI Control Tower</strong> team at <strong>ServiceNow</strong>.
@@ -192,11 +186,11 @@
 
           </div><!-- /.abt-text -->
         </div><!-- /.col-lg-5 -->
-        <div class="col-lg-3">
+        <div class="col-lg-4">
           <div class="wow fadeInRightBig" data-wow-delay=".5s">
             <img src="assets/img/about/profile.png" class="img-profile" alt="Rishav Mitra profile photo" loading="lazy">
           </div>
-        </div><!-- /.col-lg-3 -->
+        </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
     </div><!-- /.container -->
   </section><!-- /.about -->
@@ -205,7 +199,7 @@
     <div class="container">
       <div class="sec-t wow fadeInLeft" data-wow-delay=".4s">
         <h2> / experience </h2>
-        <h3 class="company-name">ServiceNow</h3>
+        <h3 class="company-name">Where I've Worked</h3>
         <span class="line"></span>
       </div><!-- /.sec-t -->
 
@@ -217,24 +211,29 @@
             <div class="nav custom-tabs  flex-column nav-pills" id="v-pills-tab" role="tablist"
               aria-orientation="vertical">
 
-              <button class="nav-link active red" id="v-pills-red-tab" data-bs-toggle="pill"
+              <button class="nav-link active red" id="v-pills-zalor-tab" data-bs-toggle="pill"
+                data-bs-target="#v-pills-zalor" type="button" aria-controls="v-pills-zalor">
+                Zalor AI
+              </button>
+
+              <button class="nav-link black" id="v-pills-red-tab" data-bs-toggle="pill"
                 data-bs-target="#v-pills-red" type="button" aria-controls="v-pills-red">
-                2024 - Present
+                ServiceNow
               </button>
 
-              <button class="nav-link  black" id="v-pills-black-tab" data-bs-toggle="pill"
+              <button class="nav-link ferozi" id="v-pills-black-tab" data-bs-toggle="pill"
                 data-bs-target="#v-pills-black" type="button" aria-controls="v-pills-black">
-                2023
+                SWE Intern '23
               </button>
 
-              <button class="nav-link ferozi" id="v-pills-ferozi-tab" data-bs-toggle="pill"
+              <button class="nav-link brown" id="v-pills-ferozi-tab" data-bs-toggle="pill"
                 data-bs-target="#v-pills-ferozi" type="button" aria-controls="v-pills-ferozi">
-                2022
+                SWE Intern '22
               </button>
 
-              <button class="nav-link brown" id="v-pills-brown-tab" data-bs-toggle="pill"
+              <button class="nav-link" id="v-pills-brown-tab" data-bs-toggle="pill"
                 data-bs-target="#v-pills-brown" type="button" aria-controls="v-pills-brown">
-                2021
+                QE Intern '21
               </button>
 
             </div>
@@ -246,82 +245,65 @@
 
           <div class="tab-content" id="v-pills-tabContent">
 
-            <div class="tab-pane fade show active" id="v-pills-red" role="tabpanel" aria-labelledby="v-pills-red-tab"
+            <!-- Zalor AI -->
+            <div class="tab-pane fade show active" id="v-pills-zalor" role="tabpanel" aria-labelledby="v-pills-zalor-tab"
               tabindex="0">
               <div class="abt-det wow fadeInUp">
                 <div class="abt-t">
-                  <h5>Software Engineer</h5>
-                  <p class="experience-subtitle">ServiceNow</p>
-                  <span>July 2024 - Present</span>
-                </div><!-- /.abt-t -->
-
+                  <h5>Co-founder &amp; CEO</h5>
+                  <p class="experience-subtitle">Zalor AI</p>
+                  <span>Sep 2025 – Present</span>
+                </div>
                 <ul class="abt-list">
-                  <li>
-                    <i> ▹ </i>
-                    <span>
-                      Develop key features for Mobile App Builder and Mobile Card Builder, focusing on theming, accessibility, and platform integration across 800+ customer instances
-                    </span>
-                  </li>
-                  <li>
-                    <i> ▹ </i>
-                    <span>
-                      Own end-to-end development of complex features including custom sorting behavior, shared component architecture, and API design while collaborating with product, quality engineering, and platform teams
-                    </span>
-                  </li>
-                  <li>
-                    <i> ▹ </i>
-                    <span>
-                      Participate in case task rotations and partner with internal teams to triage complex defects, ensuring consistent platform behavior across products
-                    </span>
-                  </li>
-                  <li>
-                    <i> ▹ </i>
-                    <span>
-                      Architect scalable solutions supporting 60% year-over-year adoption growth with over 1,400 monthly active users
-                    </span>
-                  </li>
+                  <li><i> ▹ </i><span>Built an AI agent testing platform that uses AI agents to simulate real user personas, detect regressions, and ensure reliability before deployment</span></li>
+                  <li><i> ▹ </i><span>Secured early paying customers, validating pre-deployment reliability as a critical pain point in AI agent adoption</span></li>
+                  <li><i> ▹ </i><span>Conducted 45+ customer interviews across startups and enterprise teams to define product strategy and positioning against well-funded competitors</span></li>
+                  <li><i> ▹ </i><span>Shipped an MVP in 3 weeks, going from concept to customer demo</span></li>
                 </ul>
-              </div><!-- /.abt-det -->
+              </div>
             </div>
             <!--.tab-pane-->
 
+            <!-- ServiceNow Full-time -->
+            <div class="tab-pane fade" id="v-pills-red" role="tabpanel" aria-labelledby="v-pills-red-tab"
+              tabindex="0">
+              <div class="abt-det wow fadeInUp">
+                <div class="abt-t">
+                  <h5>Software Engineer II — AI Control Tower <span style="font-weight:400; font-size:0.85em;">(Promoted Feb 2026)</span></h5>
+                  <p class="experience-subtitle">ServiceNow</p>
+                  <span>Aug 2024 – Present</span>
+                </div>
+                <ul class="abt-list">
+                  <li><i> ▹ </i><span>Led research, product strategy, and development of LangGraph and CrewAI connectors, presenting to leadership and managing a team of senior engineers to ship to production</span></li>
+                  <li><i> ▹ </i><span>Built AI agent observability infrastructure across AWS AgentCore, GCP Vertex AI, and Azure AI Foundry, driving 4x growth in quarterly deal volume for AI Control Tower in 2025</span></li>
+                  <li><i> ▹ </i><span>Identified customer deployment patterns, drove a shift to cloud-based AI agent deployments, and led demos for VP-level leadership and enterprise customers</span></li>
+                  <li><i> ▹ </i><span>Built and launched the AI-Native UI for the Trace Collector; presented a product demo to 500 employees ahead of release</span></li>
+                </ul>
+                <div class="abt-t" style="margin-top: 1.5rem;">
+                  <h5>Software Engineer — Mobile Platform</h5>
+                  <span>Aug 2024 – Aug 2025</span>
+                </div>
+                <ul class="abt-list">
+                  <li><i> ▹ </i><span>Owned end-to-end feature development for Mobile App Builder across 800+ customer instances, defining feature requirements and building theming, accessibility, and shared component architecture</span></li>
+                  <li><i> ▹ </i><span>Delivered platform improvements supporting 60% year-over-year adoption growth and 1,400+ monthly active users</span></li>
+                </ul>
+              </div>
+            </div>
+            <!--.tab-pane-->
+
+            <!-- SWE Intern 2023 -->
             <div class="tab-pane fade" id="v-pills-black" role="tabpanel" aria-labelledby="v-pills-black-tab"
               tabindex="0">
-
               <div class="abt-det animated fadeInUp" data-wow-delay=".5s">
                 <div class="abt-t">
                   <h5>Software Engineer Intern</h5>
-                  <p> May 2023 – August 2023 </p>
-                </div><!-- /.abt-t -->
-
+                  <p class="experience-subtitle">ServiceNow</p>
+                  <span>May 2023 – Aug 2023</span>
+                </div>
                 <ul class="abt-list">
-                  <li>
-                    <i> ▹ </i>
-                    <span>
-                      Implemented 8 features for Mobile App Builder including intelligent theming, UX framework integration, and automated platform APIs
-                    </span>
-                  </li>
-                  <li>
-                    <i> ▹ </i>
-                    <span>
-                      Contributed to component architecture discussions with focus on reusability and maintainability across mobile platform
-                    </span>
-                  </li>
-                  <li>
-                    <i> ▹ </i>
-                    <span>
-                      Won 1st place out of 500+ participants at ServiceNow Engineering Hackathon for creating an AI-powered background scripts code editor that was later integrated into production platform
-                    </span>
-                  </li>
-                  <li>
-                    <i> ▹ </i>
-                    <span>
-                      Created comprehensive onboarding documentation, SharePoint curriculum, and video walkthrough tutorials used by 100+ new ServiceNow engineers, contributing to 40% improvement in onboarding efficiency
-                    </span>
-                  </li>
+                  <li><i> ▹ </i><span>Won 1st place out of 500+ participants at ServiceNow's Engineering Hackathon; built an AI-powered code editor shipped to production and used by thousands of ServiceNow customers daily</span></li>
                 </ul>
-              </div><!-- /.abt-det -->
-
+              </div>
             </div>
             <!--.tab-pane-->
 
@@ -423,15 +405,8 @@
               </div>
             </div>
             
-            <!-- Project Info - Flip Card -->
-            <div class="project-flip-card" onclick="flipCard('scribe-info')">
-              <div class="flip-indicator">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
-              </div>
-              <div class="project-flip-inner" id="scribe-info-card">
-                <!-- Front Side -->
-                <div class="project-flip-front">
-                  <div class="project-info-section">
+            <!-- Project Info -->
+            <div class="project-info-section">
               <div class="project-header">
                 <div style="display: flex; align-items: flex-start; justify-content: space-between;">
                   <div>
@@ -444,35 +419,22 @@
                   </div>
                 </div>
               </div>
-              
-              <!-- Summary -->
-              <div class="project-summary">
-                <p>Revolutionary code editor update for ServiceNow background scripts</p>
-              </div>
-                  </div>
-                </div>
-                <!-- Back Side -->
-                <div class="project-flip-back">
-                  <div class="project-info-section">
-                    <div class="project-details">
-                      <p class="description-desktop">
-                        Scribe transformed the longstanding ServiceNow platform's background script
-                        code editor with an innovative update after 18 years! By integrating a custom
-                        version of the Monaco code editor, Scribe introduced a host of new
-                        functionalities, including real-time error detection, automatic formatting, code
-                        caching, and intelligent auto-completion. Scribe ranked 1st place in the
-                        company-wide engineering hackathon, endorsed by ServiceNow executives.
-                      </p>
-                      <p class="description-mobile">
-                        Scribe rebuilt ServiceNow’s background script editor after 18 years by integrating the Monaco code editor, adding real-time error detection, formatting, caching, and intelligent autocompletion. Ranked 1st place in the company-wide engineering hackathon.
-                      </p>
-                      <div class="project-tags">
-                        <span>Conceptualized Idea</span>
-                        <span>Developed App</span>
-                        <span>Created Video</span>
-                      </div>
-                    </div>
-                  </div>
+              <div class="project-details">
+                <p class="description-desktop">
+                  Scribe transformed the longstanding ServiceNow platform’s background script
+                  code editor with an innovative update after 18 years! By integrating a custom
+                  version of the Monaco code editor, Scribe introduced a host of new
+                  functionalities, including real-time error detection, automatic formatting, code
+                  caching, and intelligent auto-completion. Scribe ranked 1st place in the
+                  company-wide engineering hackathon, endorsed by ServiceNow executives.
+                </p>
+                <p class="description-mobile">
+                  Scribe rebuilt ServiceNow’s background script editor after 18 years by integrating the Monaco code editor, adding real-time error detection, formatting, caching, and intelligent autocompletion. Ranked 1st place in the company-wide engineering hackathon.
+                </p>
+                <div class="project-tags">
+                  <span>Conceptualized Idea</span>
+                  <span>Developed App</span>
+                  <span>Created Video</span>
                 </div>
               </div>
             </div>
@@ -499,47 +461,27 @@
               </div>
             </div>
             
-            <!-- Project Info - Flip Card -->
-            <div class="project-flip-card" onclick="flipCard('fluid-info')">
-              <div class="flip-indicator">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
+            <!-- Project Info -->
+            <div class="project-info-section">
+              <div class="project-header">
+                <h4>Fluid</h4>
+                <p class="project-subtitle">ServiceNow Hackathon Project</p>
               </div>
-              <div class="project-flip-inner" id="fluid-info-card">
-                <!-- Front Side -->
-                <div class="project-flip-front">
-                  <div class="project-info-section">
-                    <div class="project-header">
-                      <h4>Fluid</h4>
-                      <p class="project-subtitle">ServiceNow Hackathon Project</p>
-                    </div>
-                    
-                    <!-- Summary -->
-                    <div class="project-summary">
-                      <p>Mobile app for developers to monitor stories, defects, and pull requests</p>
-                    </div>
-                  </div>
-                </div>
-                <!-- Back Side -->
-                <div class="project-flip-back">
-                  <div class="project-info-section">
-                    <div class="project-details">
-                      <p class="description-desktop">
-                        Fluid is a mobile application designed to streamline developer workflows by
-                        providing real-time access to critical project information. The app enables
-                        developers to monitor user stories, track defects, and review pull requests
-                        directly from their mobile devices, ensuring they stay connected to their
-                        projects even when away from their workstations.
-                      </p>
-                      <p class="description-mobile">
-                        Fluid is a mobile app that keeps developers connected by enabling real-time tracking of stories, defects, and pull requests on the go.
-                      </p>
-                      <div class="project-tags">
-                        <span>Mobile Development</span>
-                        <span>API Integration</span>
-                        <span>Real-time Updates</span>
-                      </div>
-                    </div>
-                  </div>
+              <div class="project-details">
+                <p class="description-desktop">
+                  Fluid is a mobile application designed to streamline developer workflows by
+                  providing real-time access to critical project information. The app enables
+                  developers to monitor user stories, track defects, and review pull requests
+                  directly from their mobile devices, ensuring they stay connected to their
+                  projects even when away from their workstations.
+                </p>
+                <p class="description-mobile">
+                  Fluid is a mobile app that keeps developers connected by enabling real-time tracking of stories, defects, and pull requests on the go.
+                </p>
+                <div class="project-tags">
+                  <span>Mobile Development</span>
+                  <span>API Integration</span>
+                  <span>Real-time Updates</span>
                 </div>
               </div>
             </div>
@@ -566,47 +508,27 @@
               </div>
             </div>
             
-            <!-- Project Info - Flip Card -->
-            <div class="project-flip-card" onclick="flipCard('stub-info')">
-              <div class="flip-indicator">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
+            <!-- Project Info -->
+            <div class="project-info-section">
+              <div class="project-header">
+                <h4>Stub</h4>
+                <p class="project-subtitle">ServiceNow Hackathon Project</p>
               </div>
-              <div class="project-flip-inner" id="stub-info-card">
-                <!-- Front Side -->
-                <div class="project-flip-front">
-                  <div class="project-info-section">
-                    <div class="project-header">
-                      <h4>Stub</h4>
-                      <p class="project-subtitle">ServiceNow Hackathon Project</p>
-                    </div>
-                    
-                    <!-- Summary -->
-                    <div class="project-summary">
-                      <p>Integrated task management bot for Microsoft Teams</p>
-                    </div>
-                  </div>
-                </div>
-                <!-- Back Side -->
-                <div class="project-flip-back">
-                  <div class="project-info-section">
-                    <div class="project-details">
-                      <p class="description-desktop">
-                        Stub is an innovative Microsoft Teams bot that revolutionizes task management
-                        within collaborative workspaces. By seamlessly integrating with Teams channels,
-                        Stub enables users to create, assign, and track tasks directly within their
-                        communication platform, eliminating the need to switch between multiple
-                        applications and significantly improving team productivity.
-                      </p>
-                      <p class="description-mobile">
-                        Stub is a Microsoft Teams bot that streamlines task creation, assignment, and tracking directly within team chats.
-                      </p>
-                      <div class="project-tags">
-                        <span>Bot Development</span>
-                        <span>Microsoft Teams</span>
-                        <span>Task Management</span>
-                      </div>
-                    </div>
-                  </div>
+              <div class="project-details">
+                <p class="description-desktop">
+                  Stub is an innovative Microsoft Teams bot that revolutionizes task management
+                  within collaborative workspaces. By seamlessly integrating with Teams channels,
+                  Stub enables users to create, assign, and track tasks directly within their
+                  communication platform, eliminating the need to switch between multiple
+                  applications and significantly improving team productivity.
+                </p>
+                <p class="description-mobile">
+                  Stub is a Microsoft Teams bot that streamlines task creation, assignment, and tracking directly within team chats.
+                </p>
+                <div class="project-tags">
+                  <span>Bot Development</span>
+                  <span>Microsoft Teams</span>
+                  <span>Task Management</span>
                 </div>
               </div>
             </div>
@@ -633,47 +555,27 @@
               </div>
             </div>
             
-            <!-- Project Info - Flip Card -->
-            <div class="project-flip-card" onclick="flipCard('motivatekids-info')">
-              <div class="flip-indicator">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
+            <!-- Project Info -->
+            <div class="project-info-section">
+              <div class="project-header">
+                <h4>MotivateKids</h4>
+                <p class="project-subtitle">Founder of Nonprofit Organization</p>
               </div>
-              <div class="project-flip-inner" id="motivatekids-info-card">
-                <!-- Front Side -->
-                <div class="project-flip-front">
-                  <div class="project-info-section">
-                    <div class="project-header">
-                      <h4>MotivateKids</h4>
-                      <p class="project-subtitle">Founder of Nonprofit Organization</p>
-                    </div>
-                    
-                    <!-- Summary -->
-                    <div class="project-summary">
-                      <p>Nonprofit dedicated to making learning fun for underprivileged students</p>
-                    </div>
-                  </div>
-                </div>
-                <!-- Back Side -->
-                <div class="project-flip-back">
-                  <div class="project-info-section">
-                    <div class="project-details">
-                      <p class="description-desktop">
-                        MotivateKids is a nonprofit organization I founded with the mission of making
-                        education engaging and accessible for underprivileged students. Through
-                        innovative teaching methods, interactive workshops, and mentorship programs,
-                        we work to bridge the educational gap and inspire a love for learning in
-                        children who might otherwise lack educational opportunities.
-                      </p>
-                      <p class="description-mobile">
-                        MotivateKids is a nonprofit I founded to make education engaging and accessible for underprivileged students through interactive teaching and mentorship.
-                      </p>
-                      <div class="project-tags">
-                        <span>Nonprofit Leadership</span>
-                        <span>Education</span>
-                        <span>Community Impact</span>
-                      </div>
-                    </div>
-                  </div>
+              <div class="project-details">
+                <p class="description-desktop">
+                  MotivateKids is a nonprofit organization I founded with the mission of making
+                  education engaging and accessible for underprivileged students. Through
+                  innovative teaching methods, interactive workshops, and mentorship programs,
+                  we work to bridge the educational gap and inspire a love for learning in
+                  children who might otherwise lack educational opportunities.
+                </p>
+                <p class="description-mobile">
+                  MotivateKids is a nonprofit I founded to make education engaging and accessible for underprivileged students through interactive teaching and mentorship.
+                </p>
+                <div class="project-tags">
+                  <span>Nonprofit Leadership</span>
+                  <span>Education</span>
+                  <span>Community Impact</span>
                 </div>
               </div>
             </div>
@@ -691,97 +593,53 @@
         </div><!-- /.row -->
         <div class="row  gy-4">
           <div class="col-lg-5 col-md-5">
-            <div class="flip-card" onclick="flipCard('logmanager')">
-              <div class="flip-indicator">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
-              </div>
-              <div class="flip-card-inner" id="logmanager-card">
-                <!-- Front Side -->
-                <div class="flip-card-front">
-                  <div class="card-single">
-                    <h3> Log Manager </h3>
-                    <p>Advanced log file management tool with rapid search capabilities</p>
-                  </div>
-                </div>
-                <!-- Back Side -->
-                <div class="flip-card-back">
-                  <div class="card-single">
-                    <h3> Log Manager </h3>
-                    <p>
-                      <i> ▹ </i>
-                      <span>
-                        Developed a log management tool with advanced filters for rapid search and analysis of large log files by timestamp, category, and keywords.
-                      </span>
-                    </p>
-                    <p class="mt-2">
-                      <i> ▹ </i>
-                      <span>
-                        Streamlined analysis by organizing key logs into a dedicated excerpt list for quick reference, improving productivity in troubleshooting and development.
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div><!-- /.flip-card -->
-          </div><!-- /.col-lg-4 -->
+            <div class="card-single">
+              <h3> Log Manager </h3>
+              <p>
+                <i> ▹ </i>
+                <span>
+                  Developed a log management tool with advanced filters for rapid search and analysis of large log files by timestamp, category, and keywords.
+                </span>
+              </p>
+              <p class="mt-2">
+                <i> ▹ </i>
+                <span>
+                  Streamlined analysis by organizing key logs into a dedicated excerpt list for quick reference, improving productivity in troubleshooting and development.
+                </span>
+              </p>
+            </div>
+          </div>
           <div class="col-lg-5 col-md-5">
-            <div class="flip-card" onclick="flipCard('euchre')">
-              <div class="flip-indicator">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
-              </div>
-              <div class="flip-card-inner" id="euchre-card">
-                <!-- Front Side -->
-                <div class="flip-card-front">
-                  <div class="card-single">
-                    <h3> Euchre </h3>
-                    <p>C++ trick-taking card game with strategic AI bot</p>
-                  </div>
-                </div>
-                <!-- Back Side -->
-                <div class="flip-card-back">
-                  <div class="card-single">
-                    <h3> Euchre </h3>
-                    <p>
-                      <i> ▹ </i>
-                      <span>
-                        Programmed a trick-taking card game in C++ that allows teams to accumulate
-                        points by winning tricks.
-                      </span>
-                    </p>
-                    <p class="mt-2">
-                      <i> ▹ </i>
-                      <span>
-                        Developed an AI bot that exhibits strategic decision-making, responding to both
-                        human input and dynamic game conditions, creating a challenging and engaging
-                        experience for players
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div><!-- /.flip-card -->
-          </div><!-- /.col-lg-4 -->
+            <div class="card-single">
+              <h3> Euchre </h3>
+              <p>
+                <i> ▹ </i>
+                <span>
+                  Programmed a trick-taking card game in C++ that allows teams to accumulate
+                  points by winning tricks.
+                </span>
+              </p>
+              <p class="mt-2">
+                <i> ▹ </i>
+                <span>
+                  Developed an AI bot that exhibits strategic decision-making, responding to both
+                  human input and dynamic game conditions, creating a challenging and engaging
+                  experience for players.
+                </span>
+              </p>
+            </div>
+          </div>
         </div><!-- /.row -->
       </div><!-- /.cards-sec -->
 
-      <div class="text-center mt-5 pt-4 copyright-section" style="background: rgba(15, 15, 35, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: var(--shadow-lg); border-radius: 12px; padding: 1.5rem;">
-        <!-- Mobile social links -->
-        <div class="mobile-social-links d-block d-md-none mb-3">
-          <a href="mailto:rmitra@umich.edu" class="me-3" style="color: var(--text-secondary); font-size: 1.25rem;">
-            <i class="fa fa-envelope" aria-hidden="true"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/rishavmitra/" target="_blank" class="me-3" style="color: var(--text-secondary); font-size: 1.25rem;">
-            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
-          </a>
-          <a href="https://github.com/mrishav" target="_blank" style="color: var(--text-secondary); font-size: 1.25rem;">
-            <i class="fa fa-github" aria-hidden="true"></i>
-          </a>
-        </div>
-        <p style="color: var(--text-secondary); font-size: 0.875rem;">© 2025 Rishav Mitra - All Rights Reserved</p>
-      </div>
     </div><!-- /.container -->
-
   </section><!-- /.projects -->
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-copy">© 2025 Rishav Mitra</span>
+    </div>
+  </footer>
 
   <!-- Modal -->
   <div class="modal fade custom-modal" id="Modal-1" tabindex="-1" aria-hidden="true">

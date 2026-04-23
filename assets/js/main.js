@@ -232,6 +232,32 @@ document.addEventListener('DOMContentLoaded', () => {
 // Make function globally available
 window.flipCard = flipCard;
 
+// Scroll-spy: highlight active nav link based on current section
+(function initScrollSpy() {
+  const sections = ['hero-area', 'about', 'experience', 'projects'].map(id =>
+    document.querySelector(id === 'hero-area' ? '.hero-area' : `#${id}`)
+  ).filter(Boolean);
+  const spyKeys = ['hero', 'about', 'experience', 'projects'];
+
+  function setActive(key) {
+    document.querySelectorAll('.main-bav li a[data-spy]').forEach(a => {
+      a.classList.toggle('active', a.dataset.spy === key);
+    });
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = sections.indexOf(entry.target);
+        if (idx !== -1) setActive(spyKeys[idx]);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => observer.observe(s));
+  setActive('hero');
+}());
+
 // Maintain flipped card z-index on scroll
 function maintainFlippedCardState() {
   document.querySelectorAll('[data-flipped="true"]').forEach(card => {
