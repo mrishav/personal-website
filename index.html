@@ -124,82 +124,51 @@
 
   <header class="side-nav">
     <ul class="main-bav">
-      <li> <a href="javascript:window.scrollTo({top: 0, behavior: 'smooth'})" data-spy="hero"> /home </a> </li>
       <li> <a href="#about" data-spy="about"> /about </a> </li>
       <li> <a href="#experience" data-spy="experience"> /experience </a> </li>
       <li> <a href="#projects" data-spy="projects"> /projects </a> </li>
     </ul>
-    <ul class="social-nav">
-      <li>
-        <a href="mailto:rmitra@umich.edu">
-          <i class="fa fa-envelope" aria-hidden="true"></i>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.linkedin.com/in/rishavmitra/" target="_blank">
-          <i class="fa fa-linkedin-square" aria-hidden="true"></i>
-        </a>
-      </li>
-      <li>
-        <a href="https://github.com/mrishav" target="_blank">
-          <i class="fa fa-github" aria-hidden="true"></i>
-        </a>
-      </li>
-    </ul>
   </header><!-- /.side-nav -->
 
-  <section class="hero-area">
+  <section id="about" class="hero-about">
     <div class="container">
-      <div class="hero-inner">
-
-        <h1>
-          hi,
-          <span class="txt-type" data-wait="3000" data-words='["i'm rishav."]'></span>
-        </h1>
-
-        <p class="sub-text wow fadeInLeft" data-wow-delay=".4s" style="font-family: 'JetBrains Mono', monospace;">
-          <span class="txt-type-subtitle" data-wait="2000" data-words='["I enjoy solving problems for people."]'></span>
-        </p>
-
-        <a class="hi-btn wow fadeInUpBig" data-wow-delay=".5s" href="mailto:rmitra@umich.edu" aria-label="Send email to Rishav Mitra">
-          <i class="fa fa-envelope" aria-hidden="true"></i>
-          <span> say hi! </span>
-        </a>
-
-      </div><!-- /.hero-inner -->
-    </div><!-- /.container -->
-  </section><!-- /.hero-area -->
-
-  <section id="about" class="about">
-    <div class="container">
-      <div class="sec-t wow fadeInLeft" data-wow-delay=".4s">
-        <h2> / about me </h2>
-        <span class="line"></span>
-      </div><!-- /.sec-t -->
-      <div class="row gy-lg-0 gy-4 align-items-center">
-        <div class="col-lg-8">
-          <div class="abt-text wow fadeInUp" data-wow-delay=".4s">
-            <p>
-              I'm a Computer Science graduate from the <strong>University of Michigan</strong>, now working full-time as a full-stack developer on the <strong>AI Control Tower</strong> team at <strong>ServiceNow</strong>.
-              I believe the true purpose of technology is to serve people, and I bring that mindset into my work. At ServiceNow, I am developing AI-powered enhancements to reshape the platform, having worked on both core platform teams like <strong>Glide Services</strong> and application teams such as <strong>Mobile App Builder</strong> and <strong>Field Service Management</strong>.
+      <div class="hero-intro">
+        <div class="hero-intro-main">
+          <div class="hero-intro-text">
+            <h1>I'm Rishav Mitra</h1>
+            <p class="hero-bio">
+              A product&#8209;focused engineer building in the AI agent space.
+              I co&#8209;founded <a href="https://zalor.ai/" target="_blank" style="color: inherit; font-weight: 700;">Zalor</a>, where we use AI agents to test other AI agents.
+              At <a href="https://www.servicenow.com/products/ai-control-tower.html" target="_blank" style="color: inherit; font-weight: 700;">ServiceNow</a>, I build observability for AI agents.
+              I focus on defining problems, setting product direction, and shipping end&#8209;to&#8209;end.
             </p>
-
-          </div><!-- /.abt-text -->
-        </div><!-- /.col-lg-5 -->
-        <div class="col-lg-4">
-          <div class="wow fadeInRightBig" data-wow-delay=".5s">
-            <img src="assets/img/about/profile.png" class="img-profile" alt="Rishav Mitra profile photo" loading="lazy">
+            <div class="hero-card-actions">
+              <a class="hi-btn hi-btn-secondary" href="mailto:rishavmitrasaab@gmail.com" aria-label="Email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span>Email</span>
+              </a>
+              <a class="hi-btn hi-btn-secondary" href="https://www.linkedin.com/in/rishavmitra/" target="_blank" aria-label="LinkedIn">
+                <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                <span>LinkedIn</span>
+              </a>
+              <a class="hi-btn hi-btn-secondary" href="https://github.com/mrishav" target="_blank" aria-label="GitHub">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <span>GitHub</span>
+              </a>
+            </div>
           </div>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
+          <img src="assets/img/about/profile.png" class="img-profile hero-avatar" alt="Rishav Mitra" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
     </div><!-- /.container -->
   </section><!-- /.about -->
 
   <section id="experience" class="experience" style="min-height: 800px;">
     <div class="container">
       <div class="sec-t wow fadeInLeft" data-wow-delay=".4s">
-        <h2> / experience </h2>
-        <h3 class="company-name">Where I've Worked</h3>
+        <h2> experience </h2>
         <span class="line"></span>
       </div><!-- /.sec-t -->
 
@@ -213,7 +182,7 @@
 
               <button class="nav-link active red" id="v-pills-zalor-tab" data-bs-toggle="pill"
                 data-bs-target="#v-pills-zalor" type="button" aria-controls="v-pills-zalor">
-                Zalor AI
+                Zalor
               </button>
 
               <button class="nav-link black" id="v-pills-red-tab" data-bs-toggle="pill"
@@ -221,19 +190,9 @@
                 ServiceNow
               </button>
 
-              <button class="nav-link ferozi" id="v-pills-black-tab" data-bs-toggle="pill"
-                data-bs-target="#v-pills-black" type="button" aria-controls="v-pills-black">
-                SWE Intern '23
-              </button>
-
-              <button class="nav-link brown" id="v-pills-ferozi-tab" data-bs-toggle="pill"
-                data-bs-target="#v-pills-ferozi" type="button" aria-controls="v-pills-ferozi">
-                SWE Intern '22
-              </button>
-
-              <button class="nav-link" id="v-pills-brown-tab" data-bs-toggle="pill"
-                data-bs-target="#v-pills-brown" type="button" aria-controls="v-pills-brown">
-                QE Intern '21
+              <button class="nav-link ferozi" id="v-pills-internships-tab" data-bs-toggle="pill"
+                data-bs-target="#v-pills-internships" type="button" aria-controls="v-pills-internships">
+                Internships
               </button>
 
             </div>
@@ -251,7 +210,7 @@
               <div class="abt-det wow fadeInUp">
                 <div class="abt-t">
                   <h5>Co-founder &amp; CEO</h5>
-                  <p class="experience-subtitle">Zalor AI</p>
+                  <p class="experience-subtitle">Zalor</p>
                   <span>Sep 2025 – Present</span>
                 </div>
                 <ul class="abt-list">
@@ -269,32 +228,31 @@
               tabindex="0">
               <div class="abt-det wow fadeInUp">
                 <div class="abt-t">
-                  <h5>Software Engineer II — AI Control Tower <span style="font-weight:400; font-size:0.85em;">(Promoted Feb 2026)</span></h5>
+                  <h5>Software Engineer II, AI Control Tower</h5>
                   <p class="experience-subtitle">ServiceNow</p>
                   <span>Aug 2024 – Present</span>
                 </div>
                 <ul class="abt-list">
-                  <li><i> ▹ </i><span>Led research, product strategy, and development of LangGraph and CrewAI connectors, presenting to leadership and managing a team of senior engineers to ship to production</span></li>
-                  <li><i> ▹ </i><span>Built AI agent observability infrastructure across AWS AgentCore, GCP Vertex AI, and Azure AI Foundry, driving 4x growth in quarterly deal volume for AI Control Tower in 2025</span></li>
-                  <li><i> ▹ </i><span>Identified customer deployment patterns, drove a shift to cloud-based AI agent deployments, and led demos for VP-level leadership and enterprise customers</span></li>
-                  <li><i> ▹ </i><span>Built and launched the AI-Native UI for the Trace Collector; presented a product demo to 500 employees ahead of release</span></li>
+                  <li><i> ▹ </i><span>Built AI agent observability infrastructure across major cloud platforms</span></li>
+                  <li><i> ▹ </i><span>Led development of integrations for emerging multi-agent frameworks</span></li>
+                  <li><i> ▹ </i><span>Drove product direction and enterprise demos for AI observability systems</span></li>
                 </ul>
                 <div class="abt-t" style="margin-top: 1.5rem;">
-                  <h5>Software Engineer — Mobile Platform</h5>
+                  <h5>Software Engineer, Mobile Platform</h5>
                   <span>Aug 2024 – Aug 2025</span>
                 </div>
                 <ul class="abt-list">
-                  <li><i> ▹ </i><span>Owned end-to-end feature development for Mobile App Builder across 800+ customer instances, defining feature requirements and building theming, accessibility, and shared component architecture</span></li>
-                  <li><i> ▹ </i><span>Delivered platform improvements supporting 60% year-over-year adoption growth and 1,400+ monthly active users</span></li>
+                  <li><i> ▹ </i><span>Built core features for Mobile App Builder used across hundreds of customer instances</span></li>
+                  <li><i> ▹ </i><span>Contributed to platform growth through improvements in usability and architecture</span></li>
                 </ul>
               </div>
             </div>
             <!--.tab-pane-->
 
-            <!-- SWE Intern 2023 -->
-            <div class="tab-pane fade" id="v-pills-black" role="tabpanel" aria-labelledby="v-pills-black-tab"
+            <!-- Internships (combined) -->
+            <div class="tab-pane fade" id="v-pills-internships" role="tabpanel" aria-labelledby="v-pills-internships-tab"
               tabindex="0">
-              <div class="abt-det animated fadeInUp" data-wow-delay=".5s">
+              <div class="abt-det animated fadeInUp">
                 <div class="abt-t">
                   <h5>Software Engineer Intern</h5>
                   <p class="experience-subtitle">ServiceNow</p>
@@ -303,71 +261,27 @@
                 <ul class="abt-list">
                   <li><i> ▹ </i><span>Won 1st place out of 500+ participants at ServiceNow's Engineering Hackathon; built an AI-powered code editor shipped to production and used by thousands of ServiceNow customers daily</span></li>
                 </ul>
-              </div>
-            </div>
-            <!--.tab-pane-->
-
-            <div class="tab-pane fade" id="v-pills-ferozi" role="tabpanel" aria-labelledby="v-pills-ferozi-tab"
-              tabindex="0">
-              <div class="abt-det animated fadeInUp">
-                <div class="abt-t">
+                <div class="abt-t" style="margin-top: 1.5rem;">
                   <h5>Software Engineer Intern</h5>
-                  <p> May 2022 – August 2022 </p>
-                </div><!-- /.abt-t -->
-
+                  <p class="experience-subtitle">ServiceNow</p>
+                  <span>May 2022 – Aug 2022</span>
+                </div>
                 <ul class="abt-list">
-                  <li>
-                    <i> ▹ </i>
-                    <span>
-                      Explored search and recommendation solutions for mobile workflows to enhance user experience
-                    </span>
-                  </li>
-                  <li>
-                    <i> ▹ </i>
-                    <span>
-                      Resolved 16 bugs in Mobile App Builder related to developer workflows and platform compatibility
-                    </span>
-                  </li>
-                  <li>
-                    <i> ▹ </i>
-                    <span>
-                      Presented mobile product demos at UTG Connect showcase event to audience of 2,000+ ServiceNow employees
-                    </span>
-                  </li>
+                  <li><i> ▹ </i><span>Explored search and recommendation solutions for mobile workflows to enhance user experience</span></li>
+                  <li><i> ▹ </i><span>Resolved 16 bugs in Mobile App Builder related to developer workflows and platform compatibility</span></li>
+                  <li><i> ▹ </i><span>Presented mobile product demos at UTG Connect showcase event to audience of 2,000+ ServiceNow employees</span></li>
                 </ul>
-              </div><!-- /.abt-det -->
-            </div>
-            <!--.tab-pane-->
-
-            <div class="tab-pane fade" id="v-pills-brown" role="tabpanel" aria-labelledby="v-pills-brown-tab"
-              tabindex="0">
-              <div class="abt-det animated fadeInUp">
-                <div class="abt-t">
+                <div class="abt-t" style="margin-top: 1.5rem;">
                   <h5>Quality Engineer Intern</h5>
-                  <p> May 2021 – August 2021 </p>
-                </div><!-- /.abt-t -->
-
+                  <p class="experience-subtitle">ServiceNow</p>
+                  <span>May 2021 – Aug 2021</span>
+                </div>
                 <ul class="abt-list">
-                  <li>
-                    <i> ▹ </i>
-                    <span>
-                      Built automation scripts to test Field Service Management mobile and web applications using Shadow DOM and mobile simulators
-                    </span>
-                  </li>
-                  <li>
-                    <i> ▹ </i>
-                    <span>
-                      Designed DOM interaction tests and utilities, improving UI test reliability by 25%
-                    </span>
-                  </li>
-                  <li>
-                    <i> ▹ </i>
-                    <span>
-                      Stabilized flaky tests to improve confidence and consistency in continuous integration runs
-                    </span>
-                  </li>
+                  <li><i> ▹ </i><span>Built automation scripts to test Field Service Management mobile and web applications using Shadow DOM and mobile simulators</span></li>
+                  <li><i> ▹ </i><span>Designed DOM interaction tests and utilities, improving UI test reliability by 25%</span></li>
+                  <li><i> ▹ </i><span>Stabilized flaky tests to improve confidence and consistency in continuous integration runs</span></li>
                 </ul>
-              </div><!-- /.abt-det -->
+              </div>
             </div>
             <!--.tab-pane-->
 
@@ -382,7 +296,7 @@
   <section id="projects" class="projects">
     <div class="container">
       <div class="sec-t wow fadeInLeft" data-wow-delay=".4s">
-        <h2> / projects </h2>
+        <h2> projects </h2>
         <span class="line"></span>
       </div><!-- /.sec-t -->
 
@@ -692,7 +606,7 @@
     crossorigin="anonymous"></script>
   <script src="assets/js/wow.min.js"></script>
   <script src="assets/js/glightbox.min.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=3"></script>
   
   <!-- Custom Portfolio JavaScript -->
   <script src="assets/js/portfolio.js"></script>

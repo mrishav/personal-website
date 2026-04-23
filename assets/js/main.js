@@ -234,28 +234,40 @@ window.flipCard = flipCard;
 
 // Scroll-spy: highlight active nav link based on current section
 (function initScrollSpy() {
-  const sections = ['hero-area', 'about', 'experience', 'projects'].map(id =>
-    document.querySelector(id === 'hero-area' ? '.hero-area' : `#${id}`)
-  ).filter(Boolean);
-  const spyKeys = ['hero', 'about', 'experience', 'projects'];
+  const spyKeys = ['about', 'experience', 'projects'];
 
-  function setActive(key) {
-    document.querySelectorAll('.main-bav li a[data-spy]').forEach(a => {
-      a.classList.toggle('active', a.dataset.spy === key);
-    });
+  function setup() {
+    const sections = spyKeys.map(id => document.querySelector(`#${id}`)).filter(Boolean);
+    if (sections.length === 0) return;
+
+    function setActive(key) {
+      document.querySelectorAll('.main-bav li a[data-spy]').forEach(a => {
+        a.classList.toggle('active', a.dataset.spy === key);
+      });
+    }
+
+    function onScroll() {
+      let current = spyKeys[0];
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const rect = sections[i].getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 3) {
+          current = spyKeys[i];
+          break;
+        }
+      }
+      setActive(current);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const idx = sections.indexOf(entry.target);
-        if (idx !== -1) setActive(spyKeys[idx]);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  sections.forEach(s => observer.observe(s));
-  setActive('hero');
+  // Run setup whether DOM is already loaded or not
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setup);
+  } else {
+    setup();
+  }
 }());
 
 // Maintain flipped card z-index on scroll
