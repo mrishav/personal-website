@@ -223,7 +223,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
 }
 
-h1 { font-size: clamp(2.5rem, 6vw, 4rem); }
+h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
 h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
 h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
 h4 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
@@ -909,6 +909,12 @@ section .sec-t h2::before {
   font-weight: 500;
 }
 
+.experience-description {
+  color: var(--color-text-lo);
+  font-weight: 500;
+  line-height: 1.7;
+}
+
 .company-name {
   font-size: 1.125rem;
   color: var(--color-accent);
@@ -927,6 +933,9 @@ section .sec-t h2::before {
   color: var(--color-accent);
   font-weight: bold;
 }
+
+.experience-video-link:hover img { transform: scale(1.05); }
+.experience-video-link:hover { border-color: var(--glass-border-hover) !important; }
 
 /* ════════════════════════════════════════════════════
    PROJECT CARDS
