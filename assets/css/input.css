@@ -223,7 +223,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
 }
 
-h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 600; }
 h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
 h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); }
 h4 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
@@ -445,8 +445,11 @@ body:not(.intro-active) .main-content { opacity: 1; visibility: visible; transit
 }
 
 .hi-btn-secondary:hover {
-  border-color: var(--color-text-lo);
+  background: rgba(var(--accent-blue-rgb), 0.08);
+  border-color: var(--color-accent);
   color: var(--color-text-hi);
+  transform: none;
+  box-shadow: none;
 }
 
 .hi-btn-icon {
