@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Zalor — Case Study | Rishav Mitra</title>
+  <meta name="description" content="How I pivoted Zalor from an MCP platform to AI reliability testing, and the product decisions that drove it." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/custom.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    .cs-page {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 5rem 2rem 6rem;
+    }
+
+    .cs-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      margin-bottom: 3rem;
+      transition: color 0.2s;
+    }
+
+    .cs-back:hover { color: var(--text-primary); }
+
+    .cs-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      margin-bottom: 1rem;
+    }
+
+    .cs-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .cs-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .cs-meta {
+      display: flex;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+    }
+
+    .cs-meta-item .label {
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .cs-meta-item .value {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .cs-section {
+      margin-bottom: 3rem;
+    }
+
+    .cs-section h2 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      margin-bottom: 1rem;
+    }
+
+    .cs-section p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .cs-section p:last-child { margin-bottom: 0; }
+
+    .cs-callout {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-left: 3px solid var(--accent-blue);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .cs-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .cs-tag {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+    }
+
+    .cs-link {
+      color: var(--accent-blue);
+      text-decoration: none;
+    }
+    .cs-link:hover { text-decoration: underline; color: var(--accent-blue); }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border-color);
+      margin: 3rem 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cs-page">
+
+    <a href="index.html" class="cs-back">
+      <i class="fa fa-arrow-left"></i> Back
+    </a>
+
+    <div class="cs-label">Case Study</div>
+    <h1 class="cs-title">Zalor</h1>
+    <p class="cs-subtitle">
+      Building an AI startup from scratch — shipping a v1 MCP platform, running 45+ customer discovery conversations, and pivoting to AI reliability testing based on what we heard.
+    </p>
+
+    <div class="cs-meta">
+      <div class="cs-meta-item">
+        <div class="label">Timeline</div>
+        <div class="value">2024 — Present</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="label">Role</div>
+        <div class="value">Co-founder & CEO</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="label">Competitors</div>
+        <div class="value">Patronus AI, HoneyHive</div>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <h2>Where We Started</h2>
+      <p>
+        Zalor started as a platform for managing MCP servers — making it easy for teams to connect AI agents to any REST API without writing tool definitions by hand. We shipped a v1 with Weav as our first design partner and started talking to potential users.
+      </p>
+      <p>
+        The product worked. But the conversations kept surfacing a different, more urgent problem.
+      </p>
+    </div>
+
+    <div class="cs-section">
+      <h2>What Customer Discovery Revealed</h2>
+      <p>
+        Across 45+ conversations — sourced through warm leads, LinkedIn, Reddit, and Hacker News outreach — the signal was consistent: teams shipping AI agents weren't confident their agents would behave correctly in production. Static test suites couldn't catch the behavioral failures that actually mattered.
+      </p>
+      <div class="cs-callout">
+        "We have evals, but they test outputs, not behavior. We have no idea if the agent would handle a confused or adversarial user."
+      </div>
+      <p>
+        The MCP platform solved a real problem, but it was an infrastructure problem. The behavioral reliability problem was closer to the point of pain — and nobody had solved it well.
+      </p>
+    </div>
+
+    <div class="cs-section">
+      <h2>The Pivot</h2>
+      <p>
+        Within weeks of shipping v1, we pivoted. The new direction: AI reliability testing through persona simulation. Instead of static evals that check outputs, Zalor simulates how different types of users — confused, adversarial, edge-case — interact with an AI agent, and surfaces behavioral failures before they reach production.
+      </p>
+      <p>
+        The positioning decision was deliberate. Patronus AI and HoneyHive both operate in the eval space, but their approach is output-centric: did the model return the right answer? Zalor's bet is that behavioral simulation — modeling how users actually interact — catches a class of failures that output evals miss entirely.
+      </p>
+      <div class="cs-callout">
+        Behavioral simulation vs. static evals: the distinction is whether you're testing what the agent says or how it behaves across a realistic distribution of users.
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <h2>What I Own</h2>
+      <p>
+        All of product, GTM, and engineering alongside my co-founder. That means defining the roadmap, running customer discovery, positioning against competitors, and building the product. At this stage, the founder is the PM.
+      </p>
+      <p>
+        The most valuable thing I've done isn't any individual feature — it's keeping the scope tight enough that we can move fast while staying close enough to users to know when we're wrong.
+      </p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="cs-section">
+      <h2>What's Next</h2>
+      <p>
+        The core product question is: what does a persona library look like? Users need a starting point — a set of pre-built personas (confused first-time user, power user pushing limits, adversarial user trying to jailbreak) that they can run against their agent immediately, then customize.
+      </p>
+      <p>
+        The distribution question is equally important. The buyers are AI engineering teams at companies actively shipping agents to production — not teams evaluating whether to adopt AI. Outreach through Hacker News, AI-focused communities, and warm intros from early users at Zoom has been the most efficient channel so far.
+      </p>
+    </div>
+
+    <div class="cs-tags">
+      <span class="cs-tag">Product Strategy</span>
+      <span class="cs-tag">Customer Discovery</span>
+      <span class="cs-tag">AI Reliability</span>
+      <span class="cs-tag">Persona Simulation</span>
+      <span class="cs-tag">Go-to-Market</span>
+      <span class="cs-tag">Competitive Positioning</span>
+    </div>
+
+  </div>
+</body>
+</html>
