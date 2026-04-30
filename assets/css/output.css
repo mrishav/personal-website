@@ -691,7 +691,7 @@ body:not(.intro-active) .main-content {
 .hero-intro-text {
   flex: 1;
 }
-@media (max-width: 576px) {
+@media (max-width: 1000px) {
   .hero-intro-main {
     flex-direction: column-reverse;
     align-items: flex-start;
@@ -699,8 +699,9 @@ body:not(.intro-active) .main-content {
   }
 }
 .hero-about h1 {
-  font-size: clamp(3rem, 6vw, 4.5rem);
-  font-weight: 700;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 600;
+  white-space: nowrap;
   color: var(--color-text-hi);
   line-height: 1.1;
   margin-bottom: 1rem;
@@ -763,8 +764,8 @@ body:not(.intro-active) .main-content {
   color: var(--color-text-hi);
 }
 .hero-avatar.img-profile {
-  width: 320px !important;
-  height: 320px !important;
+  width: clamp(72px, 25vw, 320px) !important;
+  height: clamp(72px, 25vw, 320px) !important;
   max-width: 320px !important;
   border-width: 2px;
   box-shadow: 0 0 0 4px rgba(var(--accent-blue-rgb), 0.1);
@@ -774,7 +775,7 @@ body:not(.intro-active) .main-content {
   transform: none;
   box-shadow: 0 0 0 4px rgba(var(--accent-blue-rgb), 0.1);
 }
-@media (max-width: 576px) {
+@media (max-width: 1000px) {
   .hero-avatar.img-profile {
     width: 72px !important;
     height: 72px !important;
@@ -857,7 +858,7 @@ body:not(.intro-active) .main-content {
   bottom: 2rem;
   right: 1.5rem;
   box-shadow: var(--shadow-glass);
-  z-index: 1000;
+  z-index: 9999;
   width: var(--sidebar-width);
   max-height: calc(100vh - 3rem);
   display: flex;
@@ -1683,6 +1684,11 @@ section .sec-t h2::before {
 .main-bav li a:focus-visible, .hi-btn:focus-visible, .social-nav li a:focus-visible, .nav-link:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
+}
+@media (min-width: 769px) {
+  #experience > .container {
+    padding-right: calc(var(--sidebar-width) + 2rem);
+  }
 }
 @media (max-width: 768px) {
   .side-nav {

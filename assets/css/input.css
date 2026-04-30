@@ -391,13 +391,14 @@ body:not(.intro-active) .main-content { opacity: 1; visibility: visible; transit
 
 .hero-intro-text { flex: 1; }
 
-@media (max-width: 576px) {
+@media (max-width: 1000px) {
   .hero-intro-main { flex-direction: column-reverse; align-items: flex-start; gap: 1.5rem; }
 }
 
 .hero-about h1 {
-  font-size: clamp(3rem, 6vw, 4.5rem);
-  font-weight: 700;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 600;
+  white-space: nowrap;
   color: var(--color-text-hi);
   line-height: 1.1;
   margin-bottom: 1rem;
@@ -471,8 +472,8 @@ body:not(.intro-active) .main-content { opacity: 1; visibility: visible; transit
 
 /* Avatar to the right */
 .hero-avatar.img-profile {
-  width: 320px !important;
-  height: 320px !important;
+  width: clamp(72px, 25vw, 320px) !important;
+  height: clamp(72px, 25vw, 320px) !important;
   max-width: 320px !important;
   border-width: 2px;
   box-shadow: 0 0 0 4px rgba(var(--accent-blue-rgb), 0.1);
@@ -484,7 +485,7 @@ body:not(.intro-active) .main-content { opacity: 1; visibility: visible; transit
   box-shadow: 0 0 0 4px rgba(var(--accent-blue-rgb), 0.1);
 }
 
-@media (max-width: 576px) {
+@media (max-width: 1000px) {
   .hero-avatar.img-profile { width: 72px !important; height: 72px !important; max-width: 72px !important; }
 }
 
@@ -594,7 +595,7 @@ body:not(.intro-active) .main-content { opacity: 1; visibility: visible; transit
   bottom: 2rem;
   right: 1.5rem;
   box-shadow: var(--shadow-glass);
-  z-index: 1000;
+  z-index: 9999;
   width: var(--sidebar-width);
   max-height: calc(100vh - 3rem);
   display: flex;
@@ -1422,6 +1423,13 @@ section .sec-t h2::before {
   outline-offset: 2px;
 }
 
+
+/* Prevent experience content from sliding under the fixed sidebar */
+@media (min-width: 769px) {
+  #experience > .container {
+    padding-right: calc(var(--sidebar-width) + 2rem);
+  }
+}
 
 /* ════════════════════════════════════════════════════
    MOBILE RESPONSIVE
