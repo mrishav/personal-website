@@ -79,7 +79,7 @@
 
     if (capReached()) {
       showAnswer(
-        "That's the question limit for today. Email rishavmitrasaab@gmail.com and Rishav will answer directly.",
+        "That's the question limit for today. Email me at rishavmitrasaab@gmail.com and I'll answer directly.",
         true
       );
       setBusy(true);

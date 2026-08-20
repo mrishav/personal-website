@@ -22,9 +22,8 @@ Contact:
 
 ## About, in his own words
 
-This is how Rishav describes himself. It is written in the first person; when
-answering, convert it to the third person like everything else here. Lean on it
-for questions like "who are you", "what do you do", "tell me about yourself".
+This is how Rishav describes himself, already in his own voice. Lean on it for
+questions like "who are you", "what do you do", "tell me about yourself".
 
 "I'm focused on making AI agents reliable. At ServiceNow, I build observability
 for AI agents. I also co-founded Zalor, an automated testing platform for

@@ -64,7 +64,7 @@ export async function checkLimit(ip) {
       return {
         blocked: true,
         message:
-          "That's a lot of questions for one day. Email rishavmitrasaab@gmail.com and Rishav will answer directly."
+          "That's a lot of questions for one day. Email me at rishavmitrasaab@gmail.com and I'll answer directly."
       };
     }
 
