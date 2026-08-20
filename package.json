@@ -1,0 +1,14 @@
+{
+  "name": "personal-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Source for rishavmitra.com",
+  "type": "module",
+  "scripts": {
+    "css": "./tools/tailwindcss --input src/input.css --output public/assets/css/output.css"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.120.0",
+    "@netlify/blobs": "^11.0.1"
+  }
+}

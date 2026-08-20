@@ -1,0 +1,19 @@
+[build]
+  # Only `public/` is uploaded. Everything else in the repo (function source,
+  # Tailwind sources, lockfiles, the tools/ binary) is outside the publish dir
+  # and therefore cannot be served. Publishing from "." previously exposed all
+  # of it, including the system prompt in netlify/functions/ask.mjs.
+  publish = "public"
+  functions = "netlify/functions"
+  command = "echo 'Static site; CSS is built and committed via npm run css'"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"

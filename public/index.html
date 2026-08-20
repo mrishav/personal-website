@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="">
+<html class="no-js" lang="en">
 
 <head>
   <meta charset="utf-8" />
@@ -10,9 +10,6 @@
   
   <!-- SEO Meta Description (155-160 characters for best results) -->
   <meta name="description" content="Rishav Mitra is a Software Engineer at ServiceNow building AI observability and agent infrastructure. University of Michigan CS graduate and founder with experience in AI systems, cloud platforms, and enterprise software." />
-  
-  <!-- Enhanced Keywords (including long-tail keywords) -->
-  <meta name="keywords" content="Rishav Mitra, Rishav Mitra ServiceNow, Rishav Mitra Michigan, ServiceNow software engineer, University of Michigan computer science, AI ML engineer, LLM UI generation, enterprise software developer, full-stack developer portfolio, React developer ServiceNow, mobile app developer Michigan, software engineering portfolio 2025" />
   
   <meta name="author" content="Rishav Mitra" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -30,7 +27,7 @@
     "image": "https://rishavmitra.com/assets/img/about/profile.png",
     "sameAs": [
       "https://www.linkedin.com/in/rishavmitra",
-      "https://github.com/rishavmitra"
+      "https://github.com/mrishav"
     ],
     "jobTitle": "Software Engineer",
     "worksFor": {
@@ -78,7 +75,6 @@
   <!-- Favicons with Multiple Sizes for Better SEO -->
   <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon.svg">
-  <link rel="manifest" href="/site.webmanifest" />
   <meta name="theme-color" content="#539bf5" />
   
   <!-- Preconnect to External Domains for Faster Loading -->
@@ -87,9 +83,16 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="dns-prefetch" href="https://maxcdn.bootstrapcdn.com">
   
+  <!-- Fonts. These must be <link> tags, not @import in input.css: Tailwind emits
+       @import after its @layer blocks, and the CSS spec requires @import to come
+       before all other rules, so the browser silently drops them. -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap">
+
   <!-- Stylesheets -->
   <link rel="preload" href="assets/css/output.css" as="style">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+    integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/glightbox.min.css" />
@@ -105,20 +108,6 @@
       </p>
     <![endif]-->
 
-  <!-- Cinematic Intro Overlay -->
-  <div id="cinematic-intro" class="cinematic-intro">
-    <div class="intro-content">
-      <div class="studio-logo">
-        <div class="logo-text">RM</div>
-        <div class="logo-subtitle">PORTFOLIO</div>
-      </div>
-      
-      
-      <div class="film-grain"></div>
-      <div class="scanlines"></div>
-    </div>
-  </div>
-
   <div class="scroll-indicator" id="scrollIndicator"></div>
 
 
@@ -132,16 +121,24 @@
 
   <section id="about" class="hero-about">
     <div class="container">
-      <div class="hero-intro">
+      <!-- data-state lives here because it drives both the character (inside
+           .agent-figure) and the answer panel, which are now siblings -->
+      <div class="hero-intro agent-stage" id="agentStage" data-state="idle">
         <div class="hero-intro-main">
           <div class="hero-intro-text">
             <h1>hi, i'm rishav mitra</h1>
-            <p class="hero-bio">
-              I'm focused on making AI agents reliable.
-              I co&#8209;founded <a href="https://zalor.ai/" target="_blank" style="color: inherit; font-weight: 700;">Zalor</a>, where we automatically test agents before deployment.
-              At <a href="https://www.servicenow.com/products/ai-control-tower.html" target="_blank" style="color: inherit; font-weight: 700;">ServiceNow</a>, I build observability for AI agents.
-              I define problems, set product direction, and ship end&#8209;to&#8209;end.
-            </p>
+
+            <div class="agent-ask">
+              <form class="agent-form" id="agentForm" autocomplete="off">
+                <label class="visually-hidden" for="agentInput">Ask me anything</label>
+                <input type="text" id="agentInput" class="agent-input" placeholder="ask me anything..."
+                  maxlength="300" required>
+                <button type="submit" class="agent-submit" id="agentSubmit" aria-label="Send question">
+                  <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </form>
+            </div>
+
             <div class="hero-card-actions">
               <a class="hi-btn hi-btn-secondary" href="mailto:rishavmitrasaab@gmail.com" aria-label="Email">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -153,14 +150,28 @@
                 <i class="fa fa-github" aria-hidden="true"></i>
               </a>
             </div>
+
+            <div class="agent-answer" id="agentAnswer" hidden>
+              <div class="agent-typing" id="agentTyping" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <p class="agent-answer-text" id="agentAnswerText" aria-live="polite"></p>
+            </div>
           </div>
-          <img src="assets/img/about/profile.png" class="img-profile hero-avatar" alt="Rishav Mitra" loading="lazy">
+
+          <div class="agent-figure">
+            <div class="agent-body">
+              <img src="assets/img/about/profile.png" class="img-profile hero-avatar" alt="Rishav Mitra" width="320" height="320">
+              <!-- Overlay sits on the monitor already drawn in the illustration -->
+              <div class="agent-screen" aria-hidden="true">
+                <span class="agent-screen-sweep"></span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
-    </div><!-- /.container -->
-  </section><!-- /.about -->
+  </section><!-- /.hero-about -->
 
   <section id="experience" class="experience" style="min-height: 800px;">
     <div class="container">
@@ -177,14 +188,14 @@
             <div class="nav custom-tabs  flex-column nav-pills" id="v-pills-tab" role="tablist"
               aria-orientation="vertical">
 
-              <button class="nav-link active red" id="v-pills-zalor-tab" data-bs-toggle="pill"
-                data-bs-target="#v-pills-zalor" type="button" aria-controls="v-pills-zalor">
-                Zalor
-              </button>
-
-              <button class="nav-link black" id="v-pills-red-tab" data-bs-toggle="pill"
+              <button class="nav-link active black" id="v-pills-red-tab" data-bs-toggle="pill"
                 data-bs-target="#v-pills-red" type="button" aria-controls="v-pills-red">
                 ServiceNow
+              </button>
+
+              <button class="nav-link red" id="v-pills-zalor-tab" data-bs-toggle="pill"
+                data-bs-target="#v-pills-zalor" type="button" aria-controls="v-pills-zalor">
+                Zalor
               </button>
 
               <button class="nav-link ferozi" id="v-pills-internships-tab" data-bs-toggle="pill"
@@ -197,31 +208,12 @@
 
           </div>
         </div><!-- /.col-lg-3 -->
-        <div class="col-lg-7">
+        <div class="col-lg-9">
 
           <div class="tab-content" id="v-pills-tabContent">
 
-            <!-- Zalor AI -->
-            <div class="tab-pane fade show active" id="v-pills-zalor" role="tabpanel" aria-labelledby="v-pills-zalor-tab"
-              tabindex="0">
-              <div class="abt-det wow fadeInUp">
-                <div class="abt-t">
-                  <h5>Co-founder &amp; CEO</h5>
-                  <p class="experience-subtitle">Zalor</p>
-                  <span>Sep 2025 – Present</span>
-                </div>
-                <p class="experience-description">
-                  I founded Zalor after identifying a gap in how teams build and ship AI agents. Through 45+ customer conversations, I found most teams relied on manual testing of prompts, tools, and workflows and only discovered failures after deployment.<br><br>
-                  To address this, I built a testing platform for AI agents, including scenario generation, output evaluation, and regression detection. I've signed multiple paying customers and am working with teams deploying AI agents.
-                </p>
-
-
-              </div>
-            </div>
-            <!--.tab-pane-->
-
             <!-- ServiceNow Full-time -->
-            <div class="tab-pane fade" id="v-pills-red" role="tabpanel" aria-labelledby="v-pills-red-tab"
+            <div class="tab-pane fade show active" id="v-pills-red" role="tabpanel" aria-labelledby="v-pills-red-tab"
               tabindex="0">
               <div class="abt-det wow fadeInUp">
                 <div class="abt-t">
@@ -234,6 +226,25 @@
                   I built connectors for frameworks like CrewAI and LangGraph, enabling teams to monitor and control their agents directly from the platform. I also developed integrations across AWS AgentCore, Azure AI Foundry, and GCP Vertex AI, allowing users to observe agent traces from a single, centralized interface.<br><br>
                   I built the new AI&#8209;native UI for AI Control Tower, redesigning the platform experience from scratch and presenting a product demo to 500+ employees ahead of release.
                 </p>
+              </div>
+            </div>
+            <!--.tab-pane-->
+
+            <!-- Zalor AI -->
+            <div class="tab-pane fade" id="v-pills-zalor" role="tabpanel" aria-labelledby="v-pills-zalor-tab"
+              tabindex="0">
+              <div class="abt-det wow fadeInUp">
+                <div class="abt-t">
+                  <h5>Co-founder &amp; CEO</h5>
+                  <p class="experience-subtitle">Zalor</p>
+                  <span>Sep 2025 – Mar 2026</span>
+                </div>
+                <p class="experience-description">
+                  I founded Zalor after identifying a gap in how teams build and ship AI agents. Through 45+ customer conversations, I found most teams relied on manual testing of prompts, tools, and workflows and only discovered failures after deployment.<br><br>
+                  To address this, I built a testing platform for AI agents, including scenario generation, output evaluation, and regression detection. I signed multiple paying customers and worked with teams deploying agents in production.
+                </p>
+
+
               </div>
             </div>
             <!--.tab-pane-->
@@ -258,7 +269,7 @@
 
           </div>
           <!--.tab-content-->
-        </div><!-- /.col-lg-5 -->
+        </div><!-- /.col-lg-9 -->
       </div><!-- /.row -->
 
     </div><!-- /.container -->
@@ -402,92 +413,6 @@
         </div>
       </div>
 
-      <div class="row gy-4 wow fadeInUp" data-wow-delay=".4s">
-        <div class="col-12">
-          <div class="project-card">
-            <!-- Video Section - Prominent -->
-            <div class="project-video-section">
-              <div class="video-container">
-                <a href="https://www.youtube.com/watch?v=FSmLCsy-nnw&ab_channel=RishavMitra"
-                  class="d-block img-link glightbox video-link">
-                  <img src="assets/img/projects/fluid.jpg" class="w-100" alt="Fluid Demo Video">
-                  <div class="play-btn">
-                    <i class="fa fa-play" aria-hidden="true"></i>
-                  </div>
-                  <div class="video-overlay">
-                    <span class="watch-demo">Watch Demo</span>
-                  </div>
-                </a>
-              </div>
-            </div>
-            
-            <!-- Project Info -->
-            <div class="project-info-section">
-              <div class="project-header">
-                <h4>Fluid</h4>
-                <p class="project-subtitle">ServiceNow Hackathon Project</p>
-              </div>
-              <div class="project-details">
-                <p class="description-desktop">
-                  Developers are often tied to their workstations to track project progress and review changes. Fluid is a mobile application that provides real&#8209;time access to project data, enabling developers to monitor user stories, track defects, and review pull requests directly from their mobile devices.
-                </p>
-                <p class="description-mobile">
-                  Fluid is a mobile app that keeps developers connected by enabling real-time tracking of stories, defects, and pull requests on the go.
-                </p>
-                <div class="project-tags">
-                  <span>Built App</span>
-                  <span>Real-time Sync</span>
-                  <span>GitHub Integration</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row gy-4 wow fadeInUp" data-wow-delay=".6s">
-        <div class="col-12">
-          <div class="project-card">
-            <!-- Video Section - Prominent -->
-            <div class="project-video-section">
-              <div class="video-container">
-                <a href="https://www.youtube.com/watch?v=-i4bMGHcNr4&feature=youtu.be"
-                  class="d-block img-link glightbox video-link">
-                  <img src="assets/img/projects/stub.jpg" class="w-100" alt="Stub Demo Video">
-                  <div class="play-btn">
-                    <i class="fa fa-play" aria-hidden="true"></i>
-                  </div>
-                  <div class="video-overlay">
-                    <span class="watch-demo">Watch Demo</span>
-                  </div>
-                </a>
-              </div>
-            </div>
-            
-            <!-- Project Info -->
-            <div class="project-info-section">
-              <div class="project-header">
-                <h4>Stub</h4>
-                <p class="project-subtitle">ServiceNow Hackathon Project</p>
-              </div>
-              <div class="project-details">
-                <p class="description-desktop">
-                  Keeping track of task status across tools can be tedious, especially when juggling multiple workflows. Stub is a Microsoft Teams bot that enables users to create, assign, and track tasks directly within Teams, reducing context switching and improving productivity.
-                </p>
-                <p class="description-mobile">
-                  Stub is a Microsoft Teams bot that streamlines task creation, assignment, and tracking directly within team chats.
-                </p>
-                <div class="project-tags">
-                  <span>Built Teams Bot</span>
-                  <span>In-chat Tasks</span>
-                  <span>Workflow Automation</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div class="row gy-4 wow fadeInUp" data-wow-delay=".7s">
         <div class="col-12">
           <div class="project-card">
@@ -589,12 +514,12 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
-  <script src="assets/js/wow.min.js"></script>
   <script src="assets/js/glightbox.min.js"></script>
   <script src="assets/js/main.js?v=3"></script>
   
   <!-- Custom Portfolio JavaScript -->
   <script src="assets/js/portfolio.js"></script>
+  <script src="assets/js/agent.js"></script>
 
 </body>
 
