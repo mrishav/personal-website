@@ -548,16 +548,6 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
 .agent-submit:hover:not(:disabled) { transform: scale(1.08); }
 .agent-submit:disabled { opacity: 0.45; cursor: default; }
 
-/* Sets expectations before the first answer: the voice is Rishav's, but the
-   words are generated. Muted so it informs without competing with the h1. */
-.agent-disclosure {
-  margin: 0.55rem 0 0 1.25rem;
-  font-size: 0.75rem;
-  color: var(--color-text-lo);
-  opacity: 0.75;
-  letter-spacing: 0.01em;
-}
-
 /* ── Answer panel ─────────────────────────────────────
    Sits in normal flow below the links, in the space the
    hero already leaves empty. Floating it beside the

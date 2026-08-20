@@ -767,13 +767,6 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p, .card-single p, .exp
   opacity: 0.45;
   cursor: default;
 }
-.agent-disclosure {
-  margin: 0.55rem 0 0 1.25rem;
-  font-size: 0.75rem;
-  color: var(--color-text-lo);
-  opacity: 0.75;
-  letter-spacing: 0.01em;
-}
 .agent-answer {
   max-width: 620px;
   margin-top: 1.5rem;
