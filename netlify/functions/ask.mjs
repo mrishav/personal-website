@@ -17,6 +17,14 @@ const MODEL = 'claude-sonnet-5';
 // truncated mid-sentence.
 const MAX_TOKENS = 250;
 const MAX_QUESTION_CHARS = 300;
+/*
+ * Netlify kills a synchronous function at 10s, and that kill severs the
+ * response mid-sentence with no chance to say anything. This budget stops
+ * generation just short of it so the visitor gets a clean, finished reply
+ * instead of a truncated one. MAX_TOKENS normally ends the answer in 3-6s,
+ * so this should never fire; it exists for the day something is slow.
+ */
+const GENERATION_BUDGET_MS = 8_500;
 
 
 const SYSTEM_PROMPT = `You answer questions about Rishav Mitra on his personal website. You are speaking to recruiters, hiring managers, and engineers who are deciding whether to reach out to him.
@@ -132,6 +140,13 @@ export default async function handler(req) {
 
   const emDash = createEmDashFilter();
 
+  // Fires only if generation overruns the budget; cleared as soon as it ends.
+  let timedOut = false;
+  const budget = setTimeout(() => {
+    timedOut = true;
+    stream.abort();
+  }, GENERATION_BUDGET_MS);
+
   const body = new ReadableStream({
     async start(controller) {
       try {
@@ -144,13 +159,19 @@ export default async function handler(req) {
         const tail = emDash.flush();
         if (tail) controller.enqueue(encoder.encode(tail));
       } catch (err) {
-        console.error('[ask] stream failed', err);
-        controller.enqueue(
-          encoder.encode(
-            "\n\nSomething went wrong mid-answer. Email rishavmitrasaab@gmail.com and he'll reply directly."
-          )
-        );
+        if (timedOut) {
+          // Deliberate abort, not a failure: round off what was said.
+          controller.enqueue(encoder.encode(' ...'));
+        } else {
+          console.error('[ask] stream failed', err);
+          controller.enqueue(
+            encoder.encode(
+              "\n\nSomething went wrong mid-answer. Email rishavmitrasaab@gmail.com and he'll reply directly."
+            )
+          );
+        }
       } finally {
+        clearTimeout(budget);
         controller.close();
       }
     }
