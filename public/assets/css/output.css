@@ -625,7 +625,6 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p, .card-single p, .exp
 .agent-body {
   position: relative;
   line-height: 0;
-  animation: agentFloat 6s ease-in-out infinite;
 }
 .agent-body .hero-avatar.img-profile {
   display: block;
@@ -700,14 +699,6 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p, .card-single p, .exp
 }
 .agent-stage[data-state="answering"] .agent-body::after {
   opacity: 0.4;
-}
-@keyframes agentFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
 }
 @keyframes agentSweep {
   0% {
@@ -851,9 +842,6 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p, .card-single p, .exp
   }
   .agent-layer {
     display: none;
-  }
-  .agent-body {
-    animation: none;
   }
   .agent-answer {
     max-width: 100%;

@@ -387,12 +387,11 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
   line-height: 0;
 }
 
-/* Carries the idle float. The answer panel is a sibling, not a child, so it
-   never inherits the motion. */
+/* Static on purpose: the head stays fixed in place, and all life comes from
+   the blink and mouth frames. */
 .agent-body {
   position: relative;
   line-height: 0;
-  animation: agentFloat 6s ease-in-out infinite;
 }
 
 .agent-body .hero-avatar.img-profile {
@@ -505,11 +504,6 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
 /* Answering: screen stays lit but settles, ring holds steady */
 .agent-stage[data-state="answering"] .agent-screen { opacity: 0.55; }
 .agent-stage[data-state="answering"] .agent-body::after { opacity: 0.4; }
-
-@keyframes agentFloat {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-6px); }
-}
 
 @keyframes agentSweep {
   0%   { transform: translateY(-100%); }
@@ -644,7 +638,6 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
   .agent-screen { display: none; }
   /* Same reason: an 11px-wide mouth just flickers */
   .agent-layer { display: none; }
-  .agent-body { animation: none; }
 
   .agent-answer { max-width: 100%; margin-top: 1.25rem; }
 }
