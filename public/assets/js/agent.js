@@ -105,8 +105,15 @@
     }, rand(BLINK_GAP));
   }
 
-  // closed -> mid -> open -> mid -> closed, so the jaw never jumps shut
-  const MOUTH_CYCLE = ['mid', 'open', 'mid', 'closed'];
+  /*
+   * Closed <-> half-open only. The fully-open frame is deliberately out of the
+   * cycle: in the artwork the beard tuft under the lip stays put while the
+   * mouth opens above it, and at 320px the wide-open oval plus that tuft read
+   * as two stacked mouths. The half-open frame is a thin oval and doesn't
+   * collide. Restore 'open' here if the artist revises the frame so the tuft
+   * drops with the jaw (face-mouth-open.png already ships).
+   */
+  const MOUTH_CYCLE = ['mid', 'closed'];
 
   function startMouth() {
     if (!face || stillFace) return;
