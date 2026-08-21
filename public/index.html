@@ -161,7 +161,16 @@
 
           <div class="agent-figure">
             <div class="agent-body">
-              <img src="assets/img/about/profile.png" class="img-profile hero-avatar" alt="Rishav Mitra" width="320" height="320">
+              <!-- Eyes and mouth are separate layers, not whole-face frames: the
+                   artist's frames differ only in two non-overlapping regions, so
+                   splitting them lets him blink mid-sentence and keeps all four
+                   states smaller than the single avatar used to be. -->
+              <div class="agent-face" id="agentFace">
+                <img src="assets/img/about/profile.png" class="img-profile hero-avatar" alt="Rishav Mitra" width="320" height="320">
+                <img src="assets/img/about/face-eyes-closed.png" class="agent-layer agent-eyes" alt="" aria-hidden="true">
+                <img src="assets/img/about/face-mouth-mid.png" class="agent-layer agent-mouth-mid" alt="" aria-hidden="true">
+                <img src="assets/img/about/face-mouth-open.png" class="agent-layer agent-mouth-open" alt="" aria-hidden="true">
+              </div>
               <!-- Overlay sits on the monitor already drawn in the illustration -->
               <div class="agent-screen" aria-hidden="true">
                 <span class="agent-screen-sweep"></span>

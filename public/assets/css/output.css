@@ -630,6 +630,43 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p, .card-single p, .exp
 .agent-body .hero-avatar.img-profile {
   display: block;
 }
+.agent-face {
+  position: relative;
+  display: block;
+  line-height: 0;
+}
+.agent-layer {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.agent-eyes {
+  left: 27.344%;
+  top: 35.725%;
+  width: 33.594%;
+  height: 8.034%;
+}
+.agent-mouth-mid {
+  left: 37.656%;
+  top: 56.241%;
+  width: 15.156%;
+  height: 3.730%;
+}
+.agent-mouth-open {
+  left: 37.500%;
+  top: 55.811%;
+  width: 15.312%;
+  height: 4.878%;
+}
+.agent-face.is-blinking .agent-eyes {
+  opacity: 1;
+}
+.agent-face[data-mouth="mid"] .agent-mouth-mid {
+  opacity: 1;
+}
+.agent-face[data-mouth="open"] .agent-mouth-open {
+  opacity: 1;
+}
 .agent-body::after {
   content: "";
   position: absolute;
@@ -671,9 +708,6 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p, .card-single p, .exp
   opacity: 1;
   animation: agentRing 1.6s ease-in-out infinite;
 }
-.agent-stage[data-state="answering"] .agent-body {
-  animation: agentSpeak 0.9s ease-in-out infinite;
-}
 .agent-stage[data-state="answering"] .agent-screen {
   opacity: 0.55;
 }
@@ -686,17 +720,6 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p, .card-single p, .exp
   }
   50% {
     transform: translateY(-6px);
-  }
-}
-@keyframes agentSpeak {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  30% {
-    transform: translateY(-3px) rotate(-0.5deg);
-  }
-  65% {
-    transform: translateY(1px) rotate(0.4deg);
   }
 }
 @keyframes agentSweep {
@@ -837,6 +860,9 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p, .card-single p, .exp
     max-width: 100%;
   }
   .agent-screen {
+    display: none;
+  }
+  .agent-layer {
     display: none;
   }
   .agent-body {

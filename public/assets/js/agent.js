@@ -58,8 +58,80 @@
 
   let inFlight = false;
 
+
+  /*
+   * Face animation.
+   *
+   * Blink and mouth are driven separately because the artwork allows it: the
+   * artist's frames differ only in the eye region and the mouth region, and the
+   * two don't overlap, so both can be layered over one base. That is what lets
+   * him blink in the middle of a sentence instead of freezing mid-blink while
+   * talking.
+   *
+   * Reduced motion has to be honoured here in JS. The CSS block for it kills
+   * animations and transitions, but these frames are swapped on a timer, so CSS
+   * cannot reach them.
+   */
+  const face = document.getElementById('agentFace');
+  const stillFace = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const BLINK_MS = 120;             // a real blink is ~100-150ms
+  const BLINK_GAP = [3000, 7000];   // randomised, because metronomic blinking reads as robotic
+  const DOUBLE_BLINK_CHANCE = 0.25;
+  const MOUTH_HOLD = [90, 140];
+
+  const rand = ([lo, hi]) => lo + Math.random() * (hi - lo);
+
+  let blinkTimer = null;
+  let mouthTimer = null;
+
+  function blinkOnce(then) {
+    if (!face) return;
+    face.classList.add('is-blinking');
+    setTimeout(() => {
+      face.classList.remove('is-blinking');
+      if (then) setTimeout(then, 110);
+    }, BLINK_MS);
+  }
+
+  function scheduleBlink() {
+    blinkTimer = setTimeout(function again() {
+      // Occasionally blink twice in quick succession, the way people actually do.
+      if (Math.random() < DOUBLE_BLINK_CHANCE) {
+        blinkOnce(() => blinkOnce(scheduleBlink));
+      } else {
+        blinkOnce(scheduleBlink);
+      }
+    }, rand(BLINK_GAP));
+  }
+
+  // closed -> mid -> open -> mid -> closed, so the jaw never jumps shut
+  const MOUTH_CYCLE = ['mid', 'open', 'mid', 'closed'];
+
+  function startMouth() {
+    if (!face || stillFace) return;
+    let i = 0;
+    (function step() {
+      const shape = MOUTH_CYCLE[i % MOUTH_CYCLE.length];
+      if (shape === 'closed') face.removeAttribute('data-mouth');
+      else face.dataset.mouth = shape;
+      i++;
+      mouthTimer = setTimeout(step, rand(MOUTH_HOLD));
+    }());
+  }
+
+  function stopMouth() {
+    clearTimeout(mouthTimer);
+    mouthTimer = null;
+    if (face) face.removeAttribute('data-mouth');   // always settle closed
+  }
+
+  if (face && !stillFace) scheduleBlink();
+
   function setState(state) {
     stage.dataset.state = state;
+    if (state === 'answering') startMouth();
+    else stopMouth();
   }
 
   function setBusy(busy) {

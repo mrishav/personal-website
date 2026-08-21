@@ -387,8 +387,8 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
   line-height: 0;
 }
 
-/* Carries all character motion. The bubble is a sibling, not a child, so it
-   never inherits the float or the speaking nod. */
+/* Carries the idle float. The answer panel is a sibling, not a child, so it
+   never inherits the motion. */
 .agent-body {
   position: relative;
   line-height: 0;
@@ -398,6 +398,39 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
 .agent-body .hero-avatar.img-profile {
   display: block;
 }
+
+/* ── Face layers ──────────────────────────────────────
+   The artist's frames are pixel-aligned and differ only in the eyes and the
+   mouth, two regions that don't overlap. So instead of four whole-face images,
+   the base carries the face and these two crops sit on top of it. Positions are
+   percentages derived from the source crop, so they track the avatar as it
+   scales. Blink and mouth are independent, which is what lets him blink while
+   talking.
+   ──────────────────────────────────────────────────── */
+.agent-face {
+  position: relative;
+  display: block;
+  line-height: 0;
+}
+
+.agent-layer {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  /* No transition on purpose. A blink is a snap; fading it looks like a wince. */
+}
+
+/* Height is set explicitly, not left to auto. The base image is forced into a
+   square box (640x697 artwork rendered at 320x320), so it is scaled unevenly.
+   An auto-height overlay would scale uniformly and drift out of register: the
+   eye layer came out 28px tall where the base wanted 25.7px. */
+.agent-eyes       { left: 27.344%; top: 35.725%; width: 33.594%; height: 8.034%; }
+.agent-mouth-mid  { left: 37.656%; top: 56.241%; width: 15.156%; height: 3.730%; }
+.agent-mouth-open { left: 37.500%; top: 55.811%; width: 15.312%; height: 4.878%; }
+
+.agent-face.is-blinking .agent-eyes             { opacity: 1; }
+.agent-face[data-mouth="mid"]  .agent-mouth-mid { opacity: 1; }
+.agent-face[data-mouth="open"] .agent-mouth-open{ opacity: 1; }
 
 /*
  * Pulse ring lives on a pseudo-element, not on .img-profile itself:
@@ -465,25 +498,12 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
 }
 
 /* Answering: screen stays lit but settles, ring holds steady */
-/* Gentle nod while speaking. Motion on the whole figure reads as "he's
-   talking" without touching the illustration's linework, which a synthetic
-   mouth overlay cannot do convincingly against hand-drawn ink. */
-.agent-stage[data-state="answering"] .agent-body {
-  animation: agentSpeak 0.9s ease-in-out infinite;
-}
-
 .agent-stage[data-state="answering"] .agent-screen { opacity: 0.55; }
 .agent-stage[data-state="answering"] .agent-body::after { opacity: 0.4; }
 
 @keyframes agentFloat {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-6px); }
-}
-
-@keyframes agentSpeak {
-  0%, 100% { transform: translateY(0)    rotate(0deg);    }
-  30%      { transform: translateY(-3px) rotate(-0.5deg); }
-  65%      { transform: translateY(1px)  rotate(0.4deg);  }
 }
 
 @keyframes agentSweep {
@@ -617,6 +637,8 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
   .agent-ask { margin-top: 1.25rem; max-width: 100%; }
   /* Overlay is illegible at the 72px avatar — hide it, keep the ring */
   .agent-screen { display: none; }
+  /* Same reason: an 11px-wide mouth just flickers */
+  .agent-layer { display: none; }
   .agent-body { animation: none; }
 
   .agent-answer { max-width: 100%; margin-top: 1.25rem; }
