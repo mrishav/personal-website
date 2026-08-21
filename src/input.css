@@ -401,11 +401,19 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
 
 /* ── Face layers ──────────────────────────────────────
    The artist's frames are pixel-aligned and differ only in the eyes and the
-   mouth, two regions that don't overlap. So instead of four whole-face images,
-   the base carries the face and these two crops sit on top of it. Positions are
-   percentages derived from the source crop, so they track the avatar as it
-   scales. Blink and mouth are independent, which is what lets him blink while
-   talking.
+   mouth, two regions that don't overlap, so the base carries the face and these
+   sit on top of it.
+
+   Each overlay is the *same pixel dimensions as the base* and gets the same
+   `object-fit: cover`, so the browser applies identical scaling and cropping to
+   all of them and they line up by construction.
+
+   They were originally cropped to their opaque box and placed with percentage
+   offsets, which was wrong: the base is 640x697 inside a 320x320 box, so cover
+   scales it to 320x348.5 and crops 14.25px off the top and bottom. Percentages
+   of the *box* therefore don't map to positions in the *image*. The mouth
+   overlay landed 1.65px high and 1.39px short, leaving a sliver of the base's
+   closed mouth showing under the open one, which read as a second mouth.
    ──────────────────────────────────────────────────── */
 .agent-face {
   position: relative;
@@ -415,22 +423,19 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
 
 .agent-layer {
   position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 100%;
   opacity: 0;
   pointer-events: none;
   /* No transition on purpose. A blink is a snap; fading it looks like a wince. */
 }
 
-/* Height is set explicitly, not left to auto. The base image is forced into a
-   square box (640x697 artwork rendered at 320x320), so it is scaled unevenly.
-   An auto-height overlay would scale uniformly and drift out of register: the
-   eye layer came out 28px tall where the base wanted 25.7px. */
-.agent-eyes       { left: 27.344%; top: 35.725%; width: 33.594%; height: 8.034%; }
-.agent-mouth-mid  { left: 37.656%; top: 56.241%; width: 15.156%; height: 3.730%; }
-.agent-mouth-open { left: 37.500%; top: 55.811%; width: 15.312%; height: 4.878%; }
-
-.agent-face.is-blinking .agent-eyes             { opacity: 1; }
-.agent-face[data-mouth="mid"]  .agent-mouth-mid { opacity: 1; }
-.agent-face[data-mouth="open"] .agent-mouth-open{ opacity: 1; }
+.agent-face.is-blinking .agent-eyes              { opacity: 1; }
+.agent-face[data-mouth="mid"]  .agent-mouth-mid  { opacity: 1; }
+.agent-face[data-mouth="open"] .agent-mouth-open { opacity: 1; }
 
 /*
  * Pulse ring lives on a pseudo-element, not on .img-profile itself:
