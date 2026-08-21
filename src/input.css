@@ -285,7 +285,8 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
   gap: 2.5rem;
 }
 
-.hero-intro-text { flex: 1; }
+/* position: relative anchors the absolutely-positioned answer panel below */
+.hero-intro-text { flex: 1; position: relative; }
 
 @media (max-width: 1000px) {
   .hero-intro-main { flex-direction: column-reverse; align-items: flex-start; gap: 1.5rem; }
@@ -574,9 +575,16 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
    only ~210px of headroom above the avatar.
    ──────────────────────────────────────────────────── */
 .agent-answer {
-  /* Matches .agent-ask so the panel lines up with the ask box above it */
-  max-width: 620px;
-  margin-top: 1.5rem;
+  /* Out of normal flow on purpose. The hero centers its content vertically, so
+     an in-flow panel re-centers everything as each streamed line grows it: the
+     avatar visibly stepped upward line by line (measured 12px over one answer).
+     Absolute positioning means the panel can never change the content height,
+     so the head stays put. The hero is min-height:100vh with only ~400px of
+     content, so there is ample empty space below the links for it to occupy. */
+  position: absolute;
+  top: calc(100% + 1.5rem);
+  left: 0;
+  width: min(620px, 100%);
   padding: 0.95rem 1.25rem;
   background: var(--color-bg-mid);
   border: 1px solid var(--glass-border-subtle);
@@ -588,6 +596,10 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
 
 .agent-answer-text {
   margin: 0;
+  /* Long answers scroll inside the panel instead of growing it toward the
+     section below */
+  max-height: min(260px, 32vh);
+  overflow-y: auto;
   color: var(--color-text-hi);
   font-size: 0.95rem;
   line-height: 1.65;
@@ -639,7 +651,9 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
   /* Same reason: an 11px-wide mouth just flickers */
   .agent-layer { display: none; }
 
-  .agent-answer { max-width: 100%; margin-top: 1.25rem; }
+  /* In-flow on mobile: the page scrolls anyway, and there is no empty band
+     below the hero for an absolute panel to float into */
+  .agent-answer { position: static; width: 100%; margin-top: 1.25rem; }
 }
 
 .visually-hidden {

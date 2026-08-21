@@ -534,6 +534,7 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p, .card-single p, .exp
 }
 .hero-intro-text {
   flex: 1;
+  position: relative;
 }
 @media (max-width: 1000px) {
   .hero-intro-main {
@@ -769,8 +770,10 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p, .card-single p, .exp
   cursor: default;
 }
 .agent-answer {
-  max-width: 620px;
-  margin-top: 1.5rem;
+  position: absolute;
+  top: calc(100% + 1.5rem);
+  left: 0;
+  width: min(620px, 100%);
   padding: 0.95rem 1.25rem;
   background: var(--color-bg-mid);
   border: 1px solid var(--glass-border-subtle);
@@ -781,6 +784,8 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p, .card-single p, .exp
 }
 .agent-answer-text {
   margin: 0;
+  max-height: min(260px, 32vh);
+  overflow-y: auto;
   color: var(--color-text-hi);
   font-size: 0.95rem;
   line-height: 1.65;
@@ -844,7 +849,8 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p, .card-single p, .exp
     display: none;
   }
   .agent-answer {
-    max-width: 100%;
+    position: static;
+    width: 100%;
     margin-top: 1.25rem;
   }
 }
