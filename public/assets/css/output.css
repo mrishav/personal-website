@@ -701,15 +701,12 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p, .card-single p, .exp
 .agent-stage[data-state="thinking"] .agent-screen-sweep {
   animation: agentSweep 1.5s linear infinite;
 }
-.agent-stage[data-state="thinking"] .agent-body::after {
+.agent-stage[data-state="thinking"] .agent-body::after, .agent-stage[data-state="answering"] .agent-body::after {
   opacity: 1;
   animation: agentRing 1.6s ease-in-out infinite;
 }
 .agent-stage[data-state="answering"] .agent-screen {
   opacity: 0.55;
-}
-.agent-stage[data-state="answering"] .agent-body::after {
-  opacity: 0.4;
 }
 @keyframes agentSweep {
   0% {
@@ -853,9 +850,6 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p, .card-single p, .exp
     max-width: 100%;
   }
   .agent-screen {
-    display: none;
-  }
-  .agent-layer {
     display: none;
   }
   .agent-answer {

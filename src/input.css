@@ -515,14 +515,18 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
   animation: agentSweep 1.5s linear infinite;
 }
 
-.agent-stage[data-state="thinking"] .agent-body::after {
+/* The ring pulses for the whole generation, thinking and streaming alike, so
+   the circle keeps moving from the moment a question is sent until the answer
+   is finished. */
+.agent-stage[data-state="thinking"] .agent-body::after,
+.agent-stage[data-state="answering"] .agent-body::after {
   opacity: 1;
   animation: agentRing 1.6s ease-in-out infinite;
 }
 
-/* Answering: screen stays lit but settles, ring holds steady */
+/* Answering: the screen stays lit but settles, since the laptop sweep belongs
+   to the thinking state. */
 .agent-stage[data-state="answering"] .agent-screen { opacity: 0.55; }
-.agent-stage[data-state="answering"] .agent-body::after { opacity: 0.4; }
 
 @keyframes agentSweep {
   0%   { transform: translateY(-100%); }
@@ -664,10 +668,11 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
 
 @media (max-width: 1000px) {
   .agent-ask { margin-top: 1.25rem; max-width: 100%; }
-  /* Overlay is illegible at the 72px avatar — hide it, keep the ring */
+  /* The laptop screen overlay is 13px square at the 72px avatar, which reads as
+     a flickering smudge rather than a screen, so it stays off here. The face
+     layers do NOT: the blink is the thing that makes him feel alive, and it is
+     still legible small. */
   .agent-screen { display: none; }
-  /* Same reason: an 11px-wide mouth just flickers */
-  .agent-layer { display: none; }
 
   /* In-flow on mobile: the page scrolls anyway, and there is no empty band
      below the hero for an absolute panel to float into */

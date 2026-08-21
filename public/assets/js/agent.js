@@ -78,18 +78,29 @@
   const BLINK_MS = 120;             // a real blink is ~100-150ms
   const BLINK_GAP = [3000, 7000];   // randomised, because metronomic blinking reads as robotic
   const DOUBLE_BLINK_CHANCE = 0.25;
-  const MOUTH_HOLD = [90, 140];
+  const MOUTH_HOLD = [140, 200];
 
   const rand = ([lo, hi]) => lo + Math.random() * (hi - lo);
 
   let blinkTimer = null;
   let mouthTimer = null;
+  let blinking = false;
 
+  /*
+   * A blink has to win over the mouth. Each file is a whole frame rather than a
+   * cut-out, so an open mouth drawn on top would hide the closed eyes and the
+   * blink would simply not happen while he is talking. Holding the mouth shut
+   * for the 120ms of a blink keeps every blink visible, and a tiny pause in the
+   * middle of a sentence is what a person does anyway.
+   */
   function blinkOnce(then) {
     if (!face) return;
+    blinking = true;
+    face.removeAttribute('data-mouth');
     face.classList.add('is-blinking');
     setTimeout(() => {
       face.classList.remove('is-blinking');
+      blinking = false;
       if (then) setTimeout(then, 110);
     }, BLINK_MS);
   }
@@ -106,21 +117,23 @@
   }
 
   /*
-   * Closed <-> half-open only. The fully-open frame is deliberately out of the
-   * cycle: in the artwork the beard tuft under the lip stays put while the
-   * mouth opens above it, and at 320px the wide-open oval plus that tuft read
-   * as two stacked mouths. The half-open frame is a thin oval and doesn't
-   * collide. Restore 'open' here if the artist revises the frame so the tuft
-   * drops with the jaw (face-mouth-open.png already ships).
+   * All three mouth frames, ordered so the jaw ramps open and shut instead of
+   * snapping between closed and wide open.
+   *
+   * The wide-open frame was pulled from this cycle once for reading as two
+   * stacked mouths. That turned out to be the face layers being painted 12px
+   * higher than the base rather than anything wrong with the artwork, so with
+   * the geometry fixed it belongs back in. If it ever reads doubled again,
+   * dropping 'open' from this array is the whole revert.
    */
-  const MOUTH_CYCLE = ['mid', 'closed'];
+  const MOUTH_CYCLE = ['mid', 'open', 'mid', 'closed'];
 
   function startMouth() {
     if (!face || stillFace) return;
     let i = 0;
     (function step() {
       const shape = MOUTH_CYCLE[i % MOUTH_CYCLE.length];
-      if (shape === 'closed') face.removeAttribute('data-mouth');
+      if (shape === 'closed' || blinking) face.removeAttribute('data-mouth');
       else face.dataset.mouth = shape;
       i++;
       mouthTimer = setTimeout(step, rand(MOUTH_HOLD));
