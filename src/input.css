@@ -258,8 +258,18 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
   width: 100%;
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  padding: 60px 0;
+  /* flex-start + computed padding instead of `center`, deliberately. Centering
+     re-centers whenever content height changes, so the streamed answer growing
+     the panel moved the avatar a step per line ("the head bobs"). The padding
+     reproduces today's centered position for the ~365px hero content, but is
+     independent of content height, so growth only ever extends downward. */
+  align-items: flex-start;
+  padding: max(60px, calc((100vh - 365px) / 2)) 0 60px;
+}
+
+@media (max-width: 1000px) {
+  /* Column layout is taller; pin near the top rather than faking centering */
+  .hero-about { padding-top: 80px; }
 }
 
 @media (max-width: 767px) {
