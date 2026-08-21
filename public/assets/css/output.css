@@ -632,8 +632,15 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p, .card-single p, .exp
   position: relative;
   line-height: 0;
 }
+.agent-body .hero-avatar.img-profile, .agent-layer {
+  border-radius: 100%;
+  border: 2px solid transparent;
+  object-fit: cover;
+  object-position: 50% 15%;
+}
 .agent-body .hero-avatar.img-profile {
   display: block;
+  border-color: var(--color-accent);
 }
 .agent-face {
   position: relative;
@@ -645,8 +652,6 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p, .card-single p, .exp
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 100%;
   opacity: 0;
   pointer-events: none;
 }

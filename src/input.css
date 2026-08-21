@@ -405,26 +405,36 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
   line-height: 0;
 }
 
-.agent-body .hero-avatar.img-profile {
-  display: block;
+/* ── Face geometry ────────────────────────────────────
+   Every frame is a complete 640x697 picture, so a swap should just be showing a
+   different one. That only reads as a swap in place if all four are painted
+   into exactly the same rectangle, and this is precisely where it went wrong:
+   the geometry was written twice, once here and once on .img-profile, and the
+   two drifted. The base picked up `object-position: 50% 15%` and a 2px border
+   while the layers had neither, so with box-sizing: border-box the base's
+   picture was drawn into a 316x316 content box anchored at 15% and the layers
+   into the full 320x320 anchored at 50%. That put the artwork 12px higher and
+   1.3% larger on every layer, and the whole character jumped on each blink.
+
+   So the geometry lives in one rule covering the base and the layers together.
+   Only the border COLOUR differs: the base shows the accent ring, and the
+   layers keep the same 2px band transparent, both so their content boxes match
+   the base's and so the ring underneath stays visible instead of being painted
+   over by an opaque frame.
+   ──────────────────────────────────────────────────── */
+.agent-body .hero-avatar.img-profile,
+.agent-layer {
+  border-radius: 100%;
+  border: 2px solid transparent;
+  object-fit: cover;
+  object-position: 50% 15%;
 }
 
-/* ── Face layers ──────────────────────────────────────
-   The artist's frames are pixel-aligned and differ only in the eyes and the
-   mouth, two regions that don't overlap, so the base carries the face and these
-   sit on top of it.
+.agent-body .hero-avatar.img-profile {
+  display: block;
+  border-color: var(--color-accent);
+}
 
-   Each overlay is the *same pixel dimensions as the base* and gets the same
-   `object-fit: cover`, so the browser applies identical scaling and cropping to
-   all of them and they line up by construction.
-
-   They were originally cropped to their opaque box and placed with percentage
-   offsets, which was wrong: the base is 640x697 inside a 320x320 box, so cover
-   scales it to 320x348.5 and crops 14.25px off the top and bottom. Percentages
-   of the *box* therefore don't map to positions in the *image*. The mouth
-   overlay landed 1.65px high and 1.39px short, leaving a sliver of the base's
-   closed mouth showing under the open one, which read as a second mouth.
-   ──────────────────────────────────────────────────── */
 .agent-face {
   position: relative;
   display: block;
@@ -436,8 +446,6 @@ body p, .about p, .abt-text p, .abt-det p, .project-text p,
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 100%;
   opacity: 0;
   pointer-events: none;
   /* No transition on purpose. A blink is a snap; fading it looks like a wince. */
